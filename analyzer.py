@@ -67,6 +67,52 @@ DISTRICT_SCORE = {
 }
 
 
+def invest_recommendation(yield_pct: float, infra_sc: float, infra_projs: list[str]) -> tuple[str, str, str, str]:
+    """
+    Trả về (verdict, color, bg, detail) dựa thuần trên:
+      - Tỷ suất sinh lời = yield_pct (tiền thuê hàng năm / giá trị tài sản)
+      - Tiềm năng hạ tầng = infra_sc + danh sách dự án gần đó
+    """
+    # --- Yield score (0-3) ---
+    if yield_pct >= 5.5:
+        y_pts, y_label = 3, f"Yield {yield_pct}% ✦ Xuất sắc"
+    elif yield_pct >= 4.5:
+        y_pts, y_label = 2, f"Yield {yield_pct}% ✦ Tốt"
+    elif yield_pct >= 3.5:
+        y_pts, y_label = 1, f"Yield {yield_pct}% ✦ Chấp nhận"
+    else:
+        y_pts, y_label = 0, f"Yield {yield_pct}% ✦ Thấp"
+
+    # --- Infra score (0-3) ---
+    active_projs = [p for p in infra_projs if any(
+        kw in p for kw in ["đang thi công", "đã duyệt", "Đang", "UNDER", "APPROVED"]
+    )]
+    if infra_sc >= 35:
+        i_pts, i_label = 3, f"HT Bùng nổ ({infra_sc:.0f}đ)"
+    elif infra_sc >= 20:
+        i_pts, i_label = 2, f"HT Tiềm năng ({infra_sc:.0f}đ)"
+    elif infra_sc >= 10:
+        i_pts, i_label = 1, f"HT Khởi sắc ({infra_sc:.0f}đ)"
+    else:
+        i_pts, i_label = 0, f"HT Ổn định ({infra_sc:.0f}đ)"
+
+    total = y_pts + i_pts
+
+    if total >= 5:
+        verdict, color, bg = "MUA NGAY",  "#14532d", "#dcfce7"
+    elif total >= 4:
+        verdict, color, bg = "NÊN MUA",   "#166534", "#bbf7d0"
+    elif total >= 3:
+        verdict, color, bg = "CÂN NHẮC",  "#92400e", "#fef3c7"
+    elif total >= 2:
+        verdict, color, bg = "CHỜ THÊM",  "#9a3412", "#ffedd5"
+    else:
+        verdict, color, bg = "TRÁNH",     "#7f1d1d", "#fee2e2"
+
+    detail = f"{y_label}\n{i_label}"
+    return verdict, color, bg, detail
+
+
 @dataclass
 class AnalysisResult:
     property: dict
@@ -78,6 +124,11 @@ class AnalysisResult:
     reasons: list[str]
     infra_score: float = 0.0
     infra_projects: list[str] = None
+    # Gợi ý đầu tư thuần từ yield + hạ tầng
+    invest_verdict: str = ""      # MUA NGAY / NÊN MUA / CÂN NHẮC / CHỜ THÊM / TRÁNH
+    invest_color: str = "#374151"
+    invest_bg: str = "#f3f4f6"
+    invest_detail: str = ""       # "Yield X% | HT: Bùng nổ (42đ)"
 
 
 def get_market_ref(prop_type: str, district: str) -> Optional[dict]:
@@ -217,6 +268,20 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             )
             roi_5yr = round(capital_gain + rental_total + active_impact * 0.3, 1)
 
+        # Gợi ý đầu tư: yield + hạ tầng
+        iv, ic, ib, id_ = invest_recommendation(yield_pct or 0, infra_sc, infra_projs)
+
+        # Lấy tên các dự án đang thi công / đã duyệt gần quận
+        nearby_active = [
+            p for p in INFRA_PROJECTS
+            if district in p.districts_affected
+            and p.status in (Status.UNDER_CONST, Status.APPROVED)
+        ]
+        nearby_names = [p.name for p in sorted(nearby_active, key=lambda x: x.price_impact_pct, reverse=True)[:3]]
+        invest_detail_full = id_
+        if nearby_names:
+            invest_detail_full += "\n" + " · ".join(nearby_names)
+
         results.append(AnalysisResult(
             property=prop,
             score=round(score, 1),
@@ -227,6 +292,10 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             reasons=reasons,
             infra_score=round(infra_sc, 1),
             infra_projects=infra_projs,
+            invest_verdict=iv,
+            invest_color=ic,
+            invest_bg=ib,
+            invest_detail=invest_detail_full,
         ))
 
     return sorted(results, key=lambda x: x.score, reverse=True)

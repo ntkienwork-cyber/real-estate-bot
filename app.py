@@ -232,6 +232,7 @@ TEMPLATE = """
       <th>#</th><th>Tên BĐS</th><th>Giá</th><th>Diện tích</th><th>Giá/m²</th>
       <th>Quận</th><th>Score</th><th>Verdict</th><th>Định giá</th>
       <th>ROI 5 năm</th><th>Hạ tầng</th>
+      <th title="Yield = tiền thuê/năm ÷ giá trị · Hạ tầng = dự án đang/sắp xây gần đó">💡 Gợi ý đầu tư</th>
     </tr></thead>
     <tbody>
     {% for r in buy_list %}
@@ -258,6 +259,13 @@ TEMPLATE = """
         {% if r.roi_5yr %}{{ r.roi_5yr }}%{% else %}—{% endif %}</td>
       <td><span class="badge" style="color:{{ ifc }};background:{{ ibc }}">{{ il }}</span>
         <div class="sub">{{ r.infra_score }}/100</div></td>
+      <td>
+        <span class="badge" style="color:{{ r.invest_color }};background:{{ r.invest_bg }};font-size:.72rem;padding:3px 8px">{{ r.invest_verdict }}</span>
+        {% set detail_lines = r.invest_detail.split('\n') %}
+        {% for line in detail_lines %}
+        <div class="sub" style="margin-top:2px;font-size:.65rem">{{ line }}</div>
+        {% endfor %}
+      </td>
     </tr>
     {% endfor %}
     </tbody>
@@ -270,8 +278,10 @@ TEMPLATE = """
   <div class="scrollable"><table>
     <thead><tr>
       <th>#</th><th>Tên BĐS</th><th>Giá</th><th>DT</th><th>Giá/m²</th>
-      <th>Quận</th><th>Score</th><th>Verdict</th><th>Định giá</th>
-      <th>ROI 5yr</th><th>Yield</th><th>HT Score</th><th>Phân tích</th>
+      <th>Quận</th><th>Score</th><th>Định giá</th>
+      <th>ROI 5yr</th><th>Yield</th><th>HT Score</th>
+      <th title="Yield = tiền thuê/năm ÷ giá · HT = dự án đang/sắp xây gần đó">💡 Gợi ý đầu tư</th>
+      <th>Phân tích</th>
     </tr></thead>
     <tbody>
     {% for r in results %}
@@ -280,8 +290,8 @@ TEMPLATE = """
     {% set il,ifc,ibc=infra_label(r.infra_score) %}
     <tr>
       <td style="color:#64748b;font-size:.72rem">{{ loop.index }}</td>
-      <td style="max-width:230px"><a class="link" href="{{ r.property.get('url','#') }}" target="_blank">{{ r.property.title[:50] }}</a>
-        <div class="sub">{{ r.property.property_type.replace('-',' ').title() }} · {{ r.property.source }}</div></td>
+      <td style="max-width:200px"><a class="link" href="{{ r.property.get('url','#') }}" target="_blank">{{ r.property.title[:48] }}</a>
+        <div class="sub">{{ r.property.get('developer','') }} · {{ r.property.get('building_status','') }}</div></td>
       <td style="font-weight:700;white-space:nowrap">{{ r.property.price_billion }}tỷ</td>
       <td>{{ r.property.area_m2 or '—' }}{% if r.property.area_m2 %}m²{% endif %}</td>
       <td>{{ r.property.price_per_m2_million or '—' }}{% if r.property.price_per_m2_million %}tr{% endif %}</td>
@@ -292,14 +302,20 @@ TEMPLATE = """
           <div class="bar-num" style="color:{% if r.score>=75 %}#22c55e{% elif r.score>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ r.score }}</div>
         </div>
       </td>
-      <td><span class="badge" style="color:{{ vc }};background:{{ vb }}">{{ r.verdict }}</span></td>
       <td><span class="badge" style="color:{{ vfg }};background:{{ vbg }}">{{ r.value_vs_market }}</span></td>
       <td style="font-weight:700;color:{% if r.roi_5yr and r.roi_5yr>=80 %}#4ade80{% elif r.roi_5yr %}#fbbf24{% else %}#64748b{% endif %}">
         {% if r.roi_5yr %}{{ r.roi_5yr }}%{% else %}—{% endif %}</td>
       <td style="color:#94a3b8">{% if r.rental_yield_est %}{{ r.rental_yield_est }}%{% else %}—{% endif %}</td>
       <td><span class="badge" style="color:{{ ifc }};background:{{ ibc }}">{{ il }}</span>
         <div class="sub">{{ r.infra_score }}/100</div></td>
-      <td><ul class="reasons">{% for reason in r.reasons[:3] %}<li>{{ reason[:55] }}</li>{% endfor %}</ul></td>
+      <td style="min-width:160px">
+        <span class="badge" style="color:{{ r.invest_color }};background:{{ r.invest_bg }};font-size:.72rem;padding:3px 8px;display:block;text-align:center;margin-bottom:3px">{{ r.invest_verdict }}</span>
+        {% set detail_lines = r.invest_detail.split('\n') %}
+        {% for line in detail_lines %}
+        <div style="font-size:.62rem;color:#94a3b8;line-height:1.4">{{ line }}</div>
+        {% endfor %}
+      </td>
+      <td><ul class="reasons">{% for reason in r.reasons[:2] %}<li>{{ reason[:50] }}</li>{% endfor %}</ul></td>
     </tr>
     {% endfor %}
     </tbody>
