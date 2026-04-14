@@ -5,8 +5,8 @@ import json, sys, os
 from datetime import date
 
 sys.path.insert(0, os.path.dirname(__file__))
-from analyzer import analyze, AnalysisResult
-from infrastructure import get_infra_score, INFRA_PROJECTS, Status
+from analyzer import analyze, AnalysisResult, CREDIT_GROWTH_YOY, MORTGAGE_RATE_CURRENT, MORTGAGE_RATE_TREND, get_macro
+from infrastructure import get_infra_score, get_infra_momentum, INFRA_PROJECTS, Status
 from collections import defaultdict
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "data_sample.json")
@@ -44,9 +44,28 @@ def district_summary():
 # ── BUILD MARKDOWN ─────────────────────────────────────────────────
 lines = []
 
+trend_icon = "📉" if MORTGAGE_RATE_TREND == "decreasing" else ("📈" if MORTGAGE_RATE_TREND == "increasing" else "➡️")
+
 lines += [
     "# Báo Cáo Phân Tích BĐS TP. Hồ Chí Minh",
     f"> Mức giá: **3–5 tỷ VND** · Ngày tạo: **{date.today().strftime('%d/%m/%Y')}** · Tổng listings: **{len(RESULTS)}**",
+    "",
+    "---",
+    "",
+    "## Macro Context — Bức Tranh Vĩ Mô",
+    "",
+    "> Các chỉ số này ảnh hưởng trực tiếp đến thanh khoản và giá BĐS toàn thành phố.",
+    "",
+    "| Chỉ số | Giá trị | Xu hướng | Ý nghĩa |",
+    "|--------|---------|----------|---------|",
+    f"| Tăng trưởng tín dụng (Credit Growth) | **{CREDIT_GROWTH_YOY}%/năm** | 📈 Tăng | Tín dụng mở rộng = tiền chảy vào BĐS nhiều hơn |",
+    f"| Lãi suất vay mua nhà (Mortgage Rate) | **{MORTGAGE_RATE_CURRENT}%/năm** | {trend_icon} {'Giảm' if MORTGAGE_RATE_TREND == 'decreasing' else 'Ổn định'} | Lãi giảm từ 12% (2023) → người mua dễ vay hơn |",
+    f"| Mortgage Growth TP.HCM | **~13–18%/năm** tùy quận | 📈 Tăng | Nhu cầu mua thực đang tăng, không chỉ đầu cơ |",
+    "| Tỷ lệ hấp thụ trung bình | **~72%** | ➡️ Ổn định | Thị trường không dư cung, không thiếu nghiêm trọng |",
+    "| Giai đoạn thị trường | **Phục hồi** | 📈 | Sau điều chỉnh 2022–2023, đang bước vào chu kỳ tăng mới |",
+    "",
+    "> **Nhận định:** Lãi suất giảm + credit growth tăng + supply tightness cao ở nội thành = **cửa sổ mua thuận lợi**.",
+    "> Thời điểm tốt nhất để mua là trước khi các dự án hạ tầng lớn hoàn thành (2026–2027).",
     "",
     "---",
     "",
@@ -78,6 +97,8 @@ lines += [
 
 for i, r in enumerate(buy, 1):
     p = r.property
+    macro = get_macro(p["district"])
+    supply_bar = "█" * int(r.supply_tightness) + "░" * (10 - int(r.supply_tightness))
     lines += [
         f"### #{i} — {p['title']}",
         "",
@@ -94,14 +115,19 @@ for i, r in enumerate(buy, 1):
         f"| **ROI 5 năm** | {r.roi_5yr or '—'}{'%' if r.roi_5yr else ''} |",
         f"| **Yield** | {r.rental_yield_est or '—'}{'%/năm' if r.rental_yield_est else ''} |",
         f"| **Hạ tầng** | {infra_label(r.infra_score)} ({r.infra_score}/100) |",
+        f"| **Supply Tightness** | {supply_bar} {r.supply_tightness}/10 |",
+        f"| **Absorption Rate** | {round(r.absorption_rate * 100)}% |",
+        f"| **Mortgage Growth** | +{r.mortgage_growth}%/năm |",
         "",
-        "**Phân tích:**",
+        "**Tại sao nên cân nhắc căn này:**",
         "",
     ]
-    for reason in r.reasons:
-        lines.append(f"- {reason}")
+    # Giải thích thân thiện cho KH
+    for explanation in (r.explanations or []):
+        lines.append(f"{explanation}")
+        lines.append("")
     if r.infra_projects:
-        lines += ["", "**Dự án hạ tầng liên quan:**", ""]
+        lines += ["**Dự án hạ tầng liên quan:**", ""]
         for proj in r.infra_projects[:4]:
             lines.append(f"- {proj}")
     lines += ["", "---", ""]
@@ -148,6 +174,53 @@ for row in district_summary():
     )
 
 lines += ["", "---", ""]
+
+# ── INFRASTRUCTURE MOMENTUM BY AREA ───────────────────────────────
+ALL_DISTRICTS = sorted({r.property["district"] for r in RESULTS})
+
+lines += [
+    "## Infrastructure Momentum — Theo Khu Vực",
+    "",
+    "> **Infrastructure Momentum** đo lường tốc độ và quy mô đầu tư công đang diễn ra tại từng quận.",
+    "> Đây là chỉ số forward-looking — phản ánh tiềm năng tăng giá trong 3–5 năm tới,",
+    "> không phải giá đã tăng rồi.",
+    "",
+]
+
+# Tính momentum cho tất cả quận có trong data
+momentum_rows = []
+for d in ALL_DISTRICTS:
+    m = get_infra_momentum(d)
+    momentum_rows.append((d, m))
+momentum_rows.sort(key=lambda x: x[1]["momentum_score"], reverse=True)
+
+for district, m in momentum_rows:
+    score_bar = "█" * min(int(m["momentum_score"] / 10), 10) + "░" * max(0, 10 - int(m["momentum_score"] / 10))
+    lines += [
+        f"### {district} — {m['momentum_label']} (Điểm: {m['momentum_score']}/100)",
+        "",
+        f"| Chỉ số | Giá trị |",
+        f"|--------|---------|",
+        f"| Momentum Score | `{score_bar}` {m['momentum_score']}/100 |",
+        f"| Dự án đang thi công | **{m['active_count']} dự án** |",
+        f"| Dự án đã duyệt (sắp thi công) | {m['pipeline_count']} dự án |",
+        f"| Tổng vốn đầu tư | **{m['total_investment_t']:.0f} nghìn tỷ VND** |",
+        f"| Tác động giá tối đa (1 dự án) | +{m['max_price_impact_pct']}% |",
+        f"| Tổng tác động giá tiềm năng | +{m['total_price_impact']}% |",
+        f"| Dự án hoàn thành gần nhất | {m['nearest_completion'] or '—'} |",
+        "",
+    ]
+    if m["top_projects"]:
+        lines += ["**Top dự án quan trọng nhất:**", ""]
+        for proj in m["top_projects"]:
+            status_icon = "🔨" if proj["status"] == "Đang thi công" else "✅"
+            lines.append(
+                f"- {status_icon} **{proj['name']}** — Hoàn thành {proj['completion']}, "
+                f"tác động **+{proj['impact_pct']}%** giá BĐS khu vực"
+            )
+    lines += [""]
+
+lines += ["---", ""]
 
 # ── INFRA PROJECTS ─────────────────────────────────────────────────
 lines += [

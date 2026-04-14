@@ -3,19 +3,128 @@
 
 ---
 
+## Macro Context — Bức Tranh Vĩ Mô
+
+> Các chỉ số này ảnh hưởng trực tiếp đến thanh khoản và giá BĐS toàn thành phố.
+
+| Chỉ số | Giá trị | Xu hướng | Ý nghĩa |
+|--------|---------|----------|---------|
+| Tăng trưởng tín dụng (Credit Growth) | **14.5%/năm** | 📈 Tăng | Tín dụng mở rộng = tiền chảy vào BĐS nhiều hơn |
+| Lãi suất vay mua nhà (Mortgage Rate) | **8.5%/năm** | 📉 Giảm | Lãi giảm từ 12% (2023) → người mua dễ vay hơn |
+| Mortgage Growth TP.HCM | **~13–18%/năm** tùy quận | 📈 Tăng | Nhu cầu mua thực đang tăng, không chỉ đầu cơ |
+| Tỷ lệ hấp thụ trung bình | **~72%** | ➡️ Ổn định | Thị trường không dư cung, không thiếu nghiêm trọng |
+| Giai đoạn thị trường | **Phục hồi** | 📈 | Sau điều chỉnh 2022–2023, đang bước vào chu kỳ tăng mới |
+
+> **Nhận định:** Lãi suất giảm + credit growth tăng + supply tightness cao ở nội thành = **cửa sổ mua thuận lợi**.
+> Thời điểm tốt nhất để mua là trước khi các dự án hạ tầng lớn hoàn thành (2026–2027).
+
+---
+
 ## Tổng Quan
 
 | Verdict | Số lượng | Tỷ lệ |
 |---------|----------|-------|
-| 🟢 BUY  | 37 | 88% |
-| 🟡 HOLD | 5 | 11% |
+| 🟢 BUY  | 39 | 92% |
+| 🟡 HOLD | 3 | 7% |
 | 🔴 SKIP | 0 | 0% |
 
 ---
 
 ## Top Bất Động Sản Nên Mua
 
-### #1 — Charmington Iris 2PN 70m² Quận 4
+### #1 — Him Lam Riverside 2PN 74m² Nhà Bè
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.85 tỷ VND |
+| **Quận** | Nhà Bè |
+| **Diện tích** | 74 m² |
+| **Giá/m²** | 52.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 116.8% |
+| **Yield** | 5.0%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (33.1/100) |
+| **Supply Tightness** | ███████░░░ 7.0/10 |
+| **Absorption Rate** | 72% |
+| **Mortgage Growth** | +15%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+⚠️ **Giá cao hơn thị trường 37%** — Cần thương lượng hoặc chờ điều chỉnh. Mua ở mức này tiềm ẩn rủi ro nếu thị trường sideways trong 1–2 năm tới.
+
+🏠 **Cho thuê ước tính ~16.0 triệu/tháng (yield 5.0%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📦 **Nguồn cung kiểm soát được tại Nhà Bè** — 400 căn/quý với absorption rate 72%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 15%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+📈 **Tăng trưởng giá lịch sử 11%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Nhà Bè — khu vực tốt (7.8/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 74m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 33/100** — Có 11 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
+
+**Dự án hạ tầng liên quan:**
+
+- Cầu Bình Khánh (cao tốc Bến Lức – Long Thành) [Đang thi công, 2025] → +12%
+- Cầu Phú Mỹ 2 — TP.HCM ↔ Đồng Nai [Đang thi công, 2028] → +18%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cao tốc Bến Lức — Long Thành [Hoàn thành, 2025] → +15%
+
+---
+
+### #2 — Dragon Hill 2 2PN 72m² Nhà Bè
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.0 tỷ VND |
+| **Quận** | Nhà Bè |
+| **Diện tích** | 72 m² |
+| **Giá/m²** | 55.6 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 116.8% |
+| **Yield** | 5.0%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (33.1/100) |
+| **Supply Tightness** | ███████░░░ 7.0/10 |
+| **Absorption Rate** | 72% |
+| **Mortgage Growth** | +15%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+⚠️ **Giá cao hơn thị trường 46%** — Cần thương lượng hoặc chờ điều chỉnh. Mua ở mức này tiềm ẩn rủi ro nếu thị trường sideways trong 1–2 năm tới.
+
+🏠 **Cho thuê ước tính ~16.7 triệu/tháng (yield 5.0%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📦 **Nguồn cung kiểm soát được tại Nhà Bè** — 400 căn/quý với absorption rate 72%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 15%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+📈 **Tăng trưởng giá lịch sử 11%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Nhà Bè — khu vực tốt (7.8/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 72m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 33/100** — Có 11 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
+
+**Dự án hạ tầng liên quan:**
+
+- Cầu Bình Khánh (cao tốc Bến Lức – Long Thành) [Đang thi công, 2025] → +12%
+- Cầu Phú Mỹ 2 — TP.HCM ↔ Đồng Nai [Đang thi công, 2028] → +18%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cao tốc Bến Lức — Long Thành [Hoàn thành, 2025] → +15%
+
+---
+
+### #3 — Charmington Iris 2PN 70m² Quận 4
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -30,14 +139,25 @@
 | **ROI 5 năm** | 82.9% |
 | **Yield** | 4.2%/năm |
 | **Hạ tầng** | ➡️ Ổn định (12.9/100) |
+| **Supply Tightness** | ████████░░ 8.8/10 |
+| **Absorption Rate** | 90% |
+| **Mortgage Growth** | +15%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá thấp hơn thị trường 24% → tiềm năng tăng giá tốt
-- Rental yield 4.2% — chấp nhận được
-- Tăng trưởng ổn định 9%/năm
-- Vị trí chiến lược (điểm quận: 8.5/10)
-- Diện tích 70m² — thanh khoản cao
+💰 **Giá hời 24% so với mặt bằng khu vực** — Giá/m² của căn này là 55.0 triệu, trong khi trung bình Quận 4 là 72 triệu/m². Chênh lệch này tạo ra vùng đệm an toàn và dư địa tăng giá tốt.
+
+🏠 **Cho thuê ước tính ~13.5 triệu/tháng (yield 4.2%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+🔒 **Nguồn cung rất khan hiếm tại Quận 4** — Khu vực này gần như không còn đất để xây mới (tightness 8.8/10). Chỉ có 80 căn mở bán/quý, tỷ lệ hấp thụ 90%. Cung thấp + cầu ổn định = giá khó giảm.
+
+📊 **Tăng trưởng vay mua nhà 15%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 4 — vị trí chiến lược (8.5/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 70m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
@@ -47,7 +167,50 @@
 
 ---
 
-### #2 — Era Town 2PN 70m² Quận 7
+### #4 — Icon 56 2PN 78m² Quận 4
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.8 tỷ VND |
+| **Quận** | Quận 4 |
+| **Diện tích** | 78 m² |
+| **Giá/m²** | 61.5 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📉 Thấp hơn TT |
+| **ROI 5 năm** | 82.9% |
+| **Yield** | 4.2%/năm |
+| **Hạ tầng** | ➡️ Ổn định (12.9/100) |
+| **Supply Tightness** | ████████░░ 8.8/10 |
+| **Absorption Rate** | 90% |
+| **Mortgage Growth** | +15%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+✅ **Giá hợp lý, nhỉnh hơn trung bình 15%** — Không phải bargain nhưng cũng không đắt. Mức giá này phù hợp với chất lượng và vị trí của căn hộ.
+
+🏠 **Cho thuê ước tính ~16.8 triệu/tháng (yield 4.2%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+🔒 **Nguồn cung rất khan hiếm tại Quận 4** — Khu vực này gần như không còn đất để xây mới (tightness 8.8/10). Chỉ có 80 căn mở bán/quý, tỷ lệ hấp thụ 90%. Cung thấp + cầu ổn định = giá khó giảm.
+
+📊 **Tăng trưởng vay mua nhà 15%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 4 — vị trí chiến lược (8.5/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 78m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+**Dự án hạ tầng liên quan:**
+
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Trung tâm Tài chính Quốc tế Việt Nam (VIFC) TP.HCM [Đang thi công, 2030] → +22%
+- Khu đô thị cảng Sài Gòn — Nhà Rồng Khánh Hội (Q4) [Đã duyệt, 2030] → +25%
+
+---
+
+### #5 — Era Town 2PN 70m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -62,15 +225,27 @@
 | **ROI 5 năm** | 91.2% |
 | **Yield** | 4.5%/năm |
 | **Hạ tầng** | 📊 TIỀM NĂNG (25.0/100) |
+| **Supply Tightness** | ███████░░░ 7.5/10 |
+| **Absorption Rate** | 80% |
+| **Mortgage Growth** | +16%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá thấp hơn thị trường 30% → tiềm năng tăng giá tốt
-- Rental yield 4.5% — chấp nhận được
-- Tăng trưởng ổn định 9%/năm
-- Vị trí chiến lược (điểm quận: 8.8/10)
-- Diện tích 70m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 25/100)
+💰 **Giá hời 30% so với mặt bằng khu vực** — Giá/m² của căn này là 45.7 triệu, trong khi trung bình Quận 7 là 65 triệu/m². Chênh lệch này tạo ra vùng đệm an toàn và dư địa tăng giá tốt.
+
+🏠 **Cho thuê ước tính ~12.0 triệu/tháng (yield 4.5%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 7** — 600 căn/quý với absorption rate 80%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng vay mua nhà 16%/năm tại Quận 7** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 7 — vị trí chiến lược (8.8/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 70m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 25/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
 
 **Dự án hạ tầng liên quan:**
 
@@ -81,7 +256,7 @@
 
 ---
 
-### #3 — Riverside Residence PMH 2PN 72m² Quận 7
+### #6 — Riverside Residence PMH 2PN 72m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -96,15 +271,27 @@
 | **ROI 5 năm** | 91.2% |
 | **Yield** | 4.5%/năm |
 | **Hạ tầng** | 📊 TIỀM NĂNG (25.0/100) |
+| **Supply Tightness** | ███████░░░ 7.5/10 |
+| **Absorption Rate** | 80% |
+| **Mortgage Growth** | +16%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá hợp lý, thấp hơn mặt bằng ~8%
-- Rental yield 4.5% — chấp nhận được
-- Tăng trưởng ổn định 9%/năm
-- Vị trí chiến lược (điểm quận: 8.8/10)
-- Diện tích 72m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 25/100)
+✅ **Giá hợp lý, nhỉnh hơn trung bình 8%** — Không phải bargain nhưng cũng không đắt. Mức giá này phù hợp với chất lượng và vị trí của căn hộ.
+
+🏠 **Cho thuê ước tính ~16.1 triệu/tháng (yield 4.5%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 7** — 600 căn/quý với absorption rate 80%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng vay mua nhà 16%/năm tại Quận 7** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 7 — vị trí chiến lược (8.8/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 72m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 25/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
 
 **Dự án hạ tầng liên quan:**
 
@@ -115,7 +302,7 @@
 
 ---
 
-### #4 — Sky Garden 3 PMH 2PN 78m² Quận 7
+### #7 — Sky Garden 3 PMH 2PN 78m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -130,15 +317,27 @@
 | **ROI 5 năm** | 91.2% |
 | **Yield** | 4.5%/năm |
 | **Hạ tầng** | 📊 TIỀM NĂNG (25.0/100) |
+| **Supply Tightness** | ███████░░░ 7.5/10 |
+| **Absorption Rate** | 80% |
+| **Mortgage Growth** | +16%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá thấp hơn thị trường 23% → tiềm năng tăng giá tốt
-- Rental yield 4.5% — chấp nhận được
-- Tăng trưởng ổn định 9%/năm
-- Vị trí chiến lược (điểm quận: 8.8/10)
-- Diện tích 78m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 25/100)
+💰 **Giá hời 23% so với mặt bằng khu vực** — Giá/m² của căn này là 50.0 triệu, trong khi trung bình Quận 7 là 65 triệu/m². Chênh lệch này tạo ra vùng đệm an toàn và dư địa tăng giá tốt.
+
+🏠 **Cho thuê ước tính ~14.6 triệu/tháng (yield 4.5%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 7** — 600 căn/quý với absorption rate 80%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng vay mua nhà 16%/năm tại Quận 7** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 7 — vị trí chiến lược (8.8/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 78m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 25/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
 
 **Dự án hạ tầng liên quan:**
 
@@ -149,7 +348,7 @@
 
 ---
 
-### #5 — Lavida Plus 2PN 66m² Quận 7
+### #8 — Lavida Plus 2PN 66m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -164,15 +363,27 @@
 | **ROI 5 năm** | 91.2% |
 | **Yield** | 4.5%/năm |
 | **Hạ tầng** | 📊 TIỀM NĂNG (25.0/100) |
+| **Supply Tightness** | ███████░░░ 7.5/10 |
+| **Absorption Rate** | 80% |
+| **Mortgage Growth** | +16%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá hợp lý, thấp hơn mặt bằng ~11%
-- Rental yield 4.5% — chấp nhận được
-- Tăng trưởng ổn định 9%/năm
-- Vị trí chiến lược (điểm quận: 8.8/10)
-- Diện tích 66m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 25/100)
+✅ **Giá hợp lý, nhỉnh hơn trung bình 11%** — Không phải bargain nhưng cũng không đắt. Mức giá này phù hợp với chất lượng và vị trí của căn hộ.
+
+🏠 **Cho thuê ước tính ~14.2 triệu/tháng (yield 4.5%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 7** — 600 căn/quý với absorption rate 80%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng vay mua nhà 16%/năm tại Quận 7** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 7 — vị trí chiến lược (8.8/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 66m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 25/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
 
 **Dự án hạ tầng liên quan:**
 
@@ -183,7 +394,7 @@
 
 ---
 
-### #6 — Eco Green Saigon 2PN 70m² Quận 7
+### #9 — Eco Green Saigon 2PN 70m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -198,15 +409,27 @@
 | **ROI 5 năm** | 91.2% |
 | **Yield** | 4.5%/năm |
 | **Hạ tầng** | 📊 TIỀM NĂNG (25.0/100) |
+| **Supply Tightness** | ███████░░░ 7.5/10 |
+| **Absorption Rate** | 80% |
+| **Mortgage Growth** | +16%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá hợp lý, thấp hơn mặt bằng ~6%
-- Rental yield 4.5% — chấp nhận được
-- Tăng trưởng ổn định 9%/năm
-- Vị trí chiến lược (điểm quận: 8.8/10)
-- Diện tích 70m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 25/100)
+✅ **Giá hợp lý, nhỉnh hơn trung bình 6%** — Không phải bargain nhưng cũng không đắt. Mức giá này phù hợp với chất lượng và vị trí của căn hộ.
+
+🏠 **Cho thuê ước tính ~16.1 triệu/tháng (yield 4.5%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 7** — 600 căn/quý với absorption rate 80%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng vay mua nhà 16%/năm tại Quận 7** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 7 — vị trí chiến lược (8.8/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 70m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 25/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
 
 **Dự án hạ tầng liên quan:**
 
@@ -217,7 +440,7 @@
 
 ---
 
-### #7 — Sunrise City View 2PN 85m² Quận 7
+### #10 — Sunrise City View 2PN 85m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -232,14 +455,25 @@
 | **ROI 5 năm** | 91.2% |
 | **Yield** | 4.5%/năm |
 | **Hạ tầng** | 📊 TIỀM NĂNG (25.0/100) |
+| **Supply Tightness** | ███████░░░ 7.5/10 |
+| **Absorption Rate** | 80% |
+| **Mortgage Growth** | +16%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá thấp hơn thị trường 19% → tiềm năng tăng giá tốt
-- Rental yield 4.5% — chấp nhận được
-- Tăng trưởng ổn định 9%/năm
-- Vị trí chiến lược (điểm quận: 8.8/10)
-- Hạ tầng TIỀM NĂNG (điểm 25/100)
+💰 **Giá hời 19% so với mặt bằng khu vực** — Giá/m² của căn này là 52.9 triệu, trong khi trung bình Quận 7 là 65 triệu/m². Chênh lệch này tạo ra vùng đệm an toàn và dư địa tăng giá tốt.
+
+🏠 **Cho thuê ước tính ~16.9 triệu/tháng (yield 4.5%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 7** — 600 căn/quý với absorption rate 80%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng vay mua nhà 16%/năm tại Quận 7** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 7 — vị trí chiến lược (8.8/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 25/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
 
 **Dự án hạ tầng liên quan:**
 
@@ -250,7 +484,99 @@
 
 ---
 
-### #8 — Pegasuite 2PN 68m² Quận 8
+### #11 — Topaz Elite Tower A 2PN 62m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.1 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 62 m² |
+| **Giá/m²** | 50.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+| **Supply Tightness** | ███████░░░ 7.2/10 |
+| **Absorption Rate** | 78% |
+| **Mortgage Growth** | +13%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~12.4 triệu/tháng (yield 4.8%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 8** — 450 căn/quý với absorption rate 78%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 13%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+🚀 **Tăng trưởng giá 12%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Quận 8 — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 62m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 15/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #12 — Topaz Elite Tower B 2PN 65m² view sông Q8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.4 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 65 m² |
+| **Giá/m²** | 52.3 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+| **Supply Tightness** | ███████░░░ 7.2/10 |
+| **Absorption Rate** | 78% |
+| **Mortgage Growth** | +13%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~13.6 triệu/tháng (yield 4.8%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 8** — 450 căn/quý với absorption rate 78%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 13%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+🚀 **Tăng trưởng giá 12%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Quận 8 — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 65m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 15/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #13 — Pegasuite 2PN 68m² Quận 8
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -265,14 +591,27 @@
 | **ROI 5 năm** | 110.3% |
 | **Yield** | 4.8%/năm |
 | **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+| **Supply Tightness** | ███████░░░ 7.2/10 |
+| **Absorption Rate** | 78% |
+| **Mortgage Growth** | +13%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá hợp lý, thấp hơn mặt bằng ~7%
-- Rental yield 4.8% — chấp nhận được
-- Khu vực tăng trưởng mạnh 12%/năm
-- Diện tích 68m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 15/100)
+✅ **Giá hợp lý, nhỉnh hơn trung bình 7%** — Không phải bargain nhưng cũng không đắt. Mức giá này phù hợp với chất lượng và vị trí của căn hộ.
+
+🏠 **Cho thuê ước tính ~13.2 triệu/tháng (yield 4.8%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 8** — 450 căn/quý với absorption rate 78%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 13%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+🚀 **Tăng trưởng giá 12%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Quận 8 — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 68m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 15/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
 
 **Dự án hạ tầng liên quan:**
 
@@ -283,7 +622,189 @@
 
 ---
 
-### #9 — Vinhomes Grand Park The Origami 2PN 65m²
+### #14 — Dream Home Riverside 2PN 64m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.2 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 64 m² |
+| **Giá/m²** | 50.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+| **Supply Tightness** | ███████░░░ 7.2/10 |
+| **Absorption Rate** | 78% |
+| **Mortgage Growth** | +13%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~12.8 triệu/tháng (yield 4.8%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 8** — 450 căn/quý với absorption rate 78%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 13%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+🚀 **Tăng trưởng giá 12%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Quận 8 — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 64m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 15/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #15 — City Gate Towers 2PN 68m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.5 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 51.5 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+| **Supply Tightness** | ███████░░░ 7.2/10 |
+| **Absorption Rate** | 78% |
+| **Mortgage Growth** | +13%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~14.0 triệu/tháng (yield 4.8%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 8** — 450 căn/quý với absorption rate 78%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 13%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+🚀 **Tăng trưởng giá 12%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Quận 8 — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 68m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 15/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #16 — Diamond Riverside 2PN 65m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.4 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 65 m² |
+| **Giá/m²** | 52.3 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+| **Supply Tightness** | ███████░░░ 7.2/10 |
+| **Absorption Rate** | 78% |
+| **Mortgage Growth** | +13%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~13.6 triệu/tháng (yield 4.8%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 8** — 450 căn/quý với absorption rate 78%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 13%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+🚀 **Tăng trưởng giá 12%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Quận 8 — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 65m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng có tiềm năng — điểm 15/100** — Một số dự án đang được quy hoạch hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp.
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #17 — Charmington Tân Bình 2PN 60m²
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.6 tỷ VND |
+| **Quận** | Tân Bình |
+| **Diện tích** | 60 m² |
+| **Giá/m²** | 60.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 83.9% |
+| **Yield** | 5.0%/năm |
+| **Hạ tầng** | ➡️ Ổn định (10.1/100) |
+| **Supply Tightness** | ███████░░░ 7.5/10 |
+| **Absorption Rate** | 80% |
+| **Mortgage Growth** | +13%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~15.0 triệu/tháng (yield 5.0%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📦 **Nguồn cung kiểm soát được tại Tân Bình** — 280 căn/quý với absorption rate 80%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📊 **Tăng trưởng vay mua nhà 13%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Tân Bình — khu vực tốt (7.8/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 60m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+**Dự án hạ tầng liên quan:**
+
+- Metro số 2 — Bến Thành → Tham Lương [Đang thi công, 2030] → +25%
+- Nhà ga T3 Tân Sơn Nhất [Đang thi công, 2026] → +12%
+- Cải tạo Kênh Tham Lương — Bến Cát — Nước Lên [Đang thi công, 2026] → +12%
+- Metro số 5 — Ngã Tư Bảy Hiền → Cầu Sài Gòn [Quy hoạch, 2035] → +22%
+
+---
+
+### #18 — Vinhomes Grand Park The Origami 2PN 65m²
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -298,15 +819,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 65m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~15.2 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 65m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -317,7 +848,7 @@
 
 ---
 
-### #10 — Vinhomes Grand Park The Opus One 2PN 68m²
+### #19 — Vinhomes Grand Park The Opus One 2PN 68m²
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -332,15 +863,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 68m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~16.5 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 68m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -351,7 +892,7 @@
 
 ---
 
-### #11 — The Sun Avenue 2PN 70m² Thủ Đức
+### #20 — The Sun Avenue 2PN 70m² Thủ Đức
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -366,15 +907,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 70m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~17.8 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 70m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -385,7 +936,7 @@
 
 ---
 
-### #12 — Masteri Thảo Điền 2PN 72m² view sông
+### #21 — Masteri Thảo Điền 2PN 72m² view sông
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -400,15 +951,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá cao hơn thị trường 21% → rủi ro đỉnh giá
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 72m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+⚠️ **Giá cao hơn thị trường 21%** — Cần thương lượng hoặc chờ điều chỉnh. Mua ở mức này tiềm ẩn rủi ro nếu thị trường sideways trong 1–2 năm tới.
+
+🏠 **Cho thuê ước tính ~20.8 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 72m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -419,7 +980,7 @@
 
 ---
 
-### #13 — Feliz En Vista 2PN 75m² Thủ Đức
+### #22 — Feliz En Vista 2PN 75m² Thủ Đức
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -434,15 +995,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 75m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~20.4 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 75m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -453,7 +1024,7 @@
 
 ---
 
-### #14 — Estella Heights 2PN 83m² Thủ Đức
+### #23 — Estella Heights 2PN 83m² Thủ Đức
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -468,14 +1039,23 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~20.8 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -486,7 +1066,7 @@
 
 ---
 
-### #15 — Lumiere Riverside 2PN 68m² Thủ Đức
+### #24 — Lumiere Riverside 2PN 68m² Thủ Đức
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -501,15 +1081,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá cao hơn thị trường 20% → rủi ro đỉnh giá
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 68m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+⚠️ **Giá cao hơn thị trường 20%** — Cần thương lượng hoặc chờ điều chỉnh. Mua ở mức này tiềm ẩn rủi ro nếu thị trường sideways trong 1–2 năm tới.
+
+🏠 **Cho thuê ước tính ~19.5 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 68m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -520,7 +1110,7 @@
 
 ---
 
-### #16 — The CBD Premium Home 2PN 65m² Thủ Đức
+### #25 — The CBD Premium Home 2PN 65m² Thủ Đức
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -535,15 +1125,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá cao hơn thị trường 23% → rủi ro đỉnh giá
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 65m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+⚠️ **Giá cao hơn thị trường 23%** — Cần thương lượng hoặc chờ điều chỉnh. Mua ở mức này tiềm ẩn rủi ro nếu thị trường sideways trong 1–2 năm tới.
+
+🏠 **Cho thuê ước tính ~19.1 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 65m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -554,7 +1154,7 @@
 
 ---
 
-### #17 — Moonlight Residences 2PN 65m² Thủ Đức
+### #26 — Moonlight Residences 2PN 65m² Thủ Đức
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -569,15 +1169,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá hợp lý, thấp hơn mặt bằng ~11%
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 65m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+✅ **Giá hợp lý, nhỉnh hơn trung bình 11%** — Không phải bargain nhưng cũng không đắt. Mức giá này phù hợp với chất lượng và vị trí của căn hộ.
+
+🏠 **Cho thuê ước tính ~13.9 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 65m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -588,7 +1198,7 @@
 
 ---
 
-### #18 — Hausneo 2PN 63m² Thủ Đức
+### #27 — Hausneo 2PN 63m² Thủ Đức
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -603,15 +1213,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 63m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~14.3 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 63m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -622,7 +1242,7 @@
 
 ---
 
-### #19 — Hausbelo 2PN 64m² Thủ Đức (under construction)
+### #28 — Hausbelo 2PN 64m² Thủ Đức (under construction)
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -637,15 +1257,25 @@
 | **ROI 5 năm** | 142.5% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **Supply Tightness** | ██████░░░░ 6.2/10 |
+| **Absorption Rate** | 68% |
+| **Mortgage Growth** | +18%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 13%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 64m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~15.2 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng vay mua nhà 18%/năm tại Thủ Đức** — Đây là tín hiệu nhu cầu thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán.
+
+🚀 **Tăng trưởng giá 13%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📍 **Thủ Đức — vị trí chiến lược (9.2/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 64m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 42/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -656,204 +1286,7 @@
 
 ---
 
-### #20 — Icon 56 2PN 78m² Quận 4
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 4.8 tỷ VND |
-| **Quận** | Quận 4 |
-| **Diện tích** | 78 m² |
-| **Giá/m²** | 61.5 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **98.3/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | 📉 Thấp hơn TT |
-| **ROI 5 năm** | 82.9% |
-| **Yield** | 4.2%/năm |
-| **Hạ tầng** | ➡️ Ổn định (12.9/100) |
-
-**Phân tích:**
-
-- Giá hợp lý, thấp hơn mặt bằng ~15%
-- Rental yield 4.2% — chấp nhận được
-- Tăng trưởng ổn định 9%/năm
-- Vị trí chiến lược (điểm quận: 8.5/10)
-- Diện tích 78m² — thanh khoản cao
-
-**Dự án hạ tầng liên quan:**
-
-- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
-- Trung tâm Tài chính Quốc tế Việt Nam (VIFC) TP.HCM [Đang thi công, 2030] → +22%
-- Khu đô thị cảng Sài Gòn — Nhà Rồng Khánh Hội (Q4) [Đã duyệt, 2030] → +25%
-
----
-
-### #21 — Topaz Elite Tower A 2PN 62m² Quận 8
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 3.1 tỷ VND |
-| **Quận** | Quận 8 |
-| **Diện tích** | 62 m² |
-| **Giá/m²** | 50.0 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **96.1/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 110.3% |
-| **Yield** | 4.8%/năm |
-| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield 4.8% — chấp nhận được
-- Khu vực tăng trưởng mạnh 12%/năm
-- Diện tích 62m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 15/100)
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
-- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
-- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
-
----
-
-### #22 — Topaz Elite Tower B 2PN 65m² view sông Q8
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 3.4 tỷ VND |
-| **Quận** | Quận 8 |
-| **Diện tích** | 65 m² |
-| **Giá/m²** | 52.3 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **96.1/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 110.3% |
-| **Yield** | 4.8%/năm |
-| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield 4.8% — chấp nhận được
-- Khu vực tăng trưởng mạnh 12%/năm
-- Diện tích 65m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 15/100)
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
-- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
-- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
-
----
-
-### #23 — Dream Home Riverside 2PN 64m² Quận 8
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 3.2 tỷ VND |
-| **Quận** | Quận 8 |
-| **Diện tích** | 64 m² |
-| **Giá/m²** | 50.0 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **96.1/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 110.3% |
-| **Yield** | 4.8%/năm |
-| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield 4.8% — chấp nhận được
-- Khu vực tăng trưởng mạnh 12%/năm
-- Diện tích 64m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 15/100)
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
-- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
-- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
-
----
-
-### #24 — City Gate Towers 2PN 68m² Quận 8
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 3.5 tỷ VND |
-| **Quận** | Quận 8 |
-| **Diện tích** | 68 m² |
-| **Giá/m²** | 51.5 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **96.1/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 110.3% |
-| **Yield** | 4.8%/năm |
-| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield 4.8% — chấp nhận được
-- Khu vực tăng trưởng mạnh 12%/năm
-- Diện tích 68m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 15/100)
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
-- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
-- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
-
----
-
-### #25 — Diamond Riverside 2PN 65m² Quận 8
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 3.4 tỷ VND |
-| **Quận** | Quận 8 |
-| **Diện tích** | 65 m² |
-| **Giá/m²** | 52.3 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **96.1/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 110.3% |
-| **Yield** | 4.8%/năm |
-| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield 4.8% — chấp nhận được
-- Khu vực tăng trưởng mạnh 12%/năm
-- Diện tích 65m² — thanh khoản cao
-- Hạ tầng TIỀM NĂNG (điểm 15/100)
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
-- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
-- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
-
----
-
-### #26 — Mizuki Park 2PN 68m² Bình Chánh
+### #29 — Mizuki Park 2PN 68m² Bình Chánh
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -868,14 +1301,21 @@
 | **ROI 5 năm** | 131.3% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | 🚀 TĂNG MẠNH (34.8/100) |
+| **Supply Tightness** | █████░░░░░ 5.5/10 |
+| **Absorption Rate** | 60% |
+| **Mortgage Growth** | +12%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá cao hơn thị trường 43% → rủi ro đỉnh giá
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 12%/năm
-- Diện tích 68m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 35/100) — 12 dự án
+⚠️ **Giá cao hơn thị trường 43%** — Cần thương lượng hoặc chờ điều chỉnh. Mua ở mức này tiềm ẩn rủi ro nếu thị trường sideways trong 1–2 năm tới.
+
+🏠 **Cho thuê ước tính ~14.3 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+🚀 **Tăng trưởng giá 12%/năm** — Mức tăng vượt trội. Nếu duy trì, căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72).
+
+📐 **Diện tích 68m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+🏗️ **Hạ tầng đang được đầu tư mạnh — điểm 35/100** — Có 12 dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn.
 
 **Dự án hạ tầng liên quan:**
 
@@ -886,105 +1326,50 @@
 
 ---
 
-### #27 — Him Lam Riverside 2PN 74m² Nhà Bè
+### #30 — Saigon Royal 2PN 55m² Quận 4
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| **Giá** | 3.85 tỷ VND |
-| **Quận** | Nhà Bè |
-| **Diện tích** | 74 m² |
-| **Giá/m²** | 52.0 triệu |
+| **Giá** | 4.8 tỷ VND |
+| **Quận** | Quận 4 |
+| **Diện tích** | 55 m² |
+| **Giá/m²** | 87.3 triệu |
 | **Loại hình** | Can Ho Chung Cu |
-| **Score** | **92.0/100** |
+| **Score** | **88.6/100** |
 | **Verdict** | 🟢 BUY |
 | **Định giá** | 📈 Cao hơn TT |
-| **ROI 5 năm** | 116.8% |
-| **Yield** | 5.0%/năm |
-| **Hạ tầng** | 🚀 TĂNG MẠNH (33.1/100) |
+| **ROI 5 năm** | 82.9% |
+| **Yield** | 4.2%/năm |
+| **Hạ tầng** | ➡️ Ổn định (12.9/100) |
+| **Supply Tightness** | ████████░░ 8.8/10 |
+| **Absorption Rate** | 90% |
+| **Mortgage Growth** | +15%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá cao hơn thị trường 37% → rủi ro đỉnh giá
-- Rental yield ước tính 5.0% → dòng tiền tốt
-- Tăng trưởng ổn định 11%/năm
-- Diện tích 74m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 33/100) — 11 dự án
+⚠️ **Giá cao hơn thị trường 21%** — Cần thương lượng hoặc chờ điều chỉnh. Mua ở mức này tiềm ẩn rủi ro nếu thị trường sideways trong 1–2 năm tới.
+
+🏠 **Cho thuê ước tính ~16.8 triệu/tháng (yield 4.2%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+🔒 **Nguồn cung rất khan hiếm tại Quận 4** — Khu vực này gần như không còn đất để xây mới (tightness 8.8/10). Chỉ có 80 căn mở bán/quý, tỷ lệ hấp thụ 90%. Cung thấp + cầu ổn định = giá khó giảm.
+
+📊 **Tăng trưởng vay mua nhà 15%/năm** — Ổn định. Lãi suất đang giảm về ~8.5% giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 4 — vị trí chiến lược (8.5/10)** — Quận này có hạ tầng hoàn thiện, quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao.
+
+📐 **Diện tích 55m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
-- Cầu Bình Khánh (cao tốc Bến Lức – Long Thành) [Đang thi công, 2025] → +12%
-- Cầu Phú Mỹ 2 — TP.HCM ↔ Đồng Nai [Đang thi công, 2028] → +18%
 - Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
-- Cao tốc Bến Lức — Long Thành [Hoàn thành, 2025] → +15%
+- Trung tâm Tài chính Quốc tế Việt Nam (VIFC) TP.HCM [Đang thi công, 2030] → +22%
+- Khu đô thị cảng Sài Gòn — Nhà Rồng Khánh Hội (Q4) [Đã duyệt, 2030] → +25%
 
 ---
 
-### #28 — Dragon Hill 2 2PN 72m² Nhà Bè
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 4.0 tỷ VND |
-| **Quận** | Nhà Bè |
-| **Diện tích** | 72 m² |
-| **Giá/m²** | 55.6 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **92.0/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | 📈 Cao hơn TT |
-| **ROI 5 năm** | 116.8% |
-| **Yield** | 5.0%/năm |
-| **Hạ tầng** | 🚀 TĂNG MẠNH (33.1/100) |
-
-**Phân tích:**
-
-- Giá cao hơn thị trường 46% → rủi ro đỉnh giá
-- Rental yield ước tính 5.0% → dòng tiền tốt
-- Tăng trưởng ổn định 11%/năm
-- Diện tích 72m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 33/100) — 11 dự án
-
-**Dự án hạ tầng liên quan:**
-
-- Cầu Bình Khánh (cao tốc Bến Lức – Long Thành) [Đang thi công, 2025] → +12%
-- Cầu Phú Mỹ 2 — TP.HCM ↔ Đồng Nai [Đang thi công, 2028] → +18%
-- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
-- Cao tốc Bến Lức — Long Thành [Hoàn thành, 2025] → +15%
-
----
-
-### #29 — Charmington Tân Bình 2PN 60m²
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 3.6 tỷ VND |
-| **Quận** | Tân Bình |
-| **Diện tích** | 60 m² |
-| **Giá/m²** | 60.0 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **89.6/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 83.9% |
-| **Yield** | 5.0%/năm |
-| **Hạ tầng** | ➡️ Ổn định (10.1/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.0% → dòng tiền tốt
-- Tăng trưởng ổn định 9%/năm
-- Diện tích 60m² — thanh khoản cao
-
-**Dự án hạ tầng liên quan:**
-
-- Metro số 2 — Bến Thành → Tham Lương [Đang thi công, 2030] → +25%
-- Nhà ga T3 Tân Sơn Nhất [Đang thi công, 2026] → +12%
-- Cải tạo Kênh Tham Lương — Bến Cát — Nước Lên [Đang thi công, 2026] → +12%
-- Metro số 5 — Ngã Tư Bảy Hiền → Cầu Sài Gòn [Quy hoạch, 2035] → +22%
-
----
-
-### #30 — Akari City 2PN 68m² Bình Tân
+### #31 — Akari City 2PN 68m² Bình Tân
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -999,13 +1384,19 @@
 | **ROI 5 năm** | 105.0% |
 | **Yield** | 5.5%/năm |
 | **Hạ tầng** | ➡️ Ổn định (11.3/100) |
+| **Supply Tightness** | █████░░░░░ 5.8/10 |
+| **Absorption Rate** | 65% |
+| **Mortgage Growth** | +11%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.5% → dòng tiền tốt
-- Tăng trưởng ổn định 11%/năm
-- Diện tích 68m² — thanh khoản cao
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~14.2 triệu/tháng (yield 5.5%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng giá lịch sử 11%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📐 **Diện tích 68m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
@@ -1016,7 +1407,7 @@
 
 ---
 
-### #31 — Green Town Bình Tân 2PN 63m²
+### #32 — Green Town Bình Tân 2PN 63m²
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -1031,13 +1422,19 @@
 | **ROI 5 năm** | 105.0% |
 | **Yield** | 5.5%/năm |
 | **Hạ tầng** | ➡️ Ổn định (11.3/100) |
+| **Supply Tightness** | █████░░░░░ 5.8/10 |
+| **Absorption Rate** | 65% |
+| **Mortgage Growth** | +11%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.5% → dòng tiền tốt
-- Tăng trưởng ổn định 11%/năm
-- Diện tích 63m² — thanh khoản cao
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~13.8 triệu/tháng (yield 5.5%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng giá lịch sử 11%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📐 **Diện tích 63m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
@@ -1048,7 +1445,45 @@
 
 ---
 
-### #32 — Carillon 7 2PN 62m² Tân Phú
+### #33 — Him Lam Chợ Lớn 2PN 68m² Quận 6
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.2 tỷ VND |
+| **Quận** | Quận 6 |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 47.1 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **84.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 91.8% |
+| **Yield** | 5.0%/năm |
+| **Hạ tầng** | ➡️ Ổn định (9.8/100) |
+| **Supply Tightness** | ███████░░░ 7.0/10 |
+| **Absorption Rate** | 75% |
+| **Mortgage Growth** | +11%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~13.3 triệu/tháng (yield 5.0%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📦 **Nguồn cung kiểm soát được tại Quận 6** — 300 căn/quý với absorption rate 75%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng giá lịch sử 10%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📐 **Diện tích 68m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+**Dự án hạ tầng liên quan:**
+
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Metro số 3A — Bến Thành → Tân Kiên [Đã duyệt, 2031] → +28%
+
+---
+
+### #34 — Carillon 7 2PN 62m² Tân Phú
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -1063,13 +1498,21 @@
 | **ROI 5 năm** | 87.7% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | ➡️ Ổn định (6.1/100) |
+| **Supply Tightness** | ██████░░░░ 6.5/10 |
+| **Absorption Rate** | 72% |
+| **Mortgage Growth** | +12%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Tăng trưởng ổn định 10%/năm
-- Diện tích 62m² — thanh khoản cao
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~14.7 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng giá lịch sử 10%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Tân Phú — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 62m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
@@ -1078,7 +1521,7 @@
 
 ---
 
-### #33 — Richstar Tân Phú 2PN 62m²
+### #35 — Richstar Tân Phú 2PN 62m²
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -1093,13 +1536,21 @@
 | **ROI 5 năm** | 87.7% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | ➡️ Ổn định (6.1/100) |
+| **Supply Tightness** | ██████░░░░ 6.5/10 |
+| **Absorption Rate** | 72% |
+| **Mortgage Growth** | +12%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Tăng trưởng ổn định 10%/năm
-- Diện tích 62m² — thanh khoản cao
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~14.3 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng giá lịch sử 10%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Tân Phú — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 62m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
@@ -1108,7 +1559,7 @@
 
 ---
 
-### #34 — Celadon City 2PN 71m² Tân Phú
+### #36 — Celadon City 2PN 71m² Tân Phú
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -1123,13 +1574,21 @@
 | **ROI 5 năm** | 87.7% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | ➡️ Ổn định (6.1/100) |
+| **Supply Tightness** | ██████░░░░ 6.5/10 |
+| **Absorption Rate** | 72% |
+| **Mortgage Growth** | +12%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Tăng trưởng ổn định 10%/năm
-- Diện tích 71m² — thanh khoản cao
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~14.7 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng giá lịch sử 10%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Tân Phú — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 71m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
@@ -1138,7 +1597,7 @@
 
 ---
 
-### #35 — Topaz Garden 2PN 62m² Tân Phú
+### #37 — Topaz Garden 2PN 62m² Tân Phú
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -1153,13 +1612,21 @@
 | **ROI 5 năm** | 87.7% |
 | **Yield** | 5.2%/năm |
 | **Hạ tầng** | ➡️ Ổn định (6.1/100) |
+| **Supply Tightness** | ██████░░░░ 6.5/10 |
+| **Absorption Rate** | 72% |
+| **Mortgage Growth** | +12%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Tăng trưởng ổn định 10%/năm
-- Diện tích 62m² — thanh khoản cao
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~13.9 triệu/tháng (yield 5.2%/năm)** — Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được phần lớn lãi vay nếu đầu tư có đòn bẩy.
+
+📈 **Tăng trưởng giá lịch sử 10%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Tân Phú — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 62m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
@@ -1168,37 +1635,7 @@
 
 ---
 
-### #36 — Him Lam Chợ Lớn 2PN 68m² Quận 6
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 3.2 tỷ VND |
-| **Quận** | Quận 6 |
-| **Diện tích** | 68 m² |
-| **Giá/m²** | 47.1 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **78.0/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 91.8% |
-| **Yield** | 5.0%/năm |
-| **Hạ tầng** | ➡️ Ổn định (9.8/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.0% → dòng tiền tốt
-- Tăng trưởng ổn định 10%/năm
-- Diện tích 68m² — thanh khoản cao
-
-**Dự án hạ tầng liên quan:**
-
-- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
-- Metro số 3A — Bến Thành → Tân Kiên [Đã duyệt, 2031] → +28%
-
----
-
-### #37 — Kingdom 101 2PN 75m² Quận 10
+### #38 — Kingdom 101 2PN 75m² Quận 10
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -1207,19 +1644,66 @@
 | **Diện tích** | 75 m² |
 | **Giá/m²** | 65.3 triệu |
 | **Loại hình** | Can Ho Chung Cu |
-| **Score** | **76.0/100** |
+| **Score** | **82.0/100** |
 | **Verdict** | 🟢 BUY |
 | **Định giá** | ✅ Hợp lý |
 | **ROI 5 năm** | 70.2% |
 | **Yield** | 4.3%/năm |
 | **Hạ tầng** | ➡️ Ổn định (4.6/100) |
+| **Supply Tightness** | ████████░░ 8.2/10 |
+| **Absorption Rate** | 85% |
+| **Mortgage Growth** | +12%/năm |
 
-**Phân tích:**
+**Tại sao nên cân nhắc căn này:**
 
-- Giá sát mặt bằng thị trường
-- Rental yield 4.3% — chấp nhận được
-- Tăng trưởng ổn định 8%/năm
-- Diện tích 75m² — thanh khoản cao
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~17.6 triệu/tháng (yield 4.3%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 10** — 100 căn/quý với absorption rate 85%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng giá lịch sử 8%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📍 **Quận 10 — khu vực tốt (7.5/10)** — Tiện ích đầy đủ, kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp.
+
+📐 **Diện tích 75m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
+
+**Dự án hạ tầng liên quan:**
+
+- Metro số 3A — Bến Thành → Tân Kiên [Đã duyệt, 2031] → +28%
+
+---
+
+### #39 — Imperial Place 2PN 68m² Quận 11
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.5 tỷ VND |
+| **Quận** | Quận 11 |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 51.5 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **77.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 79.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | ➡️ Ổn định (4.6/100) |
+| **Supply Tightness** | ████████░░ 8.0/10 |
+| **Absorption Rate** | 83% |
+| **Mortgage Growth** | +11%/năm |
+
+**Tại sao nên cân nhắc căn này:**
+
+📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.
+
+🏠 **Cho thuê ước tính ~14.0 triệu/tháng (yield 4.8%/năm)** — Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê.
+
+📦 **Nguồn cung kiểm soát được tại Quận 11** — 90 căn/quý với absorption rate 83%. Thị trường cân bằng, không có rủi ro dư cung gây áp lực giá.
+
+📈 **Tăng trưởng giá lịch sử 9%/năm** — Ổn định và bền vững. Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực.
+
+📐 **Diện tích 68m² — sweet spot thị trường** — Căn 50–80m² là phân khúc dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người.
 
 **Dự án hạ tầng liên quan:**
 
@@ -1231,11 +1715,9 @@
 
 | # | Tên BĐS | Giá | Quận | Score | Định giá | Lý do chính |
 |---|---------|-----|------|-------|----------|-------------|
-| 1 | Saigon Royal 2PN 55m² Quận 4 | 4.8tỷ | Quận 4 | 71.3 | 📈 Cao hơn TT | Giá cao hơn thị trường 21% → rủi ro đỉnh giá |
-| 2 | Imperial Place 2PN 68m² Quận 11 | 3.5tỷ | Quận 11 | 71.0 | ✅ Hợp lý | Giá sát mặt bằng thị trường |
-| 3 | Carillon 5 2PN 65m² Tân Phú | 3.6tỷ | Tân Phú | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 15% → rủi ro đỉnh giá |
-| 4 | EHome 3 2PN 58m² Bình Tân | 3.0tỷ | Bình Tân | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 23% → rủi ro đỉnh giá |
-| 5 | Kingsway Tower 2PN 62m² Bình Tân | 3.0tỷ | Bình Tân | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 15% → rủi ro đỉnh giá |
+| 1 | Carillon 5 2PN 65m² Tân Phú | 3.6tỷ | Tân Phú | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 15% → rủi ro đỉnh giá |
+| 2 | EHome 3 2PN 58m² Bình Tân | 3.0tỷ | Bình Tân | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 23% → rủi ro đỉnh giá |
+| 3 | Kingsway Tower 2PN 62m² Bình Tân | 3.0tỷ | Bình Tân | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 15% → rủi ro đỉnh giá |
 
 ---
 
@@ -1250,18 +1732,235 @@
 
 | Quận | Avg Score | HT Score | BUY/Tổng | Đánh giá HT |
 |------|-----------|----------|----------|-------------|
+| Nhà Bè | 100.0/100 | 33.1/100 | 2/2 | 🚀 TĂNG MẠNH |
 | Quận 7 | 100.0/100 | 25.0/100 | 6/6 | 📊 TIỀM NĂNG |
+| Quận 8 | 100.0/100 | 15.5/100 | 6/6 | 📊 TIỀM NĂNG |
+| Tân Bình | 100.0/100 | 10.1/100 | 1/1 | ➡️ Ổn định |
 | Thủ Đức | 100.0/100 | 42.0/100 | 11/11 | 🚀 TĂNG MẠNH |
-| Quận 8 | 96.8/100 | 15.5/100 | 6/6 | 📊 TIỀM NĂNG |
+| Quận 4 | 96.2/100 | 12.9/100 | 3/3 | ➡️ Ổn định |
 | Bình Chánh | 94.3/100 | 34.8/100 | 1/1 | 🚀 TĂNG MẠNH |
-| Nhà Bè | 92.0/100 | 33.1/100 | 2/2 | 🚀 TĂNG MẠNH |
-| Quận 4 | 89.9/100 | 12.9/100 | 2/3 | ➡️ Ổn định |
-| Tân Bình | 89.6/100 | 10.1/100 | 1/1 | ➡️ Ổn định |
+| Quận 6 | 84.0/100 | 9.8/100 | 1/1 | ➡️ Ổn định |
+| Quận 10 | 82.0/100 | 4.6/100 | 1/1 | ➡️ Ổn định |
 | Tân Phú | 80.0/100 | 6.1/100 | 4/5 | ➡️ Ổn định |
-| Quận 6 | 78.0/100 | 9.8/100 | 1/1 | ➡️ Ổn định |
+| Quận 11 | 77.0/100 | 4.6/100 | 1/1 | ➡️ Ổn định |
 | Bình Tân | 76.1/100 | 11.3/100 | 2/4 | ➡️ Ổn định |
-| Quận 10 | 76.0/100 | 4.6/100 | 1/1 | ➡️ Ổn định |
-| Quận 11 | 71.0/100 | 4.6/100 | 0/1 | ➡️ Ổn định |
+
+---
+
+## Infrastructure Momentum — Theo Khu Vực
+
+> **Infrastructure Momentum** đo lường tốc độ và quy mô đầu tư công đang diễn ra tại từng quận.
+> Đây là chỉ số forward-looking — phản ánh tiềm năng tăng giá trong 3–5 năm tới,
+> không phải giá đã tăng rồi.
+
+### Bình Chánh — Bùng nổ 🔥 (Điểm: 100/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `██████████` 100/100 |
+| Dự án đang thi công | **6 dự án** |
+| Dự án đã duyệt (sắp thi công) | 5 dự án |
+| Tổng vốn đầu tư | **317 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +32% |
+| Tổng tác động giá tiềm năng | +183% |
+| Dự án hoàn thành gần nhất | 2025 |
+
+**Top dự án quan trọng nhất:**
+
+- 🔨 **Vành đai 3 TP.HCM** — Hoàn thành 2026, tác động **+32%** giá BĐS khu vực
+- ✅ **Vành đai 4 TP.HCM** — Hoàn thành 2029, tác động **+28%** giá BĐS khu vực
+- 🔨 **Cầu Bình Tiên — Q6, Q8, Bình Chánh** — Hoàn thành 2027, tác động **+25%** giá BĐS khu vực
+
+### Thủ Đức — Bùng nổ 🔥 (Điểm: 100/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `██████████` 100/100 |
+| Dự án đang thi công | **11 dự án** |
+| Dự án đã duyệt (sắp thi công) | 0 dự án |
+| Tổng vốn đầu tư | **159 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +38% |
+| Tổng tác động giá tiềm năng | +201% |
+| Dự án hoàn thành gần nhất | 2026 |
+
+**Top dự án quan trọng nhất:**
+
+- 🔨 **Khu đô thị sáng tạo TP Thủ Đức (phía Đông)** — Hoàn thành 2030, tác động **+38%** giá BĐS khu vực
+- 🔨 **Vành đai 3 TP.HCM** — Hoàn thành 2026, tác động **+32%** giá BĐS khu vực
+- 🔨 **Sân bay Long Thành (giai đoạn 1)** — Hoàn thành 2026, tác động **+28%** giá BĐS khu vực
+
+### Quận 7 — Bùng nổ 🔥 (Điểm: 94.7/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `█████████░` 94.7/100 |
+| Dự án đang thi công | **5 dự án** |
+| Dự án đã duyệt (sắp thi công) | 4 dự án |
+| Tổng vốn đầu tư | **124 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +30% |
+| Tổng tác động giá tiềm năng | +101% |
+| Dự án hoàn thành gần nhất | 2025 |
+
+**Top dự án quan trọng nhất:**
+
+- ✅ **Metro số 4 — Thạnh Xuân → Hiệp Phước** — Hoàn thành 2035, tác động **+30%** giá BĐS khu vực
+- 🔨 **Cầu Thủ Thiêm 4 (Q7 ↔ Thủ Thiêm)** — Hoàn thành 2028, tác động **+20%** giá BĐS khu vực
+- 🔨 **Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín** — Hoàn thành 2027, tác động **+18%** giá BĐS khu vực
+
+### Nhà Bè — Bùng nổ 🔥 (Điểm: 87.4/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `████████░░` 87.4/100 |
+| Dự án đang thi công | **5 dự án** |
+| Dự án đã duyệt (sắp thi công) | 3 dự án |
+| Tổng vốn đầu tư | **87 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +45% |
+| Tổng tác động giá tiềm năng | +165% |
+| Dự án hoàn thành gần nhất | 2025 |
+
+**Top dự án quan trọng nhất:**
+
+- ✅ **Cầu Cần Giờ** — Hoàn thành 2029, tác động **+45%** giá BĐS khu vực
+- ✅ **Metro số 4 — Thạnh Xuân → Hiệp Phước** — Hoàn thành 2035, tác động **+30%** giá BĐS khu vực
+- ✅ **Khu đô thị Hiệp Phước (Nhà Bè)** — Hoàn thành 2030, tác động **+30%** giá BĐS khu vực
+
+### Quận 4 — Bùng nổ 🔥 (Điểm: 80.2/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `████████░░` 80.2/100 |
+| Dự án đang thi công | **5 dự án** |
+| Dự án đã duyệt (sắp thi công) | 2 dự án |
+| Tổng vốn đầu tư | **98 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +25% |
+| Tổng tác động giá tiềm năng | +62% |
+| Dự án hoàn thành gần nhất | 2025 |
+
+**Top dự án quan trọng nhất:**
+
+- ✅ **Khu đô thị cảng Sài Gòn — Nhà Rồng Khánh Hội (Q4)** — Hoàn thành 2030, tác động **+25%** giá BĐS khu vực
+- 🔨 **Trung tâm Tài chính Quốc tế Việt Nam (VIFC) TP.HCM** — Hoàn thành 2030, tác động **+22%** giá BĐS khu vực
+- 🔨 **Hệ thống cống kiểm soát triều Phase 1 (chống ngập)** — Hoàn thành 2025, tác động **+15%** giá BĐS khu vực
+
+### Quận 8 — Bùng nổ 🔥 (Điểm: 78.4/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `███████░░░` 78.4/100 |
+| Dự án đang thi công | **4 dự án** |
+| Dự án đã duyệt (sắp thi công) | 3 dự án |
+| Tổng vốn đầu tư | **105 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +25% |
+| Tổng tác động giá tiềm năng | +76% |
+| Dự án hoàn thành gần nhất | 2025 |
+
+**Top dự án quan trọng nhất:**
+
+- 🔨 **Cầu Bình Tiên — Q6, Q8, Bình Chánh** — Hoàn thành 2027, tác động **+25%** giá BĐS khu vực
+- 🔨 **Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín** — Hoàn thành 2027, tác động **+18%** giá BĐS khu vực
+- 🔨 **Cải tạo Kênh Đôi — bờ Bắc (Quận 8)** — Hoàn thành 2028, tác động **+18%** giá BĐS khu vực
+
+### Quận 6 — Tăng mạnh 🚀 (Điểm: 69.4/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `██████░░░░` 69.4/100 |
+| Dự án đang thi công | **4 dự án** |
+| Dự án đã duyệt (sắp thi công) | 2 dự án |
+| Tổng vốn đầu tư | **98 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +28% |
+| Tổng tác động giá tiềm năng | +53% |
+| Dự án hoàn thành gần nhất | 2025 |
+
+**Top dự án quan trọng nhất:**
+
+- ✅ **Metro số 3A — Bến Thành → Tân Kiên** — Hoàn thành 2031, tác động **+28%** giá BĐS khu vực
+- 🔨 **Cầu Bình Tiên — Q6, Q8, Bình Chánh** — Hoàn thành 2027, tác động **+25%** giá BĐS khu vực
+
+### Bình Tân — Tăng mạnh 🚀 (Điểm: 61.8/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `██████░░░░` 61.8/100 |
+| Dự án đang thi công | **2 dự án** |
+| Dự án đã duyệt (sắp thi công) | 4 dự án |
+| Tổng vốn đầu tư | **107 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +28% |
+| Tổng tác động giá tiềm năng | +73% |
+| Dự án hoàn thành gần nhất | 2026 |
+
+**Top dự án quan trọng nhất:**
+
+- ✅ **Metro số 3A — Bến Thành → Tân Kiên** — Hoàn thành 2031, tác động **+28%** giá BĐS khu vực
+- 🔨 **Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín** — Hoàn thành 2027, tác động **+18%** giá BĐS khu vực
+- ✅ **Quốc lộ 1A mở rộng 10–12 làn (cửa ngõ Tây)** — Hoàn thành 2028, tác động **+15%** giá BĐS khu vực
+
+### Tân Bình — Tăng mạnh 🚀 (Điểm: 59.0/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `█████░░░░░` 59.0/100 |
+| Dự án đang thi công | **3 dự án** |
+| Dự án đã duyệt (sắp thi công) | 0 dự án |
+| Tổng vốn đầu tư | **57 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +25% |
+| Tổng tác động giá tiềm năng | +71% |
+| Dự án hoàn thành gần nhất | 2026 |
+
+**Top dự án quan trọng nhất:**
+
+- 🔨 **Metro số 2 — Bến Thành → Tham Lương** — Hoàn thành 2030, tác động **+25%** giá BĐS khu vực
+- 🔨 **Nhà ga T3 Tân Sơn Nhất** — Hoàn thành 2026, tác động **+12%** giá BĐS khu vực
+- 🔨 **Cải tạo Kênh Tham Lương — Bến Cát — Nước Lên** — Hoàn thành 2026, tác động **+12%** giá BĐS khu vực
+
+### Tân Phú — Tích cực 📈 (Điểm: 41.2/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `████░░░░░░` 41.2/100 |
+| Dự án đang thi công | **2 dự án** |
+| Dự án đã duyệt (sắp thi công) | 0 dự án |
+| Tổng vốn đầu tư | **48 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +25% |
+| Tổng tác động giá tiềm năng | +47% |
+| Dự án hoàn thành gần nhất | 2026 |
+
+**Top dự án quan trọng nhất:**
+
+- 🔨 **Metro số 2 — Bến Thành → Tham Lương** — Hoàn thành 2030, tác động **+25%** giá BĐS khu vực
+
+### Quận 10 — Tích cực 📈 (Điểm: 35.5/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `███░░░░░░░` 35.5/100 |
+| Dự án đang thi công | **1 dự án** |
+| Dự án đã duyệt (sắp thi công) | 1 dự án |
+| Tổng vốn đầu tư | **91 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +28% |
+| Tổng tác động giá tiềm năng | +28% |
+| Dự án hoàn thành gần nhất | 2030 |
+
+**Top dự án quan trọng nhất:**
+
+- ✅ **Metro số 3A — Bến Thành → Tân Kiên** — Hoàn thành 2031, tác động **+28%** giá BĐS khu vực
+
+### Quận 11 — Tích cực 📈 (Điểm: 31.4/100)
+
+| Chỉ số | Giá trị |
+|--------|---------|
+| Momentum Score | `███░░░░░░░` 31.4/100 |
+| Dự án đang thi công | **1 dự án** |
+| Dự án đã duyệt (sắp thi công) | 1 dự án |
+| Tổng vốn đầu tư | **70 nghìn tỷ VND** |
+| Tác động giá tối đa (1 dự án) | +28% |
+| Tổng tác động giá tiềm năng | +28% |
+| Dự án hoàn thành gần nhất | 2027 |
+
+**Top dự án quan trọng nhất:**
+
+- ✅ **Metro số 3A — Bến Thành → Tân Kiên** — Hoàn thành 2031, tác động **+28%** giá BĐS khu vực
 
 ---
 
@@ -1687,10 +2386,10 @@ Cầu đi bộ thiết kế lá dừa nước. Khởi công 29/03/2025, hoàn th
 
 ### Top Quận Nên Tập Trung
 
-1. **Quận 7** — Avg Score: 100.0, HT: 📊 TIỀM NĂNG
-2. **Thủ Đức** — Avg Score: 100.0, HT: 🚀 TĂNG MẠNH
-3. **Quận 8** — Avg Score: 96.8, HT: 📊 TIỀM NĂNG
-4. **Bình Chánh** — Avg Score: 94.3, HT: 🚀 TĂNG MẠNH
+1. **Nhà Bè** — Avg Score: 100.0, HT: 🚀 TĂNG MẠNH
+2. **Quận 7** — Avg Score: 100.0, HT: 📊 TIỀM NĂNG
+3. **Quận 8** — Avg Score: 100.0, HT: 📊 TIỀM NĂNG
+4. **Tân Bình** — Avg Score: 100.0, HT: ➡️ Ổn định
 
 ---
 *Báo cáo được tạo tự động bởi BDS Analyzer Bot · 14/04/2026*

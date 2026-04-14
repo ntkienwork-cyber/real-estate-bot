@@ -730,6 +730,109 @@ def infra_multiplier(district: str) -> float:
     return 1.0
 
 
+def get_infra_momentum(district: str) -> dict:
+    """
+    Phân tích Infrastructure Momentum chi tiết cho 1 quận.
+    Momentum = tốc độ và quy mô đầu tư hạ tầng đang diễn ra HIỆN TẠI.
+
+    Trả về dict:
+      active_count         — số dự án đang thi công (UNDER_CONST)
+      pipeline_count       — số dự án đã duyệt (APPROVED, sắp thi công)
+      planning_count       — số dự án quy hoạch (PLANNING)
+      total_investment_t   — tổng vốn đầu tư (nghìn tỷ VND)
+      max_price_impact_pct — dự án có tác động giá cao nhất
+      total_price_impact   — tổng impact giá nếu tất cả hoàn thành
+      nearest_completion   — dự án hoàn thành sớm nhất (năm)
+      momentum_score       — 0–100, tổng hợp tốc độ + quy mô
+      momentum_label       — "Bùng nổ" | "Tăng mạnh" | "Tích cực" | "Ổn định" | "Yếu"
+      top_projects         — list[dict] top 3 dự án quan trọng nhất
+    """
+    active, pipeline, planning = [], [], []
+
+    for proj in INFRA_PROJECTS:
+        is_primary = district in proj.districts_affected
+        is_secondary = district in proj.districts_secondary
+        if not (is_primary or is_secondary):
+            continue
+        weight = 1.0 if is_primary else 0.5
+
+        if proj.status == Status.UNDER_CONST:
+            active.append((proj, weight))
+        elif proj.status == Status.APPROVED:
+            pipeline.append((proj, weight))
+        elif proj.status == Status.PLANNING:
+            planning.append((proj, weight))
+
+    # Tổng vốn đầu tư (đang thi công — chắc chắn nhất)
+    total_inv = sum(
+        (p.investment_billion_vnd or 0) * w / 1_000  # đổi sang nghìn tỷ
+        for p, w in active + pipeline
+    )
+
+    # Tổng tác động giá tiềm năng (primary only)
+    total_impact = sum(
+        p.price_impact_pct for p, w in active + pipeline + planning
+        if w == 1.0
+    )
+
+    # Dự án impact cao nhất
+    all_primary = [(p, w) for p, w in active + pipeline + planning if w == 1.0]
+    max_impact = max((p.price_impact_pct for p, _ in all_primary), default=0)
+
+    # Năm hoàn thành sớm nhất (active only)
+    completions = []
+    for p, _ in active:
+        try:
+            completions.append(int(p.expected_completion[:4]))
+        except (ValueError, IndexError):
+            pass
+    nearest = min(completions) if completions else None
+
+    # Momentum score:
+    # 40% — số dự án đang thi công (active)
+    # 30% — quy mô đầu tư
+    # 30% — tổng tác động giá
+    active_score   = min(len(active) * 8, 40)
+    inv_score      = min(total_inv / 5, 30)          # 150k tỷ → max 30đ
+    impact_score   = min(total_impact / 3, 30)        # 90% total impact → max 30đ
+    momentum_score = round(active_score + inv_score + impact_score, 1)
+
+    if momentum_score >= 70:   momentum_label = "Bùng nổ 🔥"
+    elif momentum_score >= 50: momentum_label = "Tăng mạnh 🚀"
+    elif momentum_score >= 30: momentum_label = "Tích cực 📈"
+    elif momentum_score >= 15: momentum_label = "Ổn định 📊"
+    else:                      momentum_label = "Yếu ➡️"
+
+    # Top 3 dự án quan trọng nhất (primary, sort by impact)
+    top_projs = sorted(
+        [(p, w) for p, w in active + pipeline if w == 1.0],
+        key=lambda x: x[0].price_impact_pct,
+        reverse=True
+    )[:3]
+
+    return {
+        "active_count":          len(active),
+        "pipeline_count":        len(pipeline),
+        "planning_count":        len(planning),
+        "total_investment_t":    round(total_inv, 1),
+        "max_price_impact_pct":  max_impact,
+        "total_price_impact":    total_impact,
+        "nearest_completion":    nearest,
+        "momentum_score":        momentum_score,
+        "momentum_label":        momentum_label,
+        "top_projects": [
+            {
+                "name":       p.name,
+                "status":     p.status.value,
+                "completion": p.expected_completion,
+                "impact_pct": p.price_impact_pct,
+                "type":       p.infra_type.value,
+            }
+            for p, _ in top_projs
+        ],
+    }
+
+
 # ═══════════════════════════════════════════════════════════════════
 # STANDALONE REPORT
 # ═══════════════════════════════════════════════════════════════════
