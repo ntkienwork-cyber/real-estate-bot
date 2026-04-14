@@ -1,5 +1,5 @@
 # Báo Cáo Phân Tích BĐS TP. Hồ Chí Minh
-> Mức giá: **3–5 tỷ VND** · Ngày tạo: **13/04/2026** · Tổng listings: **20**
+> Mức giá: **3–5 tỷ VND** · Ngày tạo: **14/04/2026** · Tổng listings: **42**
 
 ---
 
@@ -7,124 +7,54 @@
 
 | Verdict | Số lượng | Tỷ lệ |
 |---------|----------|-------|
-| 🟢 BUY  | 10 | 50% |
-| 🟡 HOLD | 9 | 45% |
-| 🔴 SKIP | 1 | 5% |
+| 🟢 BUY  | 37 | 88% |
+| 🟡 HOLD | 5 | 11% |
+| 🔴 SKIP | 0 | 0% |
 
 ---
 
 ## Top Bất Động Sản Nên Mua
 
-### #1 — Căn hộ Vinhomes Grand Park 2PN 65m²
+### #1 — Charmington Iris 2PN 70m² Quận 4
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.85 tỷ VND |
+| **Quận** | Quận 4 |
+| **Diện tích** | 70 m² |
+| **Giá/m²** | 55.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📉 Thấp hơn TT |
+| **ROI 5 năm** | 82.9% |
+| **Yield** | 4.2%/năm |
+| **Hạ tầng** | ➡️ Ổn định (12.9/100) |
+
+**Phân tích:**
+
+- Giá thấp hơn thị trường 24% → tiềm năng tăng giá tốt
+- Rental yield 4.2% — chấp nhận được
+- Tăng trưởng ổn định 9%/năm
+- Vị trí chiến lược (điểm quận: 8.5/10)
+- Diện tích 70m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Trung tâm Tài chính Quốc tế Việt Nam (VIFC) TP.HCM [Đang thi công, 2030] → +22%
+- Khu đô thị cảng Sài Gòn — Nhà Rồng Khánh Hội (Q4) [Đã duyệt, 2030] → +25%
+
+---
+
+### #2 — Era Town 2PN 70m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
 | **Giá** | 3.2 tỷ VND |
-| **Quận** | Thủ Đức |
-| **Diện tích** | 65 m² |
-| **Giá/m²** | 49.2 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **100/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 134.5% |
-| **Yield** | 5.2%/năm |
-| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 12%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 65m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
-- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
-- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
-
----
-
-### #2 — Căn hộ Masteri Thảo Điền 2PN 72m² view sông
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 4.8 tỷ VND |
-| **Quận** | Thủ Đức |
-| **Diện tích** | 72 m² |
-| **Giá/m²** | 66.7 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **100/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | 📈 Cao hơn TT |
-| **ROI 5 năm** | 134.5% |
-| **Yield** | 5.2%/năm |
-| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
-
-**Phân tích:**
-
-- Giá cao hơn thị trường 39% → rủi ro đỉnh giá
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 12%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 72m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
-- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
-- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
-
----
-
-### #3 — Căn hộ The Sun Avenue 2PN 70m² Quận 2
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 4.1 tỷ VND |
-| **Quận** | Thủ Đức |
-| **Diện tích** | 70 m² |
-| **Giá/m²** | 58.6 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **100/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | 📈 Cao hơn TT |
-| **ROI 5 năm** | 134.5% |
-| **Yield** | 5.2%/năm |
-| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
-
-**Phân tích:**
-
-- Giá cao hơn thị trường 22% → rủi ro đỉnh giá
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 12%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 70m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
-- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
-- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
-
----
-
-### #4 — Căn hộ Sunrise City Quận 7 2PN 85m²
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 4.5 tỷ VND |
 | **Quận** | Quận 7 |
-| **Diện tích** | 85 m² |
-| **Giá/m²** | 52.9 triệu |
+| **Diện tích** | 70 m² |
+| **Giá/m²** | 45.7 triệu |
 | **Loại hình** | Can Ho Chung Cu |
 | **Score** | **100/100** |
 | **Verdict** | 🟢 BUY |
@@ -135,10 +65,11 @@
 
 **Phân tích:**
 
-- Giá thấp hơn thị trường 19% → tiềm năng tăng giá tốt
+- Giá thấp hơn thị trường 30% → tiềm năng tăng giá tốt
 - Rental yield 4.5% — chấp nhận được
 - Tăng trưởng ổn định 9%/năm
 - Vị trí chiến lược (điểm quận: 8.8/10)
+- Diện tích 70m² — thanh khoản cao
 - Hạ tầng TIỀM NĂNG (điểm 25/100)
 
 **Dự án hạ tầng liên quan:**
@@ -150,40 +81,75 @@
 
 ---
 
-### #5 — Đất nền Quận 9 80m² gần Metro
+### #3 — Riverside Residence PMH 2PN 72m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| **Giá** | 4.0 tỷ VND |
-| **Quận** | Thủ Đức |
-| **Diện tích** | 80 m² |
-| **Giá/m²** | 50.0 triệu |
-| **Loại hình** | Dat Nen |
+| **Giá** | 4.3 tỷ VND |
+| **Quận** | Quận 7 |
+| **Diện tích** | 72 m² |
+| **Giá/m²** | 59.7 triệu |
+| **Loại hình** | Can Ho Chung Cu |
 | **Score** | **100/100** |
 | **Verdict** | 🟢 BUY |
 | **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | — |
-| **Yield** | — |
-| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+| **ROI 5 năm** | 91.2% |
+| **Yield** | 4.5%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (25.0/100) |
 
 **Phân tích:**
 
-- Giá hợp lý, thấp hơn mặt bằng ~9%
-- Rental yield thấp (0%) — phù hợp đầu tư dài hạn hơn cho thuê
-- Khu vực tăng trưởng mạnh 15%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+- Giá hợp lý, thấp hơn mặt bằng ~8%
+- Rental yield 4.5% — chấp nhận được
+- Tăng trưởng ổn định 9%/năm
+- Vị trí chiến lược (điểm quận: 8.8/10)
+- Diện tích 72m² — thanh khoản cao
+- Hạ tầng TIỀM NĂNG (điểm 25/100)
 
 **Dự án hạ tầng liên quan:**
 
 - Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
-- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
-- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+- Cầu Phú Mỹ 2 — TP.HCM ↔ Đồng Nai [Đang thi công, 2028] → +18%
+- Cầu Thủ Thiêm 4 (Q7 ↔ Thủ Thiêm) [Đang thi công, 2028] → +20%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
 
 ---
 
-### #6 — Căn hộ Lavida Plus Quận 7 2PN 66m²
+### #4 — Sky Garden 3 PMH 2PN 78m² Quận 7
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.9 tỷ VND |
+| **Quận** | Quận 7 |
+| **Diện tích** | 78 m² |
+| **Giá/m²** | 50.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📉 Thấp hơn TT |
+| **ROI 5 năm** | 91.2% |
+| **Yield** | 4.5%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (25.0/100) |
+
+**Phân tích:**
+
+- Giá thấp hơn thị trường 23% → tiềm năng tăng giá tốt
+- Rental yield 4.5% — chấp nhận được
+- Tăng trưởng ổn định 9%/năm
+- Vị trí chiến lược (điểm quận: 8.8/10)
+- Diện tích 78m² — thanh khoản cao
+- Hạ tầng TIỀM NĂNG (điểm 25/100)
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Phú Mỹ 2 — TP.HCM ↔ Đồng Nai [Đang thi công, 2028] → +18%
+- Cầu Thủ Thiêm 4 (Q7 ↔ Thủ Thiêm) [Đang thi công, 2028] → +20%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+
+---
+
+### #5 — Lavida Plus 2PN 66m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -217,7 +183,7 @@
 
 ---
 
-### #7 — Căn hộ Eco Green Quận 7 2PN 70m²
+### #6 — Eco Green Saigon 2PN 70m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -251,48 +217,14 @@
 
 ---
 
-### #8 — Căn hộ The Origami Vinhomes Q9 2PN 65m²
+### #7 — Sunrise City View 2PN 85m² Quận 7
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| **Giá** | 3.5 tỷ VND |
-| **Quận** | Thủ Đức |
-| **Diện tích** | 65 m² |
-| **Giá/m²** | 53.8 triệu |
-| **Loại hình** | Can Ho Chung Cu |
-| **Score** | **100/100** |
-| **Verdict** | 🟢 BUY |
-| **Định giá** | 📈 Cao hơn TT |
-| **ROI 5 năm** | 134.5% |
-| **Yield** | 5.2%/năm |
-| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
-
-**Phân tích:**
-
-- Giá sát mặt bằng thị trường
-- Rental yield ước tính 5.2% → dòng tiền tốt
-- Khu vực tăng trưởng mạnh 12%/năm
-- Vị trí chiến lược (điểm quận: 9.2/10)
-- Diện tích 65m² — thanh khoản cao
-- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
-
-**Dự án hạ tầng liên quan:**
-
-- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
-- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
-- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
-- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
-
----
-
-### #9 — Căn hộ Saigon South Residences Q7 3PN 90m²
-
-| Thông tin | Chi tiết |
-|-----------|----------|
-| **Giá** | 4.6 tỷ VND |
+| **Giá** | 4.5 tỷ VND |
 | **Quận** | Quận 7 |
-| **Diện tích** | 90 m² |
-| **Giá/m²** | 51.1 triệu |
+| **Diện tích** | 85 m² |
+| **Giá/m²** | 52.9 triệu |
 | **Loại hình** | Can Ho Chung Cu |
 | **Score** | **100/100** |
 | **Verdict** | 🟢 BUY |
@@ -303,7 +235,7 @@
 
 **Phân tích:**
 
-- Giá thấp hơn thị trường 21% → tiềm năng tăng giá tốt
+- Giá thấp hơn thị trường 19% → tiềm năng tăng giá tốt
 - Rental yield 4.5% — chấp nhận được
 - Tăng trưởng ổn định 9%/năm
 - Vị trí chiến lược (điểm quận: 8.8/10)
@@ -318,7 +250,741 @@
 
 ---
 
-### #10 — Căn hộ Akari City Bình Tân 2PN 68m²
+### #8 — Pegasuite 2PN 68m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.3 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 48.5 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+
+**Phân tích:**
+
+- Giá hợp lý, thấp hơn mặt bằng ~7%
+- Rental yield 4.8% — chấp nhận được
+- Khu vực tăng trưởng mạnh 12%/năm
+- Diện tích 68m² — thanh khoản cao
+- Hạ tầng TIỀM NĂNG (điểm 15/100)
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #9 — Vinhomes Grand Park The Origami 2PN 65m²
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.5 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 65 m² |
+| **Giá/m²** | 53.8 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 65m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #10 — Vinhomes Grand Park The Opus One 2PN 68m²
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.8 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 55.9 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 68m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #11 — The Sun Avenue 2PN 70m² Thủ Đức
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.1 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 70 m² |
+| **Giá/m²** | 58.6 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 70m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #12 — Masteri Thảo Điền 2PN 72m² view sông
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.8 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 72 m² |
+| **Giá/m²** | 66.7 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá cao hơn thị trường 21% → rủi ro đỉnh giá
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 72m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #13 — Feliz En Vista 2PN 75m² Thủ Đức
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.7 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 75 m² |
+| **Giá/m²** | 62.7 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 75m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #14 — Estella Heights 2PN 83m² Thủ Đức
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.8 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 83 m² |
+| **Giá/m²** | 57.8 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #15 — Lumiere Riverside 2PN 68m² Thủ Đức
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.5 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 66.2 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá cao hơn thị trường 20% → rủi ro đỉnh giá
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 68m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #16 — The CBD Premium Home 2PN 65m² Thủ Đức
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.4 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 65 m² |
+| **Giá/m²** | 67.7 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá cao hơn thị trường 23% → rủi ro đỉnh giá
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 65m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #17 — Moonlight Residences 2PN 65m² Thủ Đức
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.2 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 65 m² |
+| **Giá/m²** | 49.2 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📉 Thấp hơn TT |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá hợp lý, thấp hơn mặt bằng ~11%
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 65m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #18 — Hausneo 2PN 63m² Thủ Đức
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.3 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 63 m² |
+| **Giá/m²** | 52.4 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 63m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #19 — Hausbelo 2PN 64m² Thủ Đức (under construction)
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.5 tỷ VND |
+| **Quận** | Thủ Đức |
+| **Diện tích** | 64 m² |
+| **Giá/m²** | 54.7 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **100/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 142.5% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (42.0/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 13%/năm
+- Vị trí chiến lược (điểm quận: 9.2/10)
+- Diện tích 64m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 42/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc Biên Hòa — Vũng Tàu [Đang thi công, 2026] → +12%
+- Cầu Cát Lái — TP.HCM ↔ Đồng Nai [Đang thi công, 2029] → +18%
+
+---
+
+### #20 — Icon 56 2PN 78m² Quận 4
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.8 tỷ VND |
+| **Quận** | Quận 4 |
+| **Diện tích** | 78 m² |
+| **Giá/m²** | 61.5 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **98.3/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📉 Thấp hơn TT |
+| **ROI 5 năm** | 82.9% |
+| **Yield** | 4.2%/năm |
+| **Hạ tầng** | ➡️ Ổn định (12.9/100) |
+
+**Phân tích:**
+
+- Giá hợp lý, thấp hơn mặt bằng ~15%
+- Rental yield 4.2% — chấp nhận được
+- Tăng trưởng ổn định 9%/năm
+- Vị trí chiến lược (điểm quận: 8.5/10)
+- Diện tích 78m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Trung tâm Tài chính Quốc tế Việt Nam (VIFC) TP.HCM [Đang thi công, 2030] → +22%
+- Khu đô thị cảng Sài Gòn — Nhà Rồng Khánh Hội (Q4) [Đã duyệt, 2030] → +25%
+
+---
+
+### #21 — Topaz Elite Tower A 2PN 62m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.1 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 62 m² |
+| **Giá/m²** | 50.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **96.1/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield 4.8% — chấp nhận được
+- Khu vực tăng trưởng mạnh 12%/năm
+- Diện tích 62m² — thanh khoản cao
+- Hạ tầng TIỀM NĂNG (điểm 15/100)
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #22 — Topaz Elite Tower B 2PN 65m² view sông Q8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.4 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 65 m² |
+| **Giá/m²** | 52.3 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **96.1/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield 4.8% — chấp nhận được
+- Khu vực tăng trưởng mạnh 12%/năm
+- Diện tích 65m² — thanh khoản cao
+- Hạ tầng TIỀM NĂNG (điểm 15/100)
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #23 — Dream Home Riverside 2PN 64m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.2 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 64 m² |
+| **Giá/m²** | 50.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **96.1/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield 4.8% — chấp nhận được
+- Khu vực tăng trưởng mạnh 12%/năm
+- Diện tích 64m² — thanh khoản cao
+- Hạ tầng TIỀM NĂNG (điểm 15/100)
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #24 — City Gate Towers 2PN 68m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.5 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 51.5 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **96.1/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield 4.8% — chấp nhận được
+- Khu vực tăng trưởng mạnh 12%/năm
+- Diện tích 68m² — thanh khoản cao
+- Hạ tầng TIỀM NĂNG (điểm 15/100)
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #25 — Diamond Riverside 2PN 65m² Quận 8
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.4 tỷ VND |
+| **Quận** | Quận 8 |
+| **Diện tích** | 65 m² |
+| **Giá/m²** | 52.3 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **96.1/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 110.3% |
+| **Yield** | 4.8%/năm |
+| **Hạ tầng** | 📊 TIỀM NĂNG (15.5/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield 4.8% — chấp nhận được
+- Khu vực tăng trưởng mạnh 12%/năm
+- Diện tích 65m² — thanh khoản cao
+- Hạ tầng TIỀM NĂNG (điểm 15/100)
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cải tạo Kênh Đôi — bờ Bắc (Quận 8) [Đang thi công, 2028] → +18%
+
+---
+
+### #26 — Mizuki Park 2PN 68m² Bình Chánh
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.3 tỷ VND |
+| **Quận** | Bình Chánh |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 48.5 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **94.3/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 131.3% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (34.8/100) |
+
+**Phân tích:**
+
+- Giá cao hơn thị trường 43% → rủi ro đỉnh giá
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Khu vực tăng trưởng mạnh 12%/năm
+- Diện tích 68m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 35/100) — 12 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Vành đai 3 TP.HCM [Đang thi công, 2026] → +32%
+- Cao tốc TP.HCM — Trung Lương — Mỹ Thuận (mở rộng) [Đang thi công, 2028] → +12%
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+
+---
+
+### #27 — Him Lam Riverside 2PN 74m² Nhà Bè
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.85 tỷ VND |
+| **Quận** | Nhà Bè |
+| **Diện tích** | 74 m² |
+| **Giá/m²** | 52.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **92.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 116.8% |
+| **Yield** | 5.0%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (33.1/100) |
+
+**Phân tích:**
+
+- Giá cao hơn thị trường 37% → rủi ro đỉnh giá
+- Rental yield ước tính 5.0% → dòng tiền tốt
+- Tăng trưởng ổn định 11%/năm
+- Diện tích 74m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 33/100) — 11 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Cầu Bình Khánh (cao tốc Bến Lức – Long Thành) [Đang thi công, 2025] → +12%
+- Cầu Phú Mỹ 2 — TP.HCM ↔ Đồng Nai [Đang thi công, 2028] → +18%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cao tốc Bến Lức — Long Thành [Hoàn thành, 2025] → +15%
+
+---
+
+### #28 — Dragon Hill 2 2PN 72m² Nhà Bè
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.0 tỷ VND |
+| **Quận** | Nhà Bè |
+| **Diện tích** | 72 m² |
+| **Giá/m²** | 55.6 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **92.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 116.8% |
+| **Yield** | 5.0%/năm |
+| **Hạ tầng** | 🚀 TĂNG MẠNH (33.1/100) |
+
+**Phân tích:**
+
+- Giá cao hơn thị trường 46% → rủi ro đỉnh giá
+- Rental yield ước tính 5.0% → dòng tiền tốt
+- Tăng trưởng ổn định 11%/năm
+- Diện tích 72m² — thanh khoản cao
+- Hạ tầng TĂNG MẠNH (điểm 33/100) — 11 dự án
+
+**Dự án hạ tầng liên quan:**
+
+- Cầu Bình Khánh (cao tốc Bến Lức – Long Thành) [Đang thi công, 2025] → +12%
+- Cầu Phú Mỹ 2 — TP.HCM ↔ Đồng Nai [Đang thi công, 2028] → +18%
+- Hệ thống cống kiểm soát triều Phase 1 (chống ngập) [Đang thi công, 2025] → +15%
+- Cao tốc Bến Lức — Long Thành [Hoàn thành, 2025] → +15%
+
+---
+
+### #29 — Charmington Tân Bình 2PN 60m²
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.6 tỷ VND |
+| **Quận** | Tân Bình |
+| **Diện tích** | 60 m² |
+| **Giá/m²** | 60.0 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **89.6/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 83.9% |
+| **Yield** | 5.0%/năm |
+| **Hạ tầng** | ➡️ Ổn định (10.1/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.0% → dòng tiền tốt
+- Tăng trưởng ổn định 9%/năm
+- Diện tích 60m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Metro số 2 — Bến Thành → Tham Lương [Đang thi công, 2030] → +25%
+- Nhà ga T3 Tân Sơn Nhất [Đang thi công, 2026] → +12%
+- Cải tạo Kênh Tham Lương — Bến Cát — Nước Lên [Đang thi công, 2026] → +12%
+- Metro số 5 — Ngã Tư Bảy Hiền → Cầu Sài Gòn [Quy hoạch, 2035] → +22%
+
+---
+
+### #30 — Akari City 2PN 68m² Bình Tân
 
 | Thông tin | Chi tiết |
 |-----------|----------|
@@ -327,18 +993,18 @@
 | **Diện tích** | 68 m² |
 | **Giá/m²** | 45.6 triệu |
 | **Loại hình** | Can Ho Chung Cu |
-| **Score** | **87.5/100** |
+| **Score** | **84.2/100** |
 | **Verdict** | 🟢 BUY |
 | **Định giá** | ✅ Hợp lý |
-| **ROI 5 năm** | 77.1% |
-| **Yield** | 4.0%/năm |
+| **ROI 5 năm** | 105.0% |
+| **Yield** | 5.5%/năm |
 | **Hạ tầng** | ➡️ Ổn định (11.3/100) |
 
 **Phân tích:**
 
-- Giá hợp lý, thấp hơn mặt bằng ~9%
-- Rental yield 4.0% — chấp nhận được
-- Tăng trưởng ổn định 8%/năm
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.5% → dòng tiền tốt
+- Tăng trưởng ổn định 11%/năm
 - Diện tích 68m² — thanh khoản cao
 
 **Dự án hạ tầng liên quan:**
@@ -350,19 +1016,226 @@
 
 ---
 
+### #31 — Green Town Bình Tân 2PN 63m²
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.0 tỷ VND |
+| **Quận** | Bình Tân |
+| **Diện tích** | 63 m² |
+| **Giá/m²** | 47.6 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **84.2/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 105.0% |
+| **Yield** | 5.5%/năm |
+| **Hạ tầng** | ➡️ Ổn định (11.3/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.5% → dòng tiền tốt
+- Tăng trưởng ổn định 11%/năm
+- Diện tích 63m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Vành đai 2 TP.HCM — hoàn chỉnh vòng khép kín [Đang thi công, 2027] → +18%
+- Cải tạo Kênh Tham Lương — Bến Cát — Nước Lên [Đang thi công, 2026] → +12%
+- Metro số 3A — Bến Thành → Tân Kiên [Đã duyệt, 2031] → +28%
+- Quốc lộ 1A mở rộng 10–12 làn (cửa ngõ Tây) [Đã duyệt, 2028] → +15%
+
+---
+
+### #32 — Carillon 7 2PN 62m² Tân Phú
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.4 tỷ VND |
+| **Quận** | Tân Phú |
+| **Diện tích** | 62 m² |
+| **Giá/m²** | 54.8 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **83.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 87.7% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | ➡️ Ổn định (6.1/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Tăng trưởng ổn định 10%/năm
+- Diện tích 62m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Metro số 2 — Bến Thành → Tham Lương [Đang thi công, 2030] → +25%
+- Metro số 5 — Ngã Tư Bảy Hiền → Cầu Sài Gòn [Quy hoạch, 2035] → +22%
+
+---
+
+### #33 — Richstar Tân Phú 2PN 62m²
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.3 tỷ VND |
+| **Quận** | Tân Phú |
+| **Diện tích** | 62 m² |
+| **Giá/m²** | 53.2 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **83.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | 📈 Cao hơn TT |
+| **ROI 5 năm** | 87.7% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | ➡️ Ổn định (6.1/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Tăng trưởng ổn định 10%/năm
+- Diện tích 62m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Metro số 2 — Bến Thành → Tham Lương [Đang thi công, 2030] → +25%
+- Metro số 5 — Ngã Tư Bảy Hiền → Cầu Sài Gòn [Quy hoạch, 2035] → +22%
+
+---
+
+### #34 — Celadon City 2PN 71m² Tân Phú
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.4 tỷ VND |
+| **Quận** | Tân Phú |
+| **Diện tích** | 71 m² |
+| **Giá/m²** | 47.9 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **83.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 87.7% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | ➡️ Ổn định (6.1/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Tăng trưởng ổn định 10%/năm
+- Diện tích 71m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Metro số 2 — Bến Thành → Tham Lương [Đang thi công, 2030] → +25%
+- Metro số 5 — Ngã Tư Bảy Hiền → Cầu Sài Gòn [Quy hoạch, 2035] → +22%
+
+---
+
+### #35 — Topaz Garden 2PN 62m² Tân Phú
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.2 tỷ VND |
+| **Quận** | Tân Phú |
+| **Diện tích** | 62 m² |
+| **Giá/m²** | 51.6 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **83.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 87.7% |
+| **Yield** | 5.2%/năm |
+| **Hạ tầng** | ➡️ Ổn định (6.1/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.2% → dòng tiền tốt
+- Tăng trưởng ổn định 10%/năm
+- Diện tích 62m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Metro số 2 — Bến Thành → Tham Lương [Đang thi công, 2030] → +25%
+- Metro số 5 — Ngã Tư Bảy Hiền → Cầu Sài Gòn [Quy hoạch, 2035] → +22%
+
+---
+
+### #36 — Him Lam Chợ Lớn 2PN 68m² Quận 6
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 3.2 tỷ VND |
+| **Quận** | Quận 6 |
+| **Diện tích** | 68 m² |
+| **Giá/m²** | 47.1 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **78.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 91.8% |
+| **Yield** | 5.0%/năm |
+| **Hạ tầng** | ➡️ Ổn định (9.8/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield ước tính 5.0% → dòng tiền tốt
+- Tăng trưởng ổn định 10%/năm
+- Diện tích 68m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Cầu Bình Tiên — Q6, Q8, Bình Chánh [Đang thi công, 2027] → +25%
+- Metro số 3A — Bến Thành → Tân Kiên [Đã duyệt, 2031] → +28%
+
+---
+
+### #37 — Kingdom 101 2PN 75m² Quận 10
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Giá** | 4.9 tỷ VND |
+| **Quận** | Quận 10 |
+| **Diện tích** | 75 m² |
+| **Giá/m²** | 65.3 triệu |
+| **Loại hình** | Can Ho Chung Cu |
+| **Score** | **76.0/100** |
+| **Verdict** | 🟢 BUY |
+| **Định giá** | ✅ Hợp lý |
+| **ROI 5 năm** | 70.2% |
+| **Yield** | 4.3%/năm |
+| **Hạ tầng** | ➡️ Ổn định (4.6/100) |
+
+**Phân tích:**
+
+- Giá sát mặt bằng thị trường
+- Rental yield 4.3% — chấp nhận được
+- Tăng trưởng ổn định 8%/năm
+- Diện tích 75m² — thanh khoản cao
+
+**Dự án hạ tầng liên quan:**
+
+- Metro số 3A — Bến Thành → Tân Kiên [Đã duyệt, 2031] → +28%
+
+---
+
 ## Danh Sách HOLD (Chờ Thêm)
 
 | # | Tên BĐS | Giá | Quận | Score | Định giá | Lý do chính |
 |---|---------|-----|------|-------|----------|-------------|
-| 1 | Căn hộ Charmington Tân Bình 2PN 60m² | 3.6tỷ | Tân Bình | 73.4 | 📈 Cao hơn TT | Giá cao hơn thị trường 15% → rủi ro đỉnh giá |
-| 2 | Căn hộ Richstar Tân Phú 2PN 62m² | 3.3tỷ | Tân Phú | 71.0 | ✅ Hợp lý | Giá sát mặt bằng thị trường |
-| 3 | Căn hộ Celadon City Tân Phú 2PN 71m² | 3.4tỷ | Tân Phú | 71.0 | ✅ Hợp lý | Giá sát mặt bằng thị trường |
-| 4 | Nhà hẻm xe hơi 4x14m Gò Vấp 3PN | 3.9tỷ | Gò Vấp | 60.5 | 📈 Cao hơn TT | Giá cao hơn thị trường 16% → rủi ro đỉnh giá |
-| 5 | Nhà riêng Quận 12 1 trệt 2 lầu 4x15m | 4.2tỷ | Quận 12 | 60.5 | 📈 Cao hơn TT | Giá cao hơn thị trường 40% → rủi ro đỉnh giá |
-| 6 | Nhà hẻm 4x12m Tân Bình gần sân bay | 5.0tỷ | Tân Bình | 60.5 | 📈 Cao hơn TT | Giá cao hơn thị trường 108% → rủi ro đỉnh giá |
-| 7 | Đất nền sổ đỏ 100m² Bình Chánh MT đường nhựa | 3.5tỷ | Bình Chánh | 59.8 | 📈 Cao hơn TT | Giá cao hơn thị trường 40% → rủi ro đỉnh giá |
-| 8 | Nhà phố Bình Thạnh 4x12m hẻm ô tô 3PN | 4.8tỷ | Bình Thạnh | 57.2 | 📈 Cao hơn TT | Giá cao hơn thị trường 18% → rủi ro đỉnh giá |
-| 9 | Căn hộ Kingdom 101 Quận 10 2PN 75m² | 4.9tỷ | Quận 10 | 56.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 31% → rủi ro đỉnh giá |
+| 1 | Saigon Royal 2PN 55m² Quận 4 | 4.8tỷ | Quận 4 | 71.3 | 📈 Cao hơn TT | Giá cao hơn thị trường 21% → rủi ro đỉnh giá |
+| 2 | Imperial Place 2PN 68m² Quận 11 | 3.5tỷ | Quận 11 | 71.0 | ✅ Hợp lý | Giá sát mặt bằng thị trường |
+| 3 | Carillon 5 2PN 65m² Tân Phú | 3.6tỷ | Tân Phú | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 15% → rủi ro đỉnh giá |
+| 4 | EHome 3 2PN 58m² Bình Tân | 3.0tỷ | Bình Tân | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 23% → rủi ro đỉnh giá |
+| 5 | Kingsway Tower 2PN 62m² Bình Tân | 3.0tỷ | Bình Tân | 68.0 | 📈 Cao hơn TT | Giá cao hơn thị trường 15% → rủi ro đỉnh giá |
 
 ---
 
@@ -370,7 +1243,6 @@
 
 | # | Tên BĐS | Giá | Quận | Score | Lý do |
 |---|---------|-----|------|-------|-------|
-| 1 | Đất nền Hóc Môn 120m² đường nhựa 6m | 3.0tỷ | Hóc Môn | 42.1 | Giá cao hơn thị trường 25% → rủi ro đỉnh giá |
 
 ---
 
@@ -378,17 +1250,18 @@
 
 | Quận | Avg Score | HT Score | BUY/Tổng | Đánh giá HT |
 |------|-----------|----------|----------|-------------|
-| Thủ Đức | 100.0/100 | 42.0/100 | 5/5 | 🚀 TĂNG MẠNH |
-| Quận 7 | 100.0/100 | 25.0/100 | 4/4 | 📊 TIỀM NĂNG |
-| Bình Tân | 87.5/100 | 11.3/100 | 1/1 | ➡️ Ổn định |
-| Tân Phú | 71.0/100 | 6.1/100 | 0/2 | ➡️ Ổn định |
-| Tân Bình | 67.0/100 | 10.1/100 | 0/2 | ➡️ Ổn định |
-| Gò Vấp | 60.5/100 | 12.5/100 | 0/1 | ➡️ Ổn định |
-| Quận 12 | 60.5/100 | 14.5/100 | 0/1 | ➡️ Ổn định |
-| Bình Chánh | 59.8/100 | 34.8/100 | 0/1 | 🚀 TĂNG MẠNH |
-| Bình Thạnh | 57.2/100 | 14.7/100 | 0/1 | ➡️ Ổn định |
-| Quận 10 | 56.0/100 | 4.6/100 | 0/1 | ➡️ Ổn định |
-| Hóc Môn | 42.1/100 | 15.8/100 | 0/1 | 📊 TIỀM NĂNG |
+| Quận 7 | 100.0/100 | 25.0/100 | 6/6 | 📊 TIỀM NĂNG |
+| Thủ Đức | 100.0/100 | 42.0/100 | 11/11 | 🚀 TĂNG MẠNH |
+| Quận 8 | 96.8/100 | 15.5/100 | 6/6 | 📊 TIỀM NĂNG |
+| Bình Chánh | 94.3/100 | 34.8/100 | 1/1 | 🚀 TĂNG MẠNH |
+| Nhà Bè | 92.0/100 | 33.1/100 | 2/2 | 🚀 TĂNG MẠNH |
+| Quận 4 | 89.9/100 | 12.9/100 | 2/3 | ➡️ Ổn định |
+| Tân Bình | 89.6/100 | 10.1/100 | 1/1 | ➡️ Ổn định |
+| Tân Phú | 80.0/100 | 6.1/100 | 4/5 | ➡️ Ổn định |
+| Quận 6 | 78.0/100 | 9.8/100 | 1/1 | ➡️ Ổn định |
+| Bình Tân | 76.1/100 | 11.3/100 | 2/4 | ➡️ Ổn định |
+| Quận 10 | 76.0/100 | 4.6/100 | 1/1 | ➡️ Ổn định |
+| Quận 11 | 71.0/100 | 4.6/100 | 0/1 | ➡️ Ổn định |
 
 ---
 
@@ -814,10 +1687,10 @@ Cầu đi bộ thiết kế lá dừa nước. Khởi công 29/03/2025, hoàn th
 
 ### Top Quận Nên Tập Trung
 
-1. **Thủ Đức** — Avg Score: 100.0, HT: 🚀 TĂNG MẠNH
-2. **Quận 7** — Avg Score: 100.0, HT: 📊 TIỀM NĂNG
-3. **Bình Tân** — Avg Score: 87.5, HT: ➡️ Ổn định
-4. **Tân Phú** — Avg Score: 71.0, HT: ➡️ Ổn định
+1. **Quận 7** — Avg Score: 100.0, HT: 📊 TIỀM NĂNG
+2. **Thủ Đức** — Avg Score: 100.0, HT: 🚀 TĂNG MẠNH
+3. **Quận 8** — Avg Score: 96.8, HT: 📊 TIỀM NĂNG
+4. **Bình Chánh** — Avg Score: 94.3, HT: 🚀 TĂNG MẠNH
 
 ---
-*Báo cáo được tạo tự động bởi BDS Analyzer Bot · 13/04/2026*
+*Báo cáo được tạo tự động bởi BDS Analyzer Bot · 14/04/2026*
