@@ -7,9 +7,9 @@ from flask import Flask, render_template_string
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(__file__))
-from analyzer import analyze, AnalysisResult
+from analyzer import analyze, AnalysisResult, CREDIT_GROWTH_YOY, MORTGAGE_RATE_CURRENT, MORTGAGE_RATE_TREND, get_macro
 from infrastructure import (
-    get_infra_score, infra_label as _infra_label,
+    get_infra_score, get_infra_momentum, infra_label as _infra_label,
     INFRA_PROJECTS, Status, InfraType,
 )
 
@@ -64,10 +64,18 @@ def all_districts_infra():
     for d in ALL_DISTRICTS:
         sc, projs = get_infra_score(d)
         label, fc, bc = _infra_label(sc)
-        rows.append({"district": d, "score": round(sc,1),
-                     "label": label, "fc": fc, "bc": bc,
-                     "projects": projs, "n": len(projs)})
-    rows.sort(key=lambda x: x["score"], reverse=True)
+        momentum = get_infra_momentum(d)
+        macro = get_macro(d)
+        rows.append({
+            "district": d, "score": round(sc,1),
+            "label": label, "fc": fc, "bc": bc,
+            "projects": projs, "n": len(projs),
+            "momentum": momentum,
+            "supply_tightness": macro.get("supply_tightness", 0),
+            "absorption_rate": macro.get("absorption_rate", 0),
+            "mortgage_growth": macro.get("mortgage_growth_yoy", 0),
+        })
+    rows.sort(key=lambda x: x["momentum"]["momentum_score"], reverse=True)
     return rows
 
 def active_projects():
@@ -160,6 +168,7 @@ TEMPLATE = """
   <a class="active" onclick="showTab('tab-overview',this)">Tổng quan</a>
   <a onclick="showTab('tab-props',this)">Bảng BĐS</a>
   <a onclick="showTab('tab-districts',this)">Phân tích Quận</a>
+  <a onclick="showTab('tab-momentum',this)">Macro & Momentum</a>
   <a onclick="showTab('tab-infra',this)">Hạ tầng ({{ n_projects }})</a>
 </div>
 
@@ -393,6 +402,107 @@ TEMPLATE = """
   </div>
 </div>
 
+<!-- ═══ TAB MACRO & MOMENTUM ════════════════════════════════════ -->
+<div id="tab-momentum" class="tab">
+  <div class="sec">Macro Context & Infrastructure Momentum</div>
+
+  <!-- Macro Cards -->
+  <div class="grid4" style="margin-bottom:20px">
+    <div class="stat">
+      <div class="val" style="color:#34d399">{{ credit_growth }}%</div>
+      <div class="lbl">Credit Growth / năm</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#6ee7b7">Tín dụng toàn TP.HCM</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#60a5fa">{{ mortgage_rate }}%</div>
+      <div class="lbl">Lãi suất vay mua nhà</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#93c5fd">{{ mortgage_trend_label }} từ 12% (2023)</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#f59e0b">~72%</div>
+      <div class="lbl">Absorption Rate TB</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#fcd34d">Tỷ lệ hấp thụ toàn TP</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#a78bfa">Phục hồi</div>
+      <div class="lbl">Giai đoạn thị trường</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#c4b5fd">Sau điều chỉnh 2022–2023</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;background:#0f2a1a;border-color:#166534">
+    <p style="font-size:.82rem;color:#86efac;line-height:1.6">
+      💡 <strong style="color:#4ade80">Nhận định macro:</strong>
+      Lãi suất giảm + credit growth <strong>{{ credit_growth }}%</strong> + supply tightness cao ở nội thành
+      = <strong>cửa sổ mua thuận lợi</strong>. Thời điểm tốt nhất là trước khi các dự án hạ tầng lớn hoàn thành
+      (2026–2027). Mua sau khi hoàn thành thường đã phản ánh hết vào giá.
+    </p>
+  </div>
+
+  <!-- Infrastructure Momentum Table -->
+  <div class="card">
+    <h2>Infrastructure Momentum — Xếp hạng theo quận</h2>
+    <div class="scrollable">
+    <table>
+      <thead>
+        <tr>
+          <th>Quận</th>
+          <th>Momentum</th>
+          <th>Score</th>
+          <th>Đang TC</th>
+          <th>Pipeline</th>
+          <th>Vốn ĐT</th>
+          <th>Impact Giá</th>
+          <th>Supply Tightness</th>
+          <th>Absorption</th>
+          <th>Mortgage Growth</th>
+          <th>Sắp xong</th>
+          <th>Top Dự án</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for row in all_infra %}
+      {% set m = row.momentum %}
+      {% set ms = m.momentum_score %}
+      {% if ms >= 70 %}{% set mc = "#a78bfa" %}{% elif ms >= 50 %}{% set mc = "#f87171" %}
+      {% elif ms >= 30 %}{% set mc = "#fbbf24" %}{% else %}{% set mc = "#64748b" %}{% endif %}
+        <tr>
+          <td><strong>{{ row.district }}</strong></td>
+          <td><span class="badge" style="background:{{ mc }}22;color:{{ mc }}">{{ m.momentum_label }}</span></td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-outer"><div class="bar-inner" style="width:{{ ms }}%;background:{{ mc }}"></div></div>
+              <span class="bar-num" style="color:{{ mc }}">{{ ms }}</span>
+            </div>
+          </td>
+          <td style="text-align:center;font-weight:700;color:#34d399">{{ m.active_count }}</td>
+          <td style="text-align:center;color:#94a3b8">{{ m.pipeline_count }}</td>
+          <td style="color:#60a5fa">{{ m.total_investment_t | int }}k tỷ</td>
+          <td style="color:#f59e0b;font-weight:700">+{{ m.total_price_impact }}%</td>
+          <td>
+            <div class="bar-wrap">
+              {% set ts = row.supply_tightness %}
+              {% if ts >= 8 %}{% set tc = "#34d399" %}{% elif ts >= 6.5 %}{% set tc = "#fbbf24" %}{% else %}{% set tc = "#f87171" %}{% endif %}
+              <div class="bar-outer"><div class="bar-inner" style="width:{{ ts * 10 }}%;background:{{ tc }}"></div></div>
+              <span class="bar-num" style="color:{{ tc }}">{{ ts }}</span>
+            </div>
+          </td>
+          <td style="color:#94a3b8">{{ (row.absorption_rate * 100) | int }}%</td>
+          <td style="color:#a78bfa">+{{ row.mortgage_growth }}%</td>
+          <td style="color:#64748b;font-size:.75rem">{{ m.nearest_completion or "—" }}</td>
+          <td style="font-size:.7rem;color:#64748b;max-width:220px">
+            {% for p in m.top_projects[:2] %}
+              <div style="margin-bottom:2px">{{ "🔨" if p.status == "Đang thi công" else "✅" }} {{ p.name[:35] }}… (+{{ p.impact_pct }}%)</div>
+            {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ TAB INFRA ════════════════════════════════════════════════ -->
 <div id="tab-infra" class="tab">
   <div class="sec">{{ n_projects }} Dự án Hạ tầng TP.HCM — Đang triển khai & Quy hoạch</div>
@@ -612,6 +722,7 @@ def index():
         approved_projs=approved_projs,
         districts=districts,
         all_districts=all_dists,
+        all_infra=all_districts_infra(),
         active_projs=active_projs,
         n_projects=len(INFRA_PROJECTS),
         INFRA_PROJECTS=INFRA_PROJECTS,
@@ -623,6 +734,9 @@ def index():
         value_badge=value_badge,
         infra_label=infra_label,
         Status=Status,
+        credit_growth=CREDIT_GROWTH_YOY,
+        mortgage_rate=MORTGAGE_RATE_CURRENT,
+        mortgage_trend_label="Giảm" if MORTGAGE_RATE_TREND == "decreasing" else "Ổn định",
     )
 
 
