@@ -23,7 +23,10 @@ ALL_DISTRICTS = [
     "Thủ Đức","Nhà Bè","Hóc Môn","Củ Chi","Bình Chánh","Cần Giờ",
 ]
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), "data_sample.json")
+_base     = os.path.dirname(__file__)
+_scraped  = os.path.join(_base, "data.json")
+_sample   = os.path.join(_base, "data_sample.json")
+DATA_FILE = _scraped if (os.path.exists(_scraped) and os.path.getsize(_scraped) > 2) else _sample
 with open(DATA_FILE, encoding="utf-8") as f:
     PROPS = json.load(f)
 RESULTS: list[AnalysisResult] = analyze(PROPS)
@@ -741,5 +744,6 @@ def index():
 
 
 if __name__ == "__main__":
-    print("BDS Dashboard → http://localhost:5000")
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    port = int(os.environ.get("PORT", 5001))
+    print(f"BDS Dashboard → http://localhost:{port}")
+    app.run(host="0.0.0.0", port=port, debug=False)

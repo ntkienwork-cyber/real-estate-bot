@@ -2,6 +2,7 @@
 Real Estate Scraper - batdongsan.com.vn
 Lọc BĐS TP.HCM giá 3-5 tỷ VND
 """
+import os
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -160,5 +161,5 @@ def save_json(props: list[Property], path: str = "data.json"):
 if __name__ == "__main__":
     print("=== SCRAPING BĐS TP.HCM 3-5 TỶ ===")
     props = scrape_all(pages=2)
-    save_json(props, "real-estate-bot/data.json")
+    save_json(props, os.path.join(os.path.dirname(__file__), "data.json"))
     print(f"\nTổng: {len(props)} bất động sản")
