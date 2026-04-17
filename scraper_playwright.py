@@ -23,6 +23,8 @@ class Property:
     url: str
     property_type: str
     source: str
+    handover_year: Optional[str] = None
+    legal_status: Optional[str] = None
 
 
 def parse_price_vn(text: str) -> Optional[float]:
@@ -47,6 +49,38 @@ def parse_area_vn(text: str) -> Optional[float]:
     return None
 
 
+def extract_handover_year(text: str) -> Optional[str]:
+    t = text.lower()
+    # "bàn giao Q2/2026", "bàn giao 2026", "giao nhà 2026", "hoàn thành 2026"
+    m = re.search(r"(?:bàn\s*giao|giao\s*nhà|hoàn\s*thành)\s*(?:q\d/?-?)?(20[2-3]\d)", t)
+    if m:
+        return m.group(1)
+    # fallback: any 202x/203x year mentioned
+    m = re.search(r"\b(20[2-3]\d)\b", t)
+    if m:
+        return m.group(1)
+    return None
+
+
+def extract_legal_status(text: str) -> Optional[str]:
+    t = text.lower()
+    if "vĩnh viễn" in t:
+        return "Sổ hồng vĩnh viễn"
+    if "50 năm" in t or "50năm" in t:
+        return "Sổ hồng 50 năm"
+    if "sổ hồng" in t:
+        return "Sổ hồng"
+    if "sổ đỏ" in t:
+        return "Sổ đỏ"
+    return None
+
+
+def normalize_legal(raw: str) -> Optional[str]:
+    if not raw or raw in ("---", "_", ""):
+        return None
+    return extract_legal_status(raw) or raw.strip()
+
+
 def extract_district(location: str) -> str:
     patterns = [
         (r"quận\s*(\d+)", lambda m: f"Quận {m.group(1)}"),
@@ -61,7 +95,70 @@ def extract_district(location: str) -> str:
     return "Khác"
 
 
-def scrape_mogi(page, prop_type: str = "can-ho") -> list[Property]:
+def fetch_listing_details(detail_page, url: str, source: str) -> tuple[Optional[str], Optional[str]]:
+    """
+    Fetch the full listing page and return (handover_year, legal_status).
+    Uses a dedicated page so the listing-grid page is not navigated away from.
+    """
+    try:
+        detail_page.goto(url, wait_until="domcontentloaded", timeout=20000)
+        detail_page.wait_for_timeout(1000)
+
+        handover_year = None
+        legal_status  = None
+
+        if source == "mogi.vn":
+            # Structure: div.info-attr > span[label], span[value]
+            attrs = detail_page.evaluate("""() => {
+                const out = {};
+                document.querySelectorAll('div.info-attr').forEach(div => {
+                    const spans = div.querySelectorAll('span');
+                    if (spans.length >= 2)
+                        out[spans[0].textContent.trim()] = spans[1].textContent.trim();
+                });
+                return out;
+            }""")
+            legal_status  = normalize_legal(attrs.get("Pháp lý", ""))
+            raw_handover  = attrs.get("Bàn giao", "") or attrs.get("Năm xây", "")
+            handover_year = extract_handover_year(raw_handover) if raw_handover else None
+
+            # Fall back to description text if no structured year
+            if not handover_year:
+                desc_el = detail_page.query_selector("div.prop-description, div.description, div.intro")
+                if desc_el:
+                    handover_year = extract_handover_year(desc_el.inner_text())
+
+        elif source == "alonhadat.com.vn":
+            # Table: <td>Label</td><td>Value</td> pairs (6 cells per row)
+            attrs = detail_page.evaluate("""() => {
+                const out = {};
+                const tds = [...document.querySelectorAll('td')];
+                for (let i = 0; i < tds.length - 1; i++) {
+                    const key = tds[i].textContent.trim();
+                    const val = tds[i+1].textContent.trim();
+                    if (key && val) out[key] = val;
+                }
+                return out;
+            }""")
+            legal_status  = normalize_legal(attrs.get("Pháp lý", ""))
+            raw_handover  = attrs.get("Bàn giao", "") or attrs.get("Năm xây dựng", "")
+            handover_year = extract_handover_year(raw_handover) if raw_handover else None
+
+            # Fall back to full body text (description often has "Pháp lý: Sổ hồng riêng")
+            if not legal_status or not handover_year:
+                body = detail_page.inner_text("body")
+                if not legal_status:
+                    legal_status  = extract_legal_status(body)
+                if not handover_year:
+                    handover_year = extract_handover_year(body)
+
+    except Exception as e:
+        print(f"      Detail fetch error ({url[-40:]}): {e}")
+
+    return handover_year, legal_status
+
+
+def scrape_mogi(page, detail_page, prop_type: str = "can-ho") -> list[Property]:
     """Scrape mogi.vn"""
     url_map = {
         "can-ho":    ("can-ho-chung-cu", "căn hộ",   "https://mogi.vn/tp-hcm/mua-can-ho-chung-cu"),
@@ -110,11 +207,16 @@ def scrape_mogi(page, prop_type: str = "can-ho") -> list[Property]:
                     if m:
                         bedrooms = int(m.group())
 
+                handover_year, legal_status = fetch_listing_details(detail_page, full_url, "mogi.vn")
+                print(f"      {title[:40]} → handover={handover_year} legal={legal_status}")
+
                 results.append(Property(
                     title=title, price_billion=price, area_m2=area,
                     price_per_m2_million=price_per_m2, location=location,
                     district=district, bedrooms=bedrooms, url=full_url,
                     property_type=slug, source="mogi.vn",
+                    handover_year=handover_year,
+                    legal_status=legal_status,
                 ))
             except Exception as e:
                 print(f"      Parse error: {e}")
@@ -128,7 +230,7 @@ def scrape_mogi(page, prop_type: str = "can-ho") -> list[Property]:
     return results
 
 
-def scrape_alonhadat(page, prop_type: str = "can-ho-chung-cu") -> list[Property]:
+def scrape_alonhadat(page, detail_page, prop_type: str = "can-ho-chung-cu") -> list[Property]:
     """Scrape alonhadat.com.vn"""
     url_map = {
         "can-ho-chung-cu": "can-ban-can-ho-chung-cu",
@@ -189,11 +291,16 @@ def scrape_alonhadat(page, prop_type: str = "can-ho-chung-cu") -> list[Property]
                     if m:
                         bedrooms = int(m.group())
 
+                handover_year, legal_status = fetch_listing_details(detail_page, full_url, "alonhadat.com.vn")
+                print(f"      {title[:40]} → handover={handover_year} legal={legal_status}")
+
                 results.append(Property(
                     title=title, price_billion=round(price, 3), area_m2=area,
                     price_per_m2_million=price_per_m2, location=location,
                     district=district, bedrooms=bedrooms, url=full_url,
                     property_type=prop_type, source="alonhadat.com.vn",
+                    handover_year=handover_year,
+                    legal_status=legal_status,
                 ))
             except Exception as e:
                 print(f"      Parse error: {e}")
@@ -220,20 +327,21 @@ def scrape_all() -> list[Property]:
             viewport={"width": 1280, "height": 800},
             locale="vi-VN",
         )
-        page = ctx.new_page()
-        # ẩn dấu hiệu automation
-        page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        page        = ctx.new_page()
+        detail_page = ctx.new_page()
+        for p in (page, detail_page):
+            p.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
         print("\n[mogi.vn]")
         for t in ["can-ho", "nha-rieng", "dat"]:
-            props = scrape_mogi(page, t)
+            props = scrape_mogi(page, detail_page, t)
             all_props.extend(props)
             print(f"    ✓ {len(props)} listings")
             time.sleep(1.5)
 
         print("\n[alonhadat.com.vn]")
         for t in ["can-ho-chung-cu", "nha-rieng", "dat-nen"]:
-            props = scrape_alonhadat(page, t)
+            props = scrape_alonhadat(page, detail_page, t)
             all_props.extend(props)
             print(f"    ✓ {len(props)} listings")
             time.sleep(1.5)
@@ -254,3 +362,4 @@ if __name__ == "__main__":
     print(f"\nTổng: {len(props)} bất động sản → {out}")
     for p in props[:3]:
         print(f"  • {p.title[:50]} | {p.price_billion}tỷ | {p.district} | {p.source}")
+        print(f"    handover={p.handover_year}  legal={p.legal_status}")

@@ -38,6 +38,43 @@ MARKET_DATA = {
         "Bình Chánh":{"avg_price_per_m2": 34,  "rental_yield": 5.2, "growth_yoy": 12},
         "Hóc Môn":   {"avg_price_per_m2": 28,  "rental_yield": 5.0, "growth_yoy": 10},
     },
+    "nha-rieng": {
+        # Nhà riêng — giá/m² đất, yield thuê tốt hơn căn hộ, tăng trưởng ổn định
+        "Quận 1":    {"avg_price_per_m2": 200, "rental_yield": 3.0, "growth_yoy": 7},
+        "Quận 3":    {"avg_price_per_m2": 150, "rental_yield": 3.2, "growth_yoy": 7},
+        "Quận 4":    {"avg_price_per_m2": 110, "rental_yield": 3.8, "growth_yoy": 8},
+        "Quận 5":    {"avg_price_per_m2": 130, "rental_yield": 3.5, "growth_yoy": 7},
+        "Quận 6":    {"avg_price_per_m2": 75,  "rental_yield": 4.5, "growth_yoy": 9},
+        "Quận 7":    {"avg_price_per_m2": 95,  "rental_yield": 4.0, "growth_yoy": 9},
+        "Quận 8":    {"avg_price_per_m2": 72,  "rental_yield": 4.5, "growth_yoy": 10},
+        "Quận 10":   {"avg_price_per_m2": 100, "rental_yield": 3.8, "growth_yoy": 8},
+        "Quận 11":   {"avg_price_per_m2": 85,  "rental_yield": 4.0, "growth_yoy": 8},
+        "Quận 12":   {"avg_price_per_m2": 55,  "rental_yield": 5.0, "growth_yoy": 11},
+        "Bình Thạnh":{"avg_price_per_m2": 90,  "rental_yield": 4.2, "growth_yoy": 9},
+        "Gò Vấp":    {"avg_price_per_m2": 68,  "rental_yield": 4.8, "growth_yoy": 10},
+        "Phú Nhuận": {"avg_price_per_m2": 120, "rental_yield": 3.5, "growth_yoy": 8},
+        "Tân Bình":  {"avg_price_per_m2": 80,  "rental_yield": 4.3, "growth_yoy": 9},
+        "Tân Phú":   {"avg_price_per_m2": 65,  "rental_yield": 4.8, "growth_yoy": 9},
+        "Bình Tân":  {"avg_price_per_m2": 55,  "rental_yield": 5.0, "growth_yoy": 10},
+        "Thủ Đức":   {"avg_price_per_m2": 70,  "rental_yield": 4.8, "growth_yoy": 12},
+        "Nhà Bè":    {"avg_price_per_m2": 52,  "rental_yield": 4.5, "growth_yoy": 10},
+        "Bình Chánh":{"avg_price_per_m2": 42,  "rental_yield": 4.8, "growth_yoy": 11},
+        "Hóc Môn":   {"avg_price_per_m2": 35,  "rental_yield": 4.5, "growth_yoy": 9},
+        "Khác":      {"avg_price_per_m2": 45,  "rental_yield": 4.5, "growth_yoy": 9},
+    },
+    "dat-nen": {
+        # Đất nền — giá/m², không có yield thuê, tăng trưởng vốn cao hơn
+        "Quận 7":    {"avg_price_per_m2": 80,  "rental_yield": 0.0, "growth_yoy": 10},
+        "Quận 9":    {"avg_price_per_m2": 45,  "rental_yield": 0.0, "growth_yoy": 13},
+        "Quận 12":   {"avg_price_per_m2": 40,  "rental_yield": 0.0, "growth_yoy": 12},
+        "Bình Tân":  {"avg_price_per_m2": 38,  "rental_yield": 0.0, "growth_yoy": 11},
+        "Thủ Đức":   {"avg_price_per_m2": 55,  "rental_yield": 0.0, "growth_yoy": 14},
+        "Nhà Bè":    {"avg_price_per_m2": 40,  "rental_yield": 0.0, "growth_yoy": 12},
+        "Bình Chánh":{"avg_price_per_m2": 28,  "rental_yield": 0.0, "growth_yoy": 12},
+        "Hóc Môn":   {"avg_price_per_m2": 22,  "rental_yield": 0.0, "growth_yoy": 11},
+        "Củ Chi":    {"avg_price_per_m2": 14,  "rental_yield": 0.0, "growth_yoy": 10},
+        "Khác":      {"avg_price_per_m2": 25,  "rental_yield": 0.0, "growth_yoy": 10},
+    },
 }
 
 # ──────────────────────────────────────────────────────────────────────

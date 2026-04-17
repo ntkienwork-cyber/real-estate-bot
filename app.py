@@ -23,10 +23,10 @@ ALL_DISTRICTS = [
     "Thủ Đức","Nhà Bè","Hóc Môn","Củ Chi","Bình Chánh","Cần Giờ",
 ]
 
-_base     = os.path.dirname(__file__)
-_scraped  = os.path.join(_base, "data.json")
-_sample   = os.path.join(_base, "data_sample.json")
-DATA_FILE = _scraped if (os.path.exists(_scraped) and os.path.getsize(_scraped) > 2) else _sample
+data_json   = os.path.join(os.path.dirname(__file__), "data.json")
+sample_json = os.path.join(os.path.dirname(__file__), "data_sample.json")
+DATA_FILE   = data_json if os.path.exists(data_json) else sample_json
+
 with open(DATA_FILE, encoding="utf-8") as f:
     PROPS = json.load(f)
 RESULTS: list[AnalysisResult] = analyze(PROPS)
@@ -46,6 +46,29 @@ def value_badge(v):
 def infra_label(score):
     label, fc, bc = _infra_label(score)
     return label, fc, bc
+
+def prop_handover(p):
+    v = p.get("handover_year")
+    if v:
+        return v
+    if p.get("building_status") == "existing" and p.get("year_built"):
+        return f"Đã BG {p['year_built']}"
+    return "—"
+
+def prop_legal(p):
+    v = p.get("legal_status")
+    if v:
+        return v
+    note = (p.get("note") or "").lower()
+    if "vĩnh viễn" in note:
+        return "Sổ hồng vĩnh viễn"
+    if "50 năm" in note or "50năm" in note:
+        return "Sổ hồng 50 năm"
+    if "sổ hồng" in note:
+        return "Sổ hồng"
+    if "sổ đỏ" in note:
+        return "Sổ đỏ"
+    return "—"
 
 # ── data helpers ───────────────────────────────────────────────────
 def district_summary():
@@ -101,6 +124,8 @@ TEMPLATE = """
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BDS Analyzer — TP.HCM 3-5 Tỷ</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
@@ -158,6 +183,22 @@ TEMPLATE = """
   .dist-projects{padding-left:130px}
   .proj-tag{display:inline-block;font-size:.66rem;padding:1px 6px;border-radius:4px;
             background:#1e3a5f;color:#93c5fd;border:1px solid #1e40af;margin:2px 2px 0 0}
+  #map{height:600px;border-radius:12px;border:1px solid #334155}
+  .map-legend{display:flex;gap:16px;align-items:center;padding:10px 0;font-size:.78rem;color:#94a3b8}
+  .legend-dot{width:13px;height:13px;border-radius:50%;border:2px solid rgba(255,255,255,.4);flex-shrink:0}
+  .map-status{font-size:.72rem;color:#64748b;padding:6px 0}
+  .leaflet-popup-content-wrapper{background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px}
+  .leaflet-popup-tip{background:#1e293b}
+  .leaflet-popup-content{font-size:.78rem;line-height:1.55;margin:10px 14px}
+  .pop-title{font-weight:700;color:#f1f5f9;margin-bottom:4px;font-size:.82rem}
+  .pop-price{color:#4ade80;font-weight:700}
+  .pop-badge{display:inline-block;padding:1px 7px;border-radius:99px;font-size:.68rem;font-weight:700;margin-top:4px}
+  .legend-sq{display:inline-block;width:12px;height:12px;border-radius:2px;flex-shrink:0}
+  /* layer control dark theme */
+  .leaflet-control-layers{background:#1e293b !important;border:1px solid #334155 !important;
+    border-radius:8px !important;color:#e2e8f0 !important}
+  .leaflet-control-layers-base label,.leaflet-control-layers-overlays label{
+    color:#e2e8f0 !important;font-size:.78rem}
 </style>
 </head>
 <body>
@@ -173,6 +214,7 @@ TEMPLATE = """
   <a onclick="showTab('tab-districts',this)">Phân tích Quận</a>
   <a onclick="showTab('tab-momentum',this)">Macro & Momentum</a>
   <a onclick="showTab('tab-infra',this)">Hạ tầng ({{ n_projects }})</a>
+  <a onclick="showTab('tab-map',this);initMap()">Bản đồ</a>
 </div>
 
 <div class="page">
@@ -293,6 +335,7 @@ TEMPLATE = """
       <th>Quận</th><th>Score</th><th>Định giá</th>
       <th>ROI 5yr</th><th>Yield</th><th>HT Score</th>
       <th title="Yield = tiền thuê/năm ÷ giá · HT = dự án đang/sắp xây gần đó">💡 Gợi ý đầu tư</th>
+      <th>Bàn giao</th><th>Pháp lý</th>
       <th>Phân tích</th>
     </tr></thead>
     <tbody>
@@ -327,6 +370,19 @@ TEMPLATE = """
         <div style="font-size:.62rem;color:#94a3b8;line-height:1.4">{{ line }}</div>
         {% endfor %}
       </td>
+      <td style="font-size:.75rem;white-space:nowrap;color:#94a3b8">{{ prop_handover(r.property) }}</td>
+      <td>
+        {% set ls = prop_legal(r.property) %}
+        {% if ls == "Sổ hồng vĩnh viễn" %}
+          <span class="badge" style="color:#166534;background:#dcfce7">{{ ls }}</span>
+        {% elif ls == "Sổ hồng 50 năm" %}
+          <span class="badge" style="color:#92400e;background:#fef3c7">{{ ls }}</span>
+        {% elif ls != "—" %}
+          <span class="badge" style="color:#1e40af;background:#dbeafe">{{ ls }}</span>
+        {% else %}
+          <span style="color:#475569">—</span>
+        {% endif %}
+      </td>
       <td><ul class="reasons">{% for reason in r.reasons[:2] %}<li>{{ reason[:50] }}</li>{% endfor %}</ul></td>
     </tr>
     {% endfor %}
@@ -342,7 +398,7 @@ TEMPLATE = """
   <div class="card">
     <h2>Điểm hạ tầng toàn bộ 22 quận/huyện (44 dự án)</h2>
     {% for row in all_districts %}
-    {% set label,fc,bc = row.fc, row.fc, row.bc %}
+    {% set label,fc,bc = row.label, row.fc, row.bc %}
     <div class="dist-infra-row">
       <div class="dist-infra-header">
         <div class="dist-infra-name">{{ row.district }}</div>
@@ -444,31 +500,31 @@ TEMPLATE = """
 
   <!-- Infrastructure Momentum Table -->
   <div class="card">
-    <h2>Infrastructure Momentum — Xếp hạng theo quận</h2>
+    <h2>Đà tăng hạ tầng — Xếp hạng theo quận</h2>
     <div class="scrollable">
     <table>
       <thead>
         <tr>
-          <th>Quận</th>
-          <th>Momentum</th>
-          <th>Score</th>
+          <th>Quận / Huyện</th>
+          <th>Đà tăng</th>
+          <th>Điểm</th>
           <th>Đang TC</th>
-          <th>Pipeline</th>
+          <th>Chờ TC</th>
           <th>Vốn ĐT</th>
-          <th>Impact Giá</th>
-          <th>Supply Tightness</th>
-          <th>Absorption</th>
-          <th>Mortgage Growth</th>
-          <th>Sắp xong</th>
-          <th>Top Dự án</th>
+          <th>Tác động giá</th>
+          <th>Khan hiếm cung</th>
+          <th>Hấp thụ</th>
+          <th>Tăng trưởng vay</th>
+          <th>Hoàn thành gần nhất</th>
+          <th>Dự án nổi bật</th>
         </tr>
       </thead>
       <tbody>
       {% for row in all_infra %}
       {% set m = row.momentum %}
       {% set ms = m.momentum_score %}
-      {% if ms >= 70 %}{% set mc = "#a78bfa" %}{% elif ms >= 50 %}{% set mc = "#f87171" %}
-      {% elif ms >= 30 %}{% set mc = "#fbbf24" %}{% else %}{% set mc = "#64748b" %}{% endif %}
+      {% if ms >= 75 %}{% set mc = "#a78bfa" %}{% elif ms >= 52 %}{% set mc = "#f87171" %}
+      {% elif ms >= 32 %}{% set mc = "#fbbf24" %}{% else %}{% set mc = "#64748b" %}{% endif %}
         <tr>
           <td><strong>{{ row.district }}</strong></td>
           <td><span class="badge" style="background:{{ mc }}22;color:{{ mc }}">{{ m.momentum_label }}</span></td>
@@ -615,6 +671,34 @@ TEMPLATE = """
   </table></div>
 </div>
 
+<!-- ═══ TAB MAP ═══════════════════════════════════════════════════ -->
+<div id="tab-map" class="tab">
+  <div class="sec">Bản đồ BĐS & Quy hoạch TP.HCM — {{ results|length }} listings</div>
+
+  <div style="display:flex;gap:20px;align-items:center;padding:8px 0 10px;flex-wrap:wrap">
+    <div style="display:flex;gap:12px;align-items:center;font-size:.77rem;color:#94a3b8">
+      <strong style="color:#64748b;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em">BĐS</strong>
+      <span class="legend-dot" style="background:#22c55e"></span><span>BUY</span>
+      <span class="legend-dot" style="background:#f59e0b"></span><span>HOLD</span>
+      <span class="legend-dot" style="background:#ef4444"></span><span>SKIP</span>
+    </div>
+    <div style="color:#334155;font-size:1.1rem">|</div>
+    <div style="display:flex;gap:12px;align-items:center;font-size:.77rem;color:#94a3b8;flex-wrap:wrap">
+      <strong style="color:#64748b;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em">Hạ tầng</strong>
+      <span style="display:inline-block;width:11px;height:11px;background:#f59e0b;transform:rotate(45deg);border-radius:2px;border:1.5px solid rgba(255,255,255,.6)"></span><span>Đang TC</span>
+      <span style="display:inline-block;width:11px;height:11px;background:#3b82f6;transform:rotate(45deg);border-radius:2px;border:1.5px solid rgba(255,255,255,.6)"></span><span>Đã duyệt</span>
+      <span style="display:inline-block;width:11px;height:11px;background:#22c55e;transform:rotate(45deg);border-radius:2px;border:1.5px solid rgba(255,255,255,.6)"></span><span>Hoàn thành</span>
+      <span style="display:inline-block;width:11px;height:11px;background:#94a3b8;transform:rotate(45deg);border-radius:2px;border:1.5px solid rgba(255,255,255,.6)"></span><span>Quy hoạch</span>
+    </div>
+    <div style="margin-left:auto;font-size:.72rem;color:#475569">Layer Control (góc phải) để bật/tắt từng lớp</div>
+  </div>
+
+  <div id="map"></div>
+  <div style="display:flex;gap:16px">
+    <div id="map-status" class="map-status">Đang tải bản đồ…</div>
+  </div>
+</div>
+
 </div><!-- /page -->
 
 <script>
@@ -626,6 +710,278 @@ function showTab(id, el) {
   el.classList.add('active');
 }
 
+// ── MAP ──────────────────────────────────────────────────────────
+let _mapInit = false;
+let _leafletMap = null;
+
+const MAP_PROPS = {{ props_json | tojson }};
+
+function verdictColor(v) {
+  return v === 'BUY' ? '#22c55e' : v === 'HOLD' ? '#f59e0b' : '#ef4444';
+}
+
+function makeIcon(color) {
+  return L.divIcon({
+    html: `<div style="
+      width:16px;height:16px;border-radius:50%;
+      background:${color};border:2.5px solid rgba(255,255,255,.85);
+      box-shadow:0 2px 6px rgba(0,0,0,.55)"></div>`,
+    className: '',
+    iconSize: [16, 16],
+    iconAnchor: [8, 8],
+    popupAnchor: [0, -12],
+  });
+}
+
+async function geocodeOne(prop, idx) {
+  // Build a progressively simpler query for better Nominatim hit rate
+  const queries = [
+    prop.location + ', Thành phố Hồ Chí Minh, Vietnam',
+    prop.district  + ', Thành phố Hồ Chí Minh, Vietnam',
+  ];
+  for (const q of queries) {
+    try {
+      const r = await fetch(
+        'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' +
+        encodeURIComponent(q),
+        { headers: { 'Accept-Language': 'vi' } }
+      );
+      const data = await r.json();
+      if (data && data.length > 0) return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+    } catch(_) {}
+  }
+  return null;
+}
+
+
+// ── INFRA PROJECTS DATA ───────────────────────────────────────────
+const INFRA_DATA = {{ infra_json | tojson }};
+
+// District centroids (lat, lng)
+const DC = {
+  'Quận 1':    [10.7777, 106.7004],
+  'Quận 2':    [10.8035, 106.7460],
+  'Quận 3':    [10.7879, 106.6861],
+  'Quận 4':    [10.7588, 106.7043],
+  'Quận 5':    [10.7543, 106.6615],
+  'Quận 6':    [10.7474, 106.6365],
+  'Quận 7':    [10.7357, 106.7218],
+  'Quận 8':    [10.7237, 106.6280],
+  'Quận 9':    [10.8496, 106.7743],
+  'Quận 10':   [10.7748, 106.6680],
+  'Quận 11':   [10.7637, 106.6494],
+  'Quận 12':   [10.8640, 106.6534],
+  'Bình Thạnh':[10.8091, 106.7103],
+  'Gò Vấp':   [10.8380, 106.6657],
+  'Phú Nhuận': [10.7997, 106.6783],
+  'Tân Bình':  [10.8017, 106.6522],
+  'Tân Phú':   [10.7896, 106.6269],
+  'Bình Tân':  [10.7457, 106.5974],
+  'Thủ Đức':   [10.8496, 106.7743],
+  'Nhà Bè':    [10.6934, 106.7391],
+  'Hóc Môn':   [10.8912, 106.5919],
+  'Củ Chi':    [11.0046, 106.4996],
+  'Bình Chánh':[10.6828, 106.5612],
+  'Cần Giờ':   [10.4028, 106.9493],
+};
+
+// Precise coords for projects that span districts or have known locations
+const PROJ_COORDS = {
+  'Metro số 1':              [10.7733, 106.6980],
+  'Metro số 2':              [10.7820, 106.6520],
+  'Metro số 3A':             [10.7710, 106.6400],
+  'Metro số 4':              [10.7800, 106.7050],
+  'Metro số 5':              [10.7960, 106.6770],
+  'Sân bay Long Thành':      [10.7902, 107.0568],
+  'Vành đai 3':              [10.8000, 106.6900],
+  'Vành đai 4':              [10.8200, 106.5600],
+  'Vành đai 2':              [10.7700, 106.6800],
+  'Cầu Cần Giờ':             [10.4900, 106.8700],
+  'Cầu Cát Lái':             [10.7720, 106.8010],
+  'Cầu Bình Tiên':           [10.7400, 106.6310],
+  'Cầu Thủ Thiêm 4':         [10.7420, 106.7380],
+  'Cầu Phú Mỹ 2':            [10.7330, 106.7600],
+  'Cầu Long Kiểng':          [10.6840, 106.7360],
+  'Cầu Cây Khô':             [10.6590, 106.6880],
+  'Cầu Rạch Dĩa':            [10.7100, 106.7400],
+  'Cầu Nhơn Trạch':          [10.7430, 106.8180],
+  'Cầu đi bộ Sài Gòn':       [10.7800, 106.7100],
+  'Cầu Bình Khánh':          [10.6490, 106.8050],
+  'Khu đô thị du lịch lấn biển Cần Giờ': [10.3800, 106.9600],
+  'Cao tốc TP.HCM — Mộc Bài':[10.8700, 106.5200],
+  'Cao tốc TP.HCM — Trung Lương': [10.6200, 106.4100],
+  'Cao tốc Biên Hòa — Vũng Tàu': [10.9500, 107.0500],
+  'Cao tốc Bến Lức — Long Thành': [10.6500, 106.7500],
+  'Nhà ga T3 Tân Sơn Nhất':  [10.8188, 106.6629],
+  'Trung tâm Tài chính Quốc tế Việt Nam': [10.7870, 106.7220],
+  'Khu đô thị sáng tạo TP Thủ Đức': [10.8700, 106.8000],
+  'Khu Công nghệ cao TP.HCM': [10.8490, 106.7990],
+  'Khu đô thị Đại học Quốc gia': [10.8700, 106.7800],
+  'Khu đô thị Hiệp Phước':   [10.6600, 106.7400],
+  'Khu đô thị Tây Bắc':      [10.9800, 106.5700],
+  'Khu đô thị cảng Sài Gòn': [10.7620, 106.7050],
+  '14 Khu công nghiệp mới Bình Chánh': [10.6700, 106.5500],
+  'Hệ thống cống kiểm soát triều': [10.7350, 106.6950],
+  'Cải tạo Kênh Đôi':        [10.7280, 106.6420],
+  'Cải tạo Kênh Xuyên Tâm':  [10.8100, 106.6950],
+  'Cải tạo Kênh Tham Lương':  [10.8350, 106.6550],
+  'Quốc lộ 1A mở rộng':      [10.8100, 106.6000],
+  'Quốc lộ 50 mở rộng':      [10.6750, 106.6100],
+  'Bình Chánh lên thành phố': [10.6828, 106.5612],
+  'Hóc Môn và Nhà Bè':       [10.8400, 106.6200],
+  'Bệnh viện Đa khoa 1,500':  [10.9700, 106.4850],
+  'Mở rộng Bệnh viện Quân Y': [10.8280, 106.6690],
+};
+
+const STATUS_COLOR = {
+  'Đang thi công': '#f59e0b',
+  'Đã duyệt':      '#3b82f6',
+  'Hoàn thành':    '#22c55e',
+  'Quy hoạch':     '#94a3b8',
+};
+
+const TYPE_ICON = {
+  'metro':               '🚇',
+  'road':                '🛣️',
+  'bridge':              '🌉',
+  'expressway':          '🛣️',
+  'airport':             '✈️',
+  'anti_flood':          '🌊',
+  'urban_development':   '🏗️',
+  'industrial_park':     '🏭',
+  'financial_hub':       '🏦',
+};
+
+function infraIcon(status) {
+  const c = STATUS_COLOR[status] || '#94a3b8';
+  return L.divIcon({
+    html: `<div style="
+      width:14px;height:14px;
+      background:${c};
+      border:2.5px solid rgba(255,255,255,.85);
+      box-shadow:0 2px 6px rgba(0,0,0,.55);
+      transform:rotate(45deg);
+      border-radius:2px"></div>`,
+    className: '',
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+    popupAnchor: [0, -12],
+  });
+}
+
+function coordForProject(proj) {
+  // Try exact coords first
+  for (const [key, coords] of Object.entries(PROJ_COORDS)) {
+    if (proj.name.includes(key) || key.includes(proj.name.substring(0, 20))) return coords;
+  }
+  // Fall back to primary district centroid with tiny jitter to avoid stack
+  const d = proj.districts[0];
+  const base = DC[d];
+  if (!base) return null;
+  const jitter = () => (Math.random() - 0.5) * 0.012;
+  return [base[0] + jitter(), base[1] + jitter()];
+}
+
+function renderInfraMarkers(layerGroup) {
+  INFRA_DATA.forEach(proj => {
+    const coords = coordForProject(proj);
+    if (!coords) return;
+    const c     = STATUS_COLOR[proj.status] || '#94a3b8';
+    const emoji = TYPE_ICON[proj.type]      || '📍';
+    const inv   = proj.investment ? `<div style="color:#fbbf24;font-size:.7rem">${(proj.investment/1000).toFixed(0)}k tỷ VND</div>` : '';
+    const m = L.marker(coords, { icon: infraIcon(proj.status) }).addTo(layerGroup);
+    m.bindPopup(`
+      <div style="font-weight:700;color:#f1f5f9;font-size:.82rem;margin-bottom:4px">
+        ${emoji} ${proj.name}
+      </div>
+      <div style="margin-bottom:5px">
+        <span style="display:inline-block;padding:1px 7px;border-radius:99px;
+          font-size:.68rem;font-weight:700;color:${c};background:${c}22;border:1px solid ${c}55">
+          ${proj.status}
+        </span>
+        <span style="font-size:.72rem;color:#4ade80;font-weight:700;margin-left:6px">+${proj.impact}%</span>
+      </div>
+      ${inv}
+      <div style="color:#94a3b8;font-size:.7rem;margin-top:3px">Hoàn thành: ${proj.completion}</div>
+      <div style="color:#93c5fd;font-size:.68rem;margin-top:2px">${proj.districts.join(' · ')}</div>
+      <div style="color:#94a3b8;font-size:.7rem;margin-top:5px;line-height:1.5">
+        ${proj.description.substring(0,130)}${proj.description.length>130?'…':''}
+      </div>
+    `, { maxWidth: 300 });
+  });
+}
+
+// ── MAP INIT ─────────────────────────────────────────────────────
+function initMap() {
+  if (_mapInit) return;
+  _mapInit = true;
+
+  const osmBase = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+  });
+  const satellite = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 19,
+    attribution: '© Esri — Esri, i-cubed, USDA, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP',
+  });
+
+  _leafletMap = L.map('map', { layers: [osmBase] }).setView([10.7769, 106.7009], 12);
+
+  // Overlay groups
+  const infraGroup = L.layerGroup().addTo(_leafletMap);
+
+  // Layer control
+  L.control.layers(
+    { '🗺 Bản đồ đường': osmBase, '🛰 Vệ tinh': satellite },
+    { [`🔶 Dự án hạ tầng (${INFRA_DATA.length})`]: infraGroup },
+    { position: 'topright', collapsed: false }
+  ).addTo(_leafletMap);
+
+  // Render infra pins immediately (no geocoding needed)
+  renderInfraMarkers(infraGroup);
+
+  // Geocode & pin properties
+  const status = document.getElementById('map-status');
+  const propGroup = L.layerGroup().addTo(_leafletMap);
+  let done = 0, placed = 0;
+
+  MAP_PROPS.forEach((prop, i) => {
+    setTimeout(async () => {
+      const coords = await geocodeOne(prop, i);
+      done++;
+      if (coords) {
+        placed++;
+        const color = verdictColor(prop.verdict);
+        const m = L.marker([coords.lat, coords.lng], { icon: makeIcon(color) }).addTo(propGroup);
+
+        const lsHtml = prop.legal_status
+          ? `<div style="color:#94a3b8;margin-top:2px">Pháp lý: <strong style="color:#e2e8f0">${prop.legal_status}</strong></div>` : '';
+        const hyHtml = prop.handover_year
+          ? `<div style="color:#94a3b8">Bàn giao: <strong style="color:#e2e8f0">${prop.handover_year}</strong></div>` : '';
+        const badgeBg = prop.verdict==='BUY'?'#dcfce7':prop.verdict==='HOLD'?'#fef3c7':'#fee2e2';
+
+        m.bindPopup(`
+          <div class="pop-title">${prop.title.substring(0,60)}${prop.title.length>60?'…':''}</div>
+          <div class="pop-price">${prop.price_billion} tỷ VND</div>
+          <div style="color:#94a3b8;margin-top:2px">${prop.district} · ${prop.area_m2 ? prop.area_m2+'m²' : ''}</div>
+          ${lsHtml}${hyHtml}
+          <div style="margin-top:6px">
+            <span class="pop-badge" style="color:${color};background:${badgeBg}">${prop.verdict}</span>
+            <span style="font-size:.68rem;color:#64748b;margin-left:6px">Score ${prop.score}</span>
+          </div>
+          <div style="margin-top:6px"><a href="${prop.url}" target="_blank" style="color:#93c5fd;font-size:.72rem">Xem tin →</a></div>
+        `, { maxWidth: 280 });
+      }
+      status.textContent = done < MAP_PROPS.length
+        ? `Đang định vị… ${done}/${MAP_PROPS.length} (${placed} đặt được)`
+        : `Hoàn tất: ${placed}/${MAP_PROPS.length} BĐS đã pin · nhấn pin để xem chi tiết`;
+    }, i * 1200);
+  });
+}
+
+
+// ── CHARTS ───────────────────────────────────────────────────────
 // Chart 1: district bar
 const dd = {{ dist_chart | tojson }};
 new Chart(document.getElementById('distChart'), {
@@ -713,9 +1069,41 @@ def index():
         "Quy hoạch":      sum(1 for p in INFRA_PROJECTS if p.status == Status.PLANNING),
     }
 
+    infra_json = [
+        {
+            "name":        p.name,
+            "type":        p.infra_type.value,
+            "status":      p.status.value,
+            "districts":   p.districts_affected,
+            "impact":      p.price_impact_pct,
+            "completion":  p.expected_completion,
+            "description": p.description,
+            "investment":  p.investment_billion_vnd,
+        }
+        for p in INFRA_PROJECTS
+    ]
+
+    props_json = [
+        {
+            "title":        r.property.get("title", ""),
+            "price_billion": r.property.get("price_billion", 0),
+            "area_m2":       r.property.get("area_m2"),
+            "district":      r.property.get("district", ""),
+            "location":      r.property.get("location", ""),
+            "verdict":       r.verdict,
+            "score":         r.score,
+            "url":           r.property.get("url", "#"),
+            "legal_status":  r.property.get("legal_status"),
+            "handover_year": r.property.get("handover_year"),
+        }
+        for r in RESULTS
+    ]
+
     return render_template_string(
         TEMPLATE,
         results=RESULTS,
+        props_json=props_json,
+        infra_json=infra_json,
         buy_list=buy_list,
         buy_count=len(buy_list),
         hold_count=len(hold_list),
@@ -736,6 +1124,8 @@ def index():
         verdict_bg=verdict_bg,
         value_badge=value_badge,
         infra_label=infra_label,
+        prop_handover=prop_handover,
+        prop_legal=prop_legal,
         Status=Status,
         credit_growth=CREDIT_GROWTH_YOY,
         mortgage_rate=MORTGAGE_RATE_CURRENT,

@@ -788,18 +788,31 @@ def get_infra_momentum(district: str) -> dict:
             pass
     nearest = min(completions) if completions else None
 
-    # Momentum score:
-    # 40% — số dự án đang thi công (active)
-    # 30% — quy mô đầu tư
-    # 30% — tổng tác động giá
-    active_score   = min(len(active) * 8, 40)
-    inv_score      = min(total_inv / 5, 30)          # 150k tỷ → max 30đ
-    impact_score   = min(total_impact / 3, 30)        # 90% total impact → max 30đ
+    # ── Momentum score (v2 — chặt hơn, uy tín hơn) ──────────────────
+    # Chỉ tính dự án ĐANG THI CÔNG + primary district (không tính quy hoạch / phê duyệt)
+    # Investment chia cho số quận hưởng lợi chính → tránh thổi phồng outer districts bởi vành đai
+    primary_active = [p for p, w in active if w == 1.0]
+
+    # 1. Active count score — tối đa 5 dự án có trọng số đầy đủ
+    active_score = min(len(primary_active) * 8, 40)
+
+    # 2. Investment score — chia đều cho các quận chịu ảnh hưởng chính của từng dự án
+    inv_primary = sum(
+        (p.investment_billion_vnd or 0) * 0.001 / max(len(p.districts_affected), 1)
+        for p in primary_active
+    )
+    inv_score = min(inv_primary / 6, 25)              # cần 150k tỷ riêng → max 25đ
+
+    # 3. Impact score — chỉ từ active primary (loại bỏ lạm phát điểm từ dự án quy hoạch)
+    impact_primary = sum(p.price_impact_pct for p in primary_active)
+    impact_score = min(impact_primary / 3.5, 30)      # cần 105% riêng → max 30đ
+
     momentum_score = round(active_score + inv_score + impact_score, 1)
 
-    if momentum_score >= 70:   momentum_label = "Bùng nổ 🔥"
-    elif momentum_score >= 50: momentum_label = "Tăng mạnh 🚀"
-    elif momentum_score >= 30: momentum_label = "Tích cực 📈"
+    # Ngưỡng khắt khe hơn — Bùng nổ chỉ dành cho trung tâm đô thị thực sự đang chuyển mình
+    if momentum_score >= 75:   momentum_label = "Bùng nổ 🔥"
+    elif momentum_score >= 52: momentum_label = "Tăng mạnh 🚀"
+    elif momentum_score >= 32: momentum_label = "Tích cực 📈"
     elif momentum_score >= 15: momentum_label = "Ổn định 📊"
     else:                      momentum_label = "Yếu ➡️"
 
