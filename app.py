@@ -678,9 +678,9 @@ TEMPLATE = """
   <div style="display:flex;gap:20px;align-items:center;padding:8px 0 10px;flex-wrap:wrap">
     <div style="display:flex;gap:12px;align-items:center;font-size:.77rem;color:#94a3b8">
       <strong style="color:#64748b;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em">BĐS</strong>
-      <svg width="16" height="22" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#22c55e" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>BUY</span>
-      <svg width="16" height="22" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#f59e0b" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>HOLD</span>
-      <svg width="16" height="22" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#ef4444" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>SKIP</span>
+      <svg width="14" height="19" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#22c55e" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>BUY</span>
+      <svg width="14" height="19" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#f59e0b" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>HOLD</span>
+      <svg width="14" height="19" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#ef4444" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>SKIP</span>
     </div>
     <div style="color:#334155;font-size:1.1rem">|</div>
     <div style="display:flex;gap:12px;align-items:center;font-size:.77rem;color:#94a3b8;flex-wrap:wrap">
@@ -721,8 +721,9 @@ function verdictColor(v) {
 }
 
 function makePin(color) {
+  // 30% smaller: 28×38 → 20×27
   return L.divIcon({
-    html: `<svg width="28" height="38" viewBox="0 0 28 38" xmlns="http://www.w3.org/2000/svg">
+    html: `<svg width="20" height="27" viewBox="0 0 28 38" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="ps" x="-30%" y="-20%" width="160%" height="160%">
           <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-opacity="0.45"/>
@@ -733,9 +734,9 @@ function makePin(color) {
       <circle cx="14" cy="13" r="5.5" fill="white" opacity="0.92"/>
     </svg>`,
     className: '',
-    iconSize:   [28, 38],
-    iconAnchor: [14, 37],
-    popupAnchor:[0, -38],
+    iconSize:   [20, 27],
+    iconAnchor: [10, 27],
+    popupAnchor:[0, -27],
   });
 }
 
@@ -994,18 +995,18 @@ function initMap() {
 
   _leafletMap = L.map('map', { layers: [osmBase] }).setView([10.7769, 106.7009], 12);
 
-  // Layer groups
-  const infraGroup = L.layerGroup().addTo(_leafletMap);
-  const propGroup  = L.layerGroup().addTo(_leafletMap);
+  // Layer groups — infraGroup NOT added to map by default (user toggles on)
+  const infraGroup = L.layerGroup();                   // off by default
+  const propGroup  = L.layerGroup().addTo(_leafletMap); // on by default
 
-  // Single combined layer control
+  // Single combined layer control — collapsed so it doesn't cover the map
   L.control.layers(
     { '🗺 Bản đồ đường': osmBase, '🛰 Vệ tinh': satellite },
     {
       [`📍 BĐS (${MAP_PROPS.length})`]: propGroup,
       [`🔶 Dự án hạ tầng (${INFRA_DATA.length})`]: infraGroup,
     },
-    { position: 'topright', collapsed: false }
+    { position: 'topright', collapsed: true }
   ).addTo(_leafletMap);
 
   // Render infra pins immediately (no geocoding needed)
