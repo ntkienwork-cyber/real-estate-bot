@@ -6,7 +6,7 @@ import json
 from dataclasses import dataclass
 from typing import Optional
 from collections import defaultdict
-from infrastructure import get_infra_score, get_infra_momentum, infra_multiplier, INFRA_PROJECTS, Status
+from infrastructure import get_infra_score, get_infra_momentum, INFRA_PROJECTS, Status
 
 
 # ──────────────────────────────────────────────
@@ -228,203 +228,255 @@ def get_market_ref(prop_type: str, district: str) -> Optional[dict]:
 
 def calc_score(prop: dict, market: dict, district: str) -> tuple[float, list[str], list[str]]:
     """
-    Returns (score, reasons, explanations)
-    - reasons: ngắn gọn cho analyst
-    - explanations: giải thích thân thiện cho khách hàng
+    Scoring 6 thành phần độc lập, tổng tối đa = 100.
+    Không có base score cộng dồn — mỗi thành phần có trọng số riêng.
+
+    Thành phần:
+      A. Giá vs thị trường   max 25
+      B. Rental yield        max 20
+      C. Tăng trưởng giá     max 15
+      D. Hạ tầng pipeline    max 15
+      E. Cung–cầu khu vực    max 15
+      F. Chất lượng vị trí   max 10
     """
-    score = 50.0
-    reasons = []
-    explanations = []
+    reasons: list[str] = []
+    explanations: list[str] = []
 
-    macro = get_macro(district)
+    macro        = get_macro(district)
     price_per_m2 = prop.get("price_per_m2_million")
-    avg = market.get("avg_price_per_m2", 0)
+    avg          = market.get("avg_price_per_m2", 0)
 
-    # 1. So sánh giá với thị trường
+    # ── A. Giá vs thị trường (max 25) ────────────────────────────────
     if price_per_m2 and avg:
         ratio = price_per_m2 / avg
-        if ratio < 0.85:
-            score += 20
+        if ratio < 0.80:
+            a_pts = 25
             pct = round((1 - ratio) * 100)
-            reasons.append(f"Giá thấp hơn thị trường {pct}% → tiềm năng tăng giá tốt")
+            reasons.append(f"Giá thấp hơn thị trường {pct}% — tiềm năng tăng giá cao")
             explanations.append(
-                f"💰 **Giá hời {pct}% so với mặt bằng khu vực** — Giá/m² của căn này là "
-                f"{price_per_m2} triệu, trong khi trung bình {district} là {avg} triệu/m². "
-                f"Chênh lệch này tạo ra vùng đệm an toàn và dư địa tăng giá tốt."
+                f"💰 **Giá hời {pct}% so với mặt bằng khu vực** — Giá/m² {price_per_m2} triệu vs "
+                f"trung bình {district} {avg} triệu/m². Biên an toàn tốt, nhiều dư địa tăng giá."
             )
-        elif ratio < 0.95:
-            score += 10
+        elif ratio < 0.90:
+            a_pts = 18
             pct = round((1 - ratio) * 100)
-            reasons.append(f"Giá hợp lý, thấp hơn mặt bằng ~{pct}%")
+            reasons.append(f"Giá thấp hơn mặt bằng ~{pct}% — còn dư địa tăng")
             explanations.append(
-                f"✅ **Giá hợp lý, nhỉnh hơn trung bình {pct}%** — Không phải bargain nhưng cũng "
-                f"không đắt. Mức giá này phù hợp với chất lượng và vị trí của căn hộ."
+                f"✅ **Giá tốt, thấp hơn trung bình {pct}%** — {price_per_m2} triệu/m² vs mặt bằng "
+                f"{avg} triệu/m². Không phải bargain nhưng có biên an toàn rõ ràng."
             )
-        elif ratio > 1.15:
-            score -= 15
+        elif ratio < 0.97:
+            a_pts = 12
+            pct = round((1 - ratio) * 100)
+            reasons.append(f"Giá nhỉnh dưới mặt bằng ~{pct}% — hợp lý")
+            explanations.append(
+                f"📊 **Giá hợp lý, thấp hơn trung bình {pct}%** — Gần sát mặt bằng khu vực "
+                f"({price_per_m2} vs {avg} triệu/m²). Không discount lớn nhưng không đắt."
+            )
+        elif ratio < 1.05:
+            a_pts = 7
+            reasons.append("Giá đúng mặt bằng thị trường")
+            explanations.append(
+                f"📊 **Giá sát thị trường** — {price_per_m2} triệu/m² ngang mặt bằng {district} "
+                f"({avg} triệu/m²). Không có discount, upside phụ thuộc vào tăng trưởng khu vực."
+            )
+        elif ratio < 1.15:
+            a_pts = 3
             pct = round((ratio - 1) * 100)
-            reasons.append(f"Giá cao hơn thị trường {pct}% → rủi ro đỉnh giá")
+            reasons.append(f"Giá cao hơn thị trường {pct}% — cần thương lượng")
             explanations.append(
-                f"⚠️ **Giá cao hơn thị trường {pct}%** — Cần thương lượng hoặc chờ điều chỉnh. "
-                f"Mua ở mức này tiềm ẩn rủi ro nếu thị trường sideways trong 1–2 năm tới."
+                f"⚠️ **Giá cao hơn mặt bằng {pct}%** — {price_per_m2} vs {avg} triệu/m². "
+                f"Upside hạn chế ở mức giá này. Nên thương lượng trước khi ký."
             )
         else:
-            reasons.append("Giá sát mặt bằng thị trường")
-            explanations.append(f"📊 **Giá đúng thị trường** — Giá/m² sát mặt bằng khu vực, không có premium cũng không discount đặc biệt.")
+            a_pts = 0
+            pct = round((ratio - 1) * 100)
+            reasons.append(f"Giá cao hơn thị trường {pct}% — rủi ro đỉnh giá")
+            explanations.append(
+                f"🚫 **Giá đắt hơn thị trường {pct}%** — {price_per_m2} vs {avg} triệu/m². "
+                f"Mua ở mức này dễ bị 'kẹp hàng' nếu thị trường điều chỉnh hoặc đi ngang."
+            )
+    else:
+        a_pts = 7
 
-    # 2. Rental yield
+    # ── B. Rental yield (max 20) ──────────────────────────────────────
     yield_pct = market.get("rental_yield", 0)
-    if yield_pct >= 5:
-        score += 15
-        reasons.append(f"Rental yield ước tính {yield_pct}% → dòng tiền tốt")
-        monthly = round(prop.get("price_billion", 4) * 1e9 * yield_pct / 100 / 12 / 1e6, 1)
+    monthly   = round(prop.get("price_billion", 4) * 1e9 * yield_pct / 100 / 12 / 1e6, 1) if yield_pct else 0
+    if yield_pct >= 5.5:
+        b_pts = 20
+        reasons.append(f"Yield {yield_pct}% — dòng tiền xuất sắc")
         explanations.append(
-            f"🏠 **Cho thuê ước tính ~{monthly} triệu/tháng (yield {yield_pct}%/năm)** — "
-            f"Đây là mức yield tốt so với gửi ngân hàng (~5–6%). Căn hộ tự trang trải được "
-            f"phần lớn lãi vay nếu đầu tư có đòn bẩy."
+            f"🏠 **Yield {yield_pct}%/năm (~{monthly} triệu/tháng)** — Vượt trội. "
+            f"Căn hộ tự trang trải phần lớn lãi vay, phù hợp đầu tư có đòn bẩy."
         )
-    elif yield_pct >= 4:
-        score += 8
-        monthly = round(prop.get("price_billion", 4) * 1e9 * yield_pct / 100 / 12 / 1e6, 1)
-        reasons.append(f"Rental yield {yield_pct}% — chấp nhận được")
+    elif yield_pct >= 5.0:
+        b_pts = 16
+        reasons.append(f"Yield {yield_pct}% — dòng tiền tốt")
         explanations.append(
-            f"🏠 **Cho thuê ước tính ~{monthly} triệu/tháng (yield {yield_pct}%/năm)** — "
-            f"Chấp nhận được. Lợi nhuận chính đến từ tăng giá dài hạn, không phải dòng tiền thuê."
+            f"🏠 **Yield {yield_pct}%/năm (~{monthly} triệu/tháng)** — Tốt. "
+            f"Cao hơn lãi tiết kiệm, dòng tiền ổn định."
         )
-    elif yield_pct < 3:
-        score -= 10
-        reasons.append(f"Rental yield thấp ({yield_pct}%) — phù hợp đầu tư dài hạn hơn cho thuê")
+    elif yield_pct >= 4.5:
+        b_pts = 12
+        reasons.append(f"Yield {yield_pct}% — dòng tiền khá")
         explanations.append(
-            f"📉 **Yield thấp ({yield_pct}%)** — Không phù hợp nếu mục tiêu chính là dòng tiền cho thuê. "
-            f"Chỉ nên mua nếu tin vào tăng giá dài hạn của khu vực này."
+            f"🏠 **Yield {yield_pct}%/năm (~{monthly} triệu/tháng)** — Khá. "
+            f"Chấp nhận được, lợi nhuận chính vẫn đến từ tăng giá."
         )
-
-    # 3. Supply tightness — nguồn cung
-    tightness = macro.get("supply_tightness", 6.5)
-    absorption = macro.get("absorption_rate", 0.72)
-    new_supply = macro.get("new_supply_units_qtr", 500)
-    if tightness >= 8.5:
-        score += 12
-        reasons.append(f"Supply cực khan hiếm ({district}) — tightness {tightness}/10")
+    elif yield_pct >= 4.0:
+        b_pts = 8
+        reasons.append(f"Yield {yield_pct}% — chấp nhận được")
         explanations.append(
-            f"🔒 **Nguồn cung rất khan hiếm tại {district}** — Khu vực này gần như không còn đất "
-            f"để xây mới (tightness {tightness}/10). Chỉ có {new_supply} căn mở bán/quý, "
-            f"tỷ lệ hấp thụ {round(absorption*100)}%. Cung thấp + cầu ổn định = giá khó giảm."
+            f"🏠 **Yield {yield_pct}%/năm (~{monthly} triệu/tháng)** — Ở mức trung bình. "
+            f"Không nên kỳ vọng dòng tiền cao, upside đến từ tăng giá dài hạn."
         )
-    elif tightness >= 7.0:
-        score += 6
-        reasons.append(f"Nguồn cung hạn chế ({district}) — tightness {tightness}/10")
+    elif yield_pct >= 3.0:
+        b_pts = 4
+        reasons.append(f"Yield thấp ({yield_pct}%) — chủ yếu đầu tư vốn")
         explanations.append(
-            f"📦 **Nguồn cung kiểm soát được tại {district}** — {new_supply} căn/quý với "
-            f"absorption rate {round(absorption*100)}%. Thị trường cân bằng, không có rủi ro "
-            f"dư cung gây áp lực giá."
+            f"📉 **Yield {yield_pct}%/năm** — Thấp. Không phù hợp nếu mục tiêu là dòng tiền. "
+            f"Chỉ phù hợp đầu tư nếu tin vào tăng giá mạnh của khu vực."
         )
-    elif tightness < 5.5:
-        score -= 8
-        reasons.append(f"Nguồn cung dồi dào ({district}) — rủi ro áp lực giá")
+    else:
+        b_pts = 1
+        reasons.append(f"Yield rất thấp ({yield_pct}%) — rủi ro dòng tiền")
         explanations.append(
-            f"⚠️ **Nguồn cung lớn tại {district}** — {new_supply} căn/quý với absorption rate "
-            f"chỉ {round(absorption*100)}%. Dư cung có thể tạo áp lực giảm giá ngắn hạn. "
-            f"Nên chờ absorption rate cải thiện trước khi xuống tiền."
+            f"🚫 **Yield {yield_pct}%/năm** — Rất thấp. Cần tăng giá mạnh mới có lợi nhuận tốt."
         )
 
-    # 4. Mortgage growth — tín hiệu nhu cầu vay
-    mg = macro.get("mortgage_growth_yoy", 13)
-    if mg >= 16:
-        score += 8
-        reasons.append(f"Mortgage growth {mg}%/năm — nhu cầu mua nhà tăng mạnh")
-        explanations.append(
-            f"📈 **Tăng trưởng vay mua nhà {mg}%/năm tại {district}** — Đây là tín hiệu nhu cầu "
-            f"thực cao. Nhiều người đang vay mua nhà khu vực này = thanh khoản tốt khi bạn cần bán."
-        )
-    elif mg >= 13:
-        score += 4
-        reasons.append(f"Mortgage growth {mg}%/năm — nhu cầu ổn định")
-        explanations.append(
-            f"📊 **Tăng trưởng vay mua nhà {mg}%/năm** — Ổn định. Lãi suất đang giảm về ~{MORTGAGE_RATE_CURRENT}% "
-            f"giúp người mua dễ tiếp cận hơn, hỗ trợ thanh khoản thị trường."
-        )
-
-    # 5. Tăng trưởng khu vực (giá lịch sử)
+    # ── C. Tăng trưởng giá khu vực (max 15) ──────────────────────────
     growth = market.get("growth_yoy", 0)
-    if growth >= 12:
-        score += 15
-        reasons.append(f"Khu vực tăng trưởng mạnh {growth}%/năm")
+    if growth >= 13:
+        c_pts = 15
+        reasons.append(f"Tăng trưởng {growth}%/năm — vượt trội")
         explanations.append(
-            f"🚀 **Tăng trưởng giá {growth}%/năm** — Mức tăng vượt trội. Nếu duy trì, "
-            f"căn hộ này sẽ tăng gần gấp đôi sau 5–6 năm (quy tắc 72)."
+            f"🚀 **Tăng trưởng giá {growth}%/năm** — Nếu duy trì, tài sản gần gấp đôi sau 6 năm."
         )
+    elif growth >= 10:
+        c_pts = 11
+        reasons.append(f"Tăng trưởng {growth}%/năm — tốt")
+        explanations.append(f"📈 **Tăng trưởng giá {growth}%/năm** — Tốt, cao hơn lạm phát rõ rệt.")
     elif growth >= 8:
-        score += 8
+        c_pts = 7
         reasons.append(f"Tăng trưởng ổn định {growth}%/năm")
-        explanations.append(
-            f"📈 **Tăng trưởng giá lịch sử {growth}%/năm** — Ổn định và bền vững. "
-            f"Cao hơn lạm phát trung bình, giúp bảo toàn giá trị tài sản thực."
-        )
+        explanations.append(f"📈 **Tăng trưởng giá {growth}%/năm** — Ổn định, bảo toàn giá trị thực.")
+    elif growth >= 6:
+        c_pts = 4
+        reasons.append(f"Tăng trưởng khiêm tốn {growth}%/năm")
+        explanations.append(f"📊 **Tăng trưởng {growth}%/năm** — Khiêm tốn, xấp xỉ lạm phát.")
+    else:
+        c_pts = 1
+        reasons.append(f"Tăng trưởng thấp {growth}%/năm — rủi ro stagnant")
+        explanations.append(f"⚠️ **Tăng trưởng {growth}%/năm** — Thấp. Khó bảo toàn giá trị thực.")
 
-    # 6. Điểm hấp dẫn quận
-    d_score = DISTRICT_SCORE.get(district, 6.0)
-    if d_score >= 8.5:
-        score += 10
-        reasons.append(f"Vị trí chiến lược (điểm quận: {d_score}/10)")
-        explanations.append(
-            f"📍 **{district} — vị trí chiến lược ({d_score}/10)** — Quận này có hạ tầng hoàn thiện, "
-            f"quy hoạch rõ ràng và nhu cầu thuê/mua bền vững từ người có thu nhập cao."
-        )
-    elif d_score >= 7.5:
-        score += 5
-        explanations.append(
-            f"📍 **{district} — khu vực tốt ({d_score}/10)** — Tiện ích đầy đủ, "
-            f"kết nối giao thông ổn và có thanh khoản tốt trên thị trường thứ cấp."
-        )
-
-    # 7. Diện tích
-    area = prop.get("area_m2")
-    if area and prop.get("property_type") == "can-ho-chung-cu":
-        if 50 <= area <= 80:
-            score += 5
-            reasons.append(f"Diện tích {area}m² — thanh khoản cao")
-            explanations.append(
-                f"📐 **Diện tích {area}m² — sweet spot thị trường** — Căn 50–80m² là phân khúc "
-                f"dễ cho thuê và dễ bán lại nhất, đặc biệt với người thuê gia đình nhỏ 2–3 người."
-            )
-        elif area < 40:
-            score -= 5
-            reasons.append(f"Diện tích nhỏ ({area}m²) — khó cho thuê")
-            explanations.append(
-                f"📐 **Diện tích chỉ {area}m²** — Quá nhỏ cho gia đình, hạn chế đối tượng thuê. "
-                f"Phù hợp hơn cho người độc thân hoặc studio airbnb."
-            )
-
-    # 8. Hạ tầng tiềm năng
+    # ── D. Hạ tầng pipeline (max 15) ─────────────────────────────────
     infra_sc, infra_projects = get_infra_score(district)
     if infra_sc >= 50:
-        score += 20
-        reasons.append(f"Hạ tầng BÙNG NỔ (điểm {infra_sc:.0f}/100) — {len(infra_projects)} dự án lớn")
+        d_pts = 15
+        reasons.append(f"Hạ tầng bùng nổ (điểm {infra_sc:.0f}) — {len(infra_projects)} dự án lớn")
         explanations.append(
-            f"🏗️ **Hạ tầng bùng nổ — điểm {infra_sc:.0f}/100** — Khu vực đang có {len(infra_projects)} "
-            f"dự án hạ tầng lớn. Khi các dự án này hoàn thành, giá BĐS thường tăng 20–40% "
-            f"so với trước khi dự án hoàn thành."
+            f"🏗️ **Hạ tầng điểm {infra_sc:.0f}/100** — {len(infra_projects)} dự án lớn đang triển khai. "
+            f"Hoàn thành sẽ đẩy giá tăng 20–40%."
         )
     elif infra_sc >= 30:
-        score += 12
-        reasons.append(f"Hạ tầng TĂNG MẠNH (điểm {infra_sc:.0f}/100) — {len(infra_projects)} dự án")
+        d_pts = 10
+        reasons.append(f"Hạ tầng tăng mạnh (điểm {infra_sc:.0f}) — {len(infra_projects)} dự án")
         explanations.append(
-            f"🏗️ **Hạ tầng đang được đầu tư mạnh — điểm {infra_sc:.0f}/100** — Có {len(infra_projects)} "
-            f"dự án đang triển khai gần khu vực. Đây là tín hiệu tích cực cho tăng giá trung hạn."
+            f"🏗️ **Hạ tầng điểm {infra_sc:.0f}/100** — Có {len(infra_projects)} dự án đang triển khai. "
+            f"Tín hiệu tích cực cho tăng giá trung hạn."
         )
     elif infra_sc >= 15:
-        score += 6
-        reasons.append(f"Hạ tầng TIỀM NĂNG (điểm {infra_sc:.0f}/100)")
+        d_pts = 6
+        reasons.append(f"Hạ tầng tiềm năng (điểm {infra_sc:.0f})")
         explanations.append(
-            f"🏗️ **Hạ tầng có tiềm năng — điểm {infra_sc:.0f}/100** — Một số dự án đang được quy hoạch "
-            f"hoặc phê duyệt. Theo dõi tiến độ để có thời điểm mua phù hợp."
+            f"🏗️ **Hạ tầng điểm {infra_sc:.0f}/100** — Một số dự án đang quy hoạch/phê duyệt. "
+            f"Theo dõi tiến độ."
+        )
+    else:
+        d_pts = 2
+        reasons.append(f"Hạ tầng hạn chế (điểm {infra_sc:.0f})")
+        explanations.append(
+            f"📍 **Hạ tầng điểm {infra_sc:.0f}/100** — Ít dự án hạ tầng lớn trong khu vực. "
+            f"Upside chủ yếu đến từ tăng giá tự nhiên."
         )
 
-    # Áp dụng multiplier hạ tầng lên toàn bộ score
-    score = score * infra_multiplier(district)
+    # ── E. Cung–cầu khu vực (max 15) ─────────────────────────────────
+    tightness  = macro.get("supply_tightness", 6.5)
+    absorption = macro.get("absorption_rate", 0.72)
+    new_supply = macro.get("new_supply_units_qtr", 500)
+    if tightness >= 8.5 and absorption >= 0.88:
+        e_pts = 15
+        reasons.append(f"Cung cực khan hiếm + hấp thụ mạnh {round(absorption*100)}%")
+        explanations.append(
+            f"🔒 **Khan hiếm cung nghiêm trọng tại {district}** — Tightness {tightness}/10, "
+            f"absorption {round(absorption*100)}%. Gần như không còn quỹ đất. Giá rất khó giảm."
+        )
+    elif tightness >= 8.5:
+        e_pts = 11
+        reasons.append(f"Cung khan hiếm ({district}) — tightness {tightness}/10")
+        explanations.append(
+            f"🔒 **Nguồn cung rất hạn chế tại {district}** — Tightness {tightness}/10, "
+            f"{new_supply} căn/quý. Cầu ổn định trong khi cung mới hạn chế."
+        )
+    elif tightness >= 7.0 and absorption >= 0.78:
+        e_pts = 9
+        reasons.append(f"Cung kiểm soát + hấp thụ ổn {round(absorption*100)}%")
+        explanations.append(
+            f"📦 **Thị trường {district} cân bằng tốt** — Tightness {tightness}/10, "
+            f"absorption {round(absorption*100)}%. Không có rủi ro dư cung."
+        )
+    elif tightness >= 7.0:
+        e_pts = 6
+        reasons.append(f"Nguồn cung hạn chế ({district})")
+        explanations.append(
+            f"📦 **Nguồn cung kiểm soát tại {district}** — Tightness {tightness}/10, "
+            f"absorption {round(absorption*100)}%. Thị trường ổn định."
+        )
+    elif tightness >= 5.5:
+        e_pts = 3
+        reasons.append(f"Nguồn cung vừa phải — absorption rate {round(absorption*100)}%")
+        explanations.append(
+            f"⚠️ **Nguồn cung đáng kể tại {district}** — {new_supply} căn/quý, "
+            f"absorption {round(absorption*100)}%. Cạnh tranh cao hơn giữa các sản phẩm."
+        )
+    else:
+        e_pts = 1
+        reasons.append(f"Nguồn cung lớn ({district}) — áp lực giá ngắn hạn")
+        explanations.append(
+            f"🚫 **Dư cung tại {district}** — {new_supply} căn/quý, absorption chỉ "
+            f"{round(absorption*100)}%. Dư cung tạo áp lực giảm giá ngắn hạn."
+        )
 
-    return min(max(score, 0), 100), reasons, explanations
+    # ── F. Chất lượng vị trí / quận (max 10) ─────────────────────────
+    d_score = DISTRICT_SCORE.get(district, 6.0)
+    if d_score >= 8.5:
+        f_pts = 10
+        reasons.append(f"Vị trí chiến lược — {district} ({d_score}/10)")
+        explanations.append(
+            f"📍 **{district} — vị trí hàng đầu ({d_score}/10)** — Hạ tầng hoàn thiện, quy hoạch rõ, "
+            f"nhu cầu thuê bền vững từ người thu nhập cao."
+        )
+    elif d_score >= 7.5:
+        f_pts = 7
+        reasons.append(f"Vị trí tốt — {district} ({d_score}/10)")
+        explanations.append(
+            f"📍 **{district} — khu vực tốt ({d_score}/10)** — Tiện ích đầy đủ, kết nối giao thông ổn, "
+            f"thanh khoản thứ cấp tốt."
+        )
+    elif d_score >= 7.0:
+        f_pts = 4
+        explanations.append(
+            f"📍 **{district} ({d_score}/10)** — Khu vực ổn định, đang phát triển dần."
+        )
+    else:
+        f_pts = 1
+        reasons.append(f"Vị trí còn hạn chế — {district} ({d_score}/10)")
+        explanations.append(
+            f"📍 **{district} ({d_score}/10)** — Vị trí chưa có nhiều lợi thế cạnh tranh rõ ràng."
+        )
+
+    score = a_pts + b_pts + c_pts + d_pts + e_pts + f_pts
+    return float(min(max(score, 0), 100)), reasons, explanations
 
 
 def value_assessment(price_per_m2: Optional[float], avg: float) -> str:
@@ -450,10 +502,13 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
 
         score, reasons, explanations = calc_score(prop, market, district)
 
-        # Verdict
-        if score >= 75:
+        # Verdict — thang mới 6-thành-phần tổng 100
+        # BUY ≥ 65: giá tốt + yield + tăng trưởng + hạ tầng đồng thuận rõ ràng
+        # HOLD 45–64: có điểm mạnh nhưng chưa đủ toàn diện
+        # SKIP < 45: quá nhiều yếu tố bất lợi
+        if score >= 65:
             verdict = "BUY"
-        elif score >= 55:
+        elif score >= 45:
             verdict = "HOLD"
         else:
             verdict = "SKIP"
