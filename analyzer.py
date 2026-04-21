@@ -502,13 +502,14 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
 
         score, reasons, explanations = calc_score(prop, market, district)
 
-        # Verdict — thang mới 6-thành-phần tổng 100
-        # BUY ≥ 65: giá tốt + yield + tăng trưởng + hạ tầng đồng thuận rõ ràng
-        # HOLD 45–64: có điểm mạnh nhưng chưa đủ toàn diện
-        # SKIP < 45: quá nhiều yếu tố bất lợi
-        if score >= 65:
+        # Verdict — thang 6-thành-phần, tổng tối đa 100
+        # Phân bố mục tiêu: ~50% BUY · ~30% HOLD · ~20% SKIP
+        # BUY  ≥ 54: đủ điểm mạnh trên phần lớn thành phần
+        # HOLD 43–53: có tiềm năng nhưng còn 1–2 yếu tố hạn chế
+        # SKIP < 43: rủi ro rõ ràng (giá cao + cung lớn + hạ tầng yếu)
+        if score >= 54:
             verdict = "BUY"
-        elif score >= 45:
+        elif score >= 43:
             verdict = "HOLD"
         else:
             verdict = "SKIP"
