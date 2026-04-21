@@ -3,7 +3,7 @@ BDS Dashboard — Flask web server
 Phân tích BĐS TP.HCM 3-5 tỷ + hạ tầng tiềm năng (44 dự án)
 """
 import json, sys, os
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, request, jsonify
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -215,6 +215,7 @@ TEMPLATE = """
   <a onclick="showTab('tab-momentum',this)">Macro & Momentum</a>
   <a onclick="showTab('tab-infra',this)">Hạ tầng ({{ n_projects }})</a>
   <a onclick="showTab('tab-map',this);initMap()">Bản đồ</a>
+  <a onclick="showTab('tab-chat',this)">💬 Tư vấn AI</a>
 </div>
 
 <div class="page">
@@ -699,6 +700,49 @@ TEMPLATE = """
   </div>
 </div>
 
+<div id="tab-chat" class="tab">
+  <div class="sec">💬 Tư vấn AI — Hỏi về BĐS TP.HCM</div>
+  <div style="max-width:760px;margin:0 auto">
+
+    <div id="chat-messages" style="
+      height:460px;overflow-y:auto;
+      background:#0f172a;border:1px solid #1e293b;border-radius:10px;
+      padding:18px;display:flex;flex-direction:column;gap:12px;
+      margin-bottom:14px;scroll-behavior:smooth">
+      <div class="chat-msg bot" style="
+        background:#1e293b;border-radius:8px;padding:12px 15px;
+        color:#cbd5e1;font-size:.84rem;line-height:1.6;max-width:85%">
+        👋 Xin chào! Tôi là trợ lý phân tích BĐS TP.HCM.<br>
+        Tôi có dữ liệu <strong style="color:#93c5fd">{{ results|length }} căn/lô</strong>
+        tại {{ results|map(attribute='property')|map(attribute='district')|unique|list|length }} quận
+        đã được phân tích. Bạn có thể hỏi tôi về:<br><br>
+        • <em>"Căn nào ở Quận 7 dưới 4 tỷ nên mua?"</em><br>
+        • <em>"So sánh Thủ Đức và Quận 8 về tiềm năng đầu tư"</em><br>
+        • <em>"Dự án hạ tầng nào ảnh hưởng nhiều nhất đến giá BĐS?"</em>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:flex-end">
+      <textarea id="chat-input" placeholder="Hỏi về BĐS, quận, giá cả, hạ tầng…"
+        rows="2" style="
+          flex:1;background:#1e293b;border:1px solid #334155;border-radius:8px;
+          color:#f1f5f9;padding:10px 14px;font-size:.85rem;resize:none;
+          font-family:inherit;outline:none;line-height:1.5"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"
+      ></textarea>
+      <button onclick="sendChat()" id="chat-btn" style="
+        background:#3b82f6;color:white;border:none;border-radius:8px;
+        padding:10px 20px;font-size:.85rem;font-weight:600;cursor:pointer;
+        white-space:nowrap;height:44px;transition:background .2s"
+        onmouseover="this.style.background='#2563eb'"
+        onmouseout="this.style.background='#3b82f6'">Gửi ↑</button>
+    </div>
+    <div style="color:#475569;font-size:.72rem;margin-top:8px">
+      Enter để gửi · Shift+Enter xuống dòng · Trả lời dựa trên {{ results|length }} BĐS thực tế trong dashboard
+    </div>
+  </div>
+</div>
+
 </div><!-- /page -->
 
 <script>
@@ -1114,6 +1158,74 @@ new Chart(document.getElementById('htChart'), {
     }
   }
 });
+
+// ── CHATBOT ──────────────────────────────────────────────────────
+const chatHistory = [];
+
+function appendMsg(role, text) {
+  const box = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + role;
+  const isBot = role === 'bot';
+  div.style.cssText = `
+    background:${isBot ? '#1e293b' : '#1d4ed8'};
+    border-radius:8px;padding:12px 15px;
+    color:${isBot ? '#cbd5e1' : '#fff'};
+    font-size:.84rem;line-height:1.65;
+    max-width:85%;
+    ${isBot ? '' : 'align-self:flex-end;margin-left:auto'}
+  `;
+  // Render newlines and basic bold (**text**)
+  div.innerHTML = text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/[*][*](.*?)[*][*]/g,'<strong>$1</strong>')
+    .replace(/\n/g,'<br>');
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+  return div;
+}
+
+function setLoading(on) {
+  const btn = document.getElementById('chat-btn');
+  btn.disabled = on;
+  btn.textContent = on ? '…' : 'Gửi ↑';
+  btn.style.background = on ? '#475569' : '#3b82f6';
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg   = input.value.trim();
+  if (!msg) return;
+
+  appendMsg('user', msg);
+  chatHistory.push({ role: 'user', content: msg });
+  input.value = '';
+  setLoading(true);
+
+  // Typing indicator
+  const typing = appendMsg('bot', '…');
+
+  try {
+    const res  = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ history: chatHistory.slice(-10) })
+    });
+    const data = await res.json();
+    typing.remove();
+
+    if (data.error) {
+      appendMsg('bot', '⚠️ ' + data.error);
+    } else {
+      appendMsg('bot', data.reply);
+      chatHistory.push({ role: 'assistant', content: data.reply });
+    }
+  } catch(e) {
+    typing.remove();
+    appendMsg('bot', '⚠️ Lỗi kết nối. Vui lòng thử lại.');
+  }
+  setLoading(false);
+}
 </script>
 </body>
 </html>
@@ -1220,6 +1332,70 @@ def index():
         mortgage_rate=MORTGAGE_RATE_CURRENT,
         mortgage_trend_label="Giảm" if MORTGAGE_RATE_TREND == "decreasing" else "Ổn định",
     )
+
+
+@app.route("/api/chat", methods=["POST"])
+def chat_api():
+    try:
+        import anthropic as _anthropic
+    except ImportError:
+        return jsonify({"error": "Thư viện anthropic chưa được cài. Chạy: pip install anthropic"}), 500
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return jsonify({"error": "Chưa cấu hình ANTHROPIC_API_KEY. Thêm vào Vercel Environment Variables."}), 500
+
+    body    = request.get_json(silent=True) or {}
+    history = body.get("history", [])
+
+    # Build property context (compact, fits in prompt)
+    prop_lines = []
+    for r in RESULTS:
+        p = r.property
+        prop_lines.append(
+            f"{p.get('title','')} | {p.get('district','')} | "
+            f"{p.get('price_billion',0)} tỷ | {p.get('area_m2','')}m² | "
+            f"Giá/m²: {p.get('price_per_m2_million','')} triệu | "
+            f"Score: {r.score} | {r.verdict} | Yield: {r.rental_yield_est}%"
+        )
+
+    infra_lines = [
+        f"{p.name} | {p.status.value} | Tác động: +{p.price_impact_pct}% | "
+        f"Quận: {', '.join(p.districts_affected)} | HT: {p.expected_completion}"
+        for p in INFRA_PROJECTS
+    ]
+
+    system = f"""Bạn là trợ lý phân tích BĐS thông minh, chuyên về thị trường TP.HCM phân khúc 3–5 tỷ VND.
+Bạn đang hỗ trợ người dùng trên dashboard phân tích BĐS thực tế.
+
+## DỮ LIỆU {len(RESULTS)} BĐS ĐÃ PHÂN TÍCH:
+(Định dạng: Tên | Quận | Giá | Diện tích | Giá/m² | Score/100 | Verdict | Yield)
+{chr(10).join(prop_lines)}
+
+## {len(INFRA_PROJECTS)} DỰ ÁN HẠ TẦNG:
+{chr(10).join(infra_lines)}
+
+## HƯỚNG DẪN TRẢ LỜI:
+- Trả lời bằng tiếng Việt, ngắn gọn, súc tích
+- Khi gợi ý BĐS, ưu tiên theo Score cao và Verdict BUY
+- Dùng số liệu cụ thể từ dữ liệu trên
+- Nếu hỏi ngoài dữ liệu, nói rõ là nhận định chung
+- Không quá 300 từ mỗi câu trả lời
+"""
+
+    try:
+        client   = _anthropic.Anthropic(api_key=api_key)
+        messages = [{"role": m["role"], "content": m["content"]} for m in history]
+        response = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=600,
+            system=system,
+            messages=messages,
+        )
+        reply = response.content[0].text
+        return jsonify({"reply": reply})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
