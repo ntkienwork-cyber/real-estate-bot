@@ -678,9 +678,9 @@ TEMPLATE = """
   <div style="display:flex;gap:20px;align-items:center;padding:8px 0 10px;flex-wrap:wrap">
     <div style="display:flex;gap:12px;align-items:center;font-size:.77rem;color:#94a3b8">
       <strong style="color:#64748b;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em">BĐS</strong>
-      <span class="legend-dot" style="background:#22c55e"></span><span>BUY</span>
-      <span class="legend-dot" style="background:#f59e0b"></span><span>HOLD</span>
-      <span class="legend-dot" style="background:#ef4444"></span><span>SKIP</span>
+      <svg width="16" height="22" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#22c55e" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>BUY</span>
+      <svg width="16" height="22" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#f59e0b" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>HOLD</span>
+      <svg width="16" height="22" viewBox="0 0 28 38" style="flex-shrink:0"><path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z" fill="#ef4444" stroke="white" stroke-width="2.5"/><circle cx="14" cy="13" r="5.5" fill="white" opacity="0.9"/></svg><span>SKIP</span>
     </div>
     <div style="color:#334155;font-size:1.1rem">|</div>
     <div style="display:flex;gap:12px;align-items:center;font-size:.77rem;color:#94a3b8;flex-wrap:wrap">
@@ -720,17 +720,83 @@ function verdictColor(v) {
   return v === 'BUY' ? '#22c55e' : v === 'HOLD' ? '#f59e0b' : '#ef4444';
 }
 
-function makeIcon(color) {
+function makePin(color) {
   return L.divIcon({
-    html: `<div style="
-      width:16px;height:16px;border-radius:50%;
-      background:${color};border:2.5px solid rgba(255,255,255,.85);
-      box-shadow:0 2px 6px rgba(0,0,0,.55)"></div>`,
+    html: `<svg width="28" height="38" viewBox="0 0 28 38" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ps" x="-30%" y="-20%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-opacity="0.45"/>
+        </filter>
+      </defs>
+      <path d="M14 1 C6.82 1 1 6.82 1 14 C1 23.5 14 37 14 37 C14 37 27 23.5 27 14 C27 6.82 21.18 1 14 1 Z"
+        fill="${color}" stroke="white" stroke-width="2.5" filter="url(#ps)"/>
+      <circle cx="14" cy="13" r="5.5" fill="white" opacity="0.92"/>
+    </svg>`,
     className: '',
-    iconSize: [16, 16],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -12],
+    iconSize:   [28, 38],
+    iconAnchor: [14, 37],
+    popupAnchor:[0, -38],
   });
+}
+
+// Hardcoded coords for all 49 properties (instant, no geocoding needed)
+const PROP_COORDS = {
+  'Him Lam Riverside':          [10.6892, 106.7239],
+  'Dragon Hill 2':               [10.6897, 106.7236],
+  'Charmington Iris':            [10.7580, 106.7050],
+  'Saigon Royal':                [10.7650, 106.7048],
+  'Icon 56':                     [10.7645, 106.7052],
+  'Him Lam Chợ Lớn':            [10.7474, 106.6370],
+  'Era Town':                    [10.7357, 106.7218],
+  'Riverside Residence PMH':     [10.7200, 106.7065],
+  'Sky Garden 3':                [10.7210, 106.7052],
+  'Lavida Plus':                 [10.7272, 106.7130],
+  'Eco Green Saigon':            [10.7278, 106.7135],
+  'Sunrise City View':           [10.7286, 106.7178],
+  'Topaz Elite Tower A':         [10.7444, 106.6823],
+  'Topaz Elite Tower B':         [10.7448, 106.6820],
+  'Pegasuite':                   [10.7462, 106.6830],
+  'Dream Home Riverside':        [10.7385, 106.6625],
+  'City Gate Towers':            [10.7465, 106.6495],
+  'Diamond Riverside':           [10.7463, 106.6500],
+  'Carillon 7':                  [10.7889, 106.6384],
+  'Carillon 5':                  [10.7905, 106.6331],
+  'Richstar':                    [10.7920, 106.6270],
+  'Celadon City':                [10.8040, 106.6298],
+  'Topaz Garden':                [10.7929, 106.6305],
+  'Charmington Tân Bình':        [10.8005, 106.6593],
+  'Kingdom 101':                 [10.7720, 106.6697],
+  'Imperial Place':              [10.7660, 106.6492],
+  'Akari City':                  [10.7505, 106.6083],
+  'EHome 3':                     [10.7481, 106.6052],
+  'Kingsway Tower':              [10.7769, 106.6082],
+  'Green Town Bình Tân':         [10.7820, 106.5960],
+  'Vinhomes Grand Park The Origami': [10.8244, 106.8042],
+  'Vinhomes Grand Park The Opus One':[10.8246, 106.8046],
+  'The Sun Avenue':              [10.8010, 106.7521],
+  'Masteri Thảo Điền':           [10.8066, 106.7449],
+  'Feliz En Vista':              [10.7902, 106.7511],
+  'Estella Heights':             [10.8021, 106.7494],
+  'Lumiere Riverside':           [10.7961, 106.7455],
+  'The CBD Premium Home':        [10.7910, 106.7515],
+  'Moonlight Residences':        [10.8360, 106.7585],
+  'Hausneo':                     [10.8290, 106.8120],
+  'Hausbelo':                    [10.8285, 106.8115],
+  'Mizuki Park':                 [10.7090, 106.7035],
+  'Hoàng Anh Thanh Bình':        [10.7310, 106.7168],
+  'CTL Tower':                   [10.8629, 106.6584],
+  'Tôn Thất Thuyết':             [10.7592, 106.7042],
+  'Đất Thổ Cư Đường 102':        [10.8640, 106.7920],
+  'Đất Thổ Cư Võ Văn Hát':       [10.8450, 106.8152],
+  'Chung Cư Bà Chiểu':           [10.8186, 106.7012],
+  'Nhà Phố Lý Thường Kiệt':      [10.8291, 106.6641],
+};
+
+function coordForProp(title) {
+  for (const [key, coords] of Object.entries(PROP_COORDS)) {
+    if (title.includes(key) || key.split(' ').slice(0,3).every(w => title.includes(w))) return coords;
+  }
+  return null;
 }
 
 async function geocodeOne(prop, idx) {
@@ -928,56 +994,78 @@ function initMap() {
 
   _leafletMap = L.map('map', { layers: [osmBase] }).setView([10.7769, 106.7009], 12);
 
-  // Overlay groups
+  // Layer groups
   const infraGroup = L.layerGroup().addTo(_leafletMap);
+  const propGroup  = L.layerGroup().addTo(_leafletMap);
 
-  // Layer control
+  // Single combined layer control
   L.control.layers(
     { '🗺 Bản đồ đường': osmBase, '🛰 Vệ tinh': satellite },
-    { [`🔶 Dự án hạ tầng (${INFRA_DATA.length})`]: infraGroup },
+    {
+      [`📍 BĐS (${MAP_PROPS.length})`]: propGroup,
+      [`🔶 Dự án hạ tầng (${INFRA_DATA.length})`]: infraGroup,
+    },
     { position: 'topright', collapsed: false }
   ).addTo(_leafletMap);
 
   // Render infra pins immediately (no geocoding needed)
   renderInfraMarkers(infraGroup);
 
-  // Geocode & pin properties
+  // Pin all properties — hardcoded coords first, Nominatim fallback for unknowns
   const status = document.getElementById('map-status');
-  const propGroup = L.layerGroup().addTo(_leafletMap);
+
   let done = 0, placed = 0;
+  const unknown = [];
 
+  // Pass 1: place all properties with known coords instantly
   MAP_PROPS.forEach((prop, i) => {
-    setTimeout(async () => {
-      const coords = await geocodeOne(prop, i);
+    const hardCoords = coordForProp(prop.title);
+    if (hardCoords) {
+      placePropMarker(prop, hardCoords, propGroup);
+      done++; placed++;
+    } else {
+      unknown.push({ prop, i });
       done++;
-      if (coords) {
-        placed++;
-        const color = verdictColor(prop.verdict);
-        const m = L.marker([coords.lat, coords.lng], { icon: makeIcon(color) }).addTo(propGroup);
-
-        const lsHtml = prop.legal_status
-          ? `<div style="color:#94a3b8;margin-top:2px">Pháp lý: <strong style="color:#e2e8f0">${prop.legal_status}</strong></div>` : '';
-        const hyHtml = prop.handover_year
-          ? `<div style="color:#94a3b8">Bàn giao: <strong style="color:#e2e8f0">${prop.handover_year}</strong></div>` : '';
-        const badgeBg = prop.verdict==='BUY'?'#dcfce7':prop.verdict==='HOLD'?'#fef3c7':'#fee2e2';
-
-        m.bindPopup(`
-          <div class="pop-title">${prop.title.substring(0,60)}${prop.title.length>60?'…':''}</div>
-          <div class="pop-price">${prop.price_billion} tỷ VND</div>
-          <div style="color:#94a3b8;margin-top:2px">${prop.district} · ${prop.area_m2 ? prop.area_m2+'m²' : ''}</div>
-          ${lsHtml}${hyHtml}
-          <div style="margin-top:6px">
-            <span class="pop-badge" style="color:${color};background:${badgeBg}">${prop.verdict}</span>
-            <span style="font-size:.68rem;color:#64748b;margin-left:6px">Score ${prop.score}</span>
-          </div>
-          <div style="margin-top:6px"><a href="${prop.url}" target="_blank" style="color:#93c5fd;font-size:.72rem">Xem tin →</a></div>
-        `, { maxWidth: 280 });
-      }
-      status.textContent = done < MAP_PROPS.length
-        ? `Đang định vị… ${done}/${MAP_PROPS.length} (${placed} đặt được)`
-        : `Hoàn tất: ${placed}/${MAP_PROPS.length} BĐS đã pin · nhấn pin để xem chi tiết`;
-    }, i * 1200);
+    }
   });
+
+  status.textContent = `${placed}/${MAP_PROPS.length} BĐS đã pin · nhấn ghim để xem chi tiết`;
+
+  // Pass 2: geocode remaining unknowns via Nominatim (rate-limited)
+  unknown.forEach(({ prop }, j) => {
+    setTimeout(async () => {
+      const c = await geocodeOne(prop, j);
+      if (c) {
+        placePropMarker(prop, [c.lat, c.lng], propGroup);
+        placed++;
+        status.textContent = `${placed}/${MAP_PROPS.length} BĐS đã pin · nhấn ghim để xem chi tiết`;
+      }
+    }, j * 1200);
+  });
+}
+
+function placePropMarker(prop, coords, group) {
+  const color   = verdictColor(prop.verdict);
+  const badgeBg = prop.verdict==='BUY'?'#dcfce7':prop.verdict==='HOLD'?'#fef3c7':'#fee2e2';
+  const lsHtml  = prop.legal_status
+    ? `<div style="color:#94a3b8;margin-top:2px">Pháp lý: <strong style="color:#e2e8f0">${prop.legal_status}</strong></div>` : '';
+  const hyHtml  = prop.handover_year
+    ? `<div style="color:#94a3b8">Bàn giao: <strong style="color:#e2e8f0">${prop.handover_year}</strong></div>` : '';
+
+  const m = L.marker(coords, { icon: makePin(color) }).addTo(group);
+  m.bindPopup(`
+    <div class="pop-title">${prop.title.substring(0,62)}${prop.title.length>62?'…':''}</div>
+    <div class="pop-price">${prop.price_billion} tỷ VND</div>
+    <div style="color:#94a3b8;margin-top:2px">${prop.district} · ${prop.area_m2 ? prop.area_m2+'m²' : ''}</div>
+    ${lsHtml}${hyHtml}
+    <div style="margin-top:6px">
+      <span class="pop-badge" style="color:${color};background:${badgeBg}">${prop.verdict}</span>
+      <span style="font-size:.68rem;color:#64748b;margin-left:6px">Score ${prop.score}</span>
+    </div>
+    <div style="margin-top:6px"><a href="${prop.url}" target="_blank" style="color:#93c5fd;font-size:.72rem">Xem tin →</a></div>
+  `, { maxWidth: 290 });
+  m.bindTooltip(`<b>${prop.title.substring(0,40)}</b><br>${prop.price_billion} tỷ · ${prop.verdict}`,
+    { direction:'top', offset:[0,-36], opacity:0.92 });
 }
 
 
