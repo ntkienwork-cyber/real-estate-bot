@@ -309,6 +309,31 @@ TEMPLATE = """
 
 <!-- ═══ TAB PROPS ════════════════════════════════════════════════ -->
 <div id="tab-props" class="tab">
+
+  <!-- Summary stat cards from valuation engine -->
+  <div class="grid4" style="margin-bottom:20px">
+    <div class="stat">
+      <div class="val" style="color:#a78bfa">{{ avg_composite_score }}</div>
+      <div class="lbl">Avg Composite Score</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#c4b5fd">Điểm tổng hợp trung bình</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#34d399">{{ dscr_positive_count }}</div>
+      <div class="lbl">Dòng tiền dương (DSCR &gt; 1.2)</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#6ee7b7">Listings tiền thuê &gt; trả góp</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#fbbf24">{{ undervalued_count }}</div>
+      <div class="lbl">Định giá thấp (&gt;10% gap)</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#fcd34d">BĐS có biên an toàn tốt</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#60a5fa">{{ avg_5y_roi }}%</div>
+      <div class="lbl">Avg ROI 5 năm</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#93c5fd">Trung bình toàn danh sách</div>
+    </div>
+  </div>
+
   <div class="sec">Tất cả {{ results|length }} BĐS phân tích</div>
   <div class="scrollable"><table>
     <thead><tr>
@@ -324,6 +349,11 @@ TEMPLATE = """
     {% set vc=verdict_color(r.verdict) %}{% set vb=verdict_bg(r.verdict) %}
     {% set vfg,vbg=value_badge(r.value_vs_market) %}
     {% set il,ifc,ibc=infra_label(r.infra_score) %}
+    {% set vd = r.valuation_data %}
+    {% set sc = vd.get('scores', {}) %}
+    {% set ic = vd.get('income', {}) %}
+    {% set vv = vd.get('valuation', {}) %}
+    {% set rk = vd.get('risks', {}) %}
     <tr>
       <td style="color:#64748b;font-size:.72rem">{{ loop.index }}</td>
       <td style="max-width:200px"><a class="link" href="{{ r.property.get('url','#') }}" target="_blank">{{ r.property.title[:48] }}</a>
@@ -366,9 +396,68 @@ TEMPLATE = """
       </td>
       <td><ul class="reasons">{% for reason in r.reasons[:2] %}<li>{{ reason[:50] }}</li>{% endfor %}</ul></td>
     </tr>
+    <!-- Collapsible financial analysis row -->
+    <tr id="fin-{{ loop.index }}" style="display:none;background:#0b1a2a">
+      <td colspan="15" style="padding:0">
+        <div style="padding:14px 20px">
+          <div style="font-size:.78rem;font-weight:700;color:#93c5fd;margin-bottom:10px">
+            Phân tích tài chính nâng cao — {{ r.property.title[:45] }}
+          </div>
+          <!-- Score breakdown bar -->
+          <div style="margin-bottom:12px">
+            <div style="font-size:.7rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Score Breakdown</div>
+            {% set score_items = [
+              ("Định giá hấp dẫn",  sc.get('valuationAttractivenessScore', 0), "#a78bfa"),
+              ("Dòng tiền",          sc.get('cashflowQualityScore', 0),         "#34d399"),
+              ("Tiềm năng tăng giá", sc.get('growthPotentialScore', 0),         "#60a5fa"),
+              ("Thanh khoản",        sc.get('liquidityExitScore', 0),            "#fbbf24"),
+              ("Điều chỉnh rủi ro",  sc.get('riskAdjustedScore', 0),            "#f87171"),
+              ("Tổng hợp",           sc.get('compositeScore', 0),               "#e2e8f0"),
+            ] %}
+            {% for label, val, color in score_items %}
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+              <div style="width:140px;font-size:.68rem;color:#94a3b8">{{ label }}</div>
+              <div style="flex:1;height:6px;background:#1e293b;border-radius:3px;max-width:160px">
+                <div style="width:{{ val }}%;height:100%;border-radius:3px;background:{{ color }}"></div>
+              </div>
+              <div style="font-size:.72rem;font-weight:700;color:{{ color }};min-width:44px">{{ val }}/100</div>
+            </div>
+            {% endfor %}
+          </div>
+          <!-- Financial metrics mini-table -->
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px">
+            {% set metrics = [
+              ("Yield", (ic.get('grossRentalYield')|string + "%" if ic.get('grossRentalYield') else "—"), "#34d399"),
+              ("Cap Rate", (ic.get('capRate')|round(2)|string + "%" if ic.get('capRate') else "—"), "#60a5fa"),
+              ("DSCR", (ic.get('DSCR')|round(2)|string if ic.get('DSCR') else "—"), "#fbbf24"),
+              ("5Y ROI", (vv.get('projected5YROI')|string + "%" if vv.get('projected5YROI') else "—"), "#a78bfa"),
+              ("Val Gap", (vv.get('valuationGapPct')|round(1)|string + "%" if vv.get('valuationGapPct') is not none else "—"), "#f87171" if (vv.get('valuationGapPct') or 0) < 0 else "#34d399"),
+              ("Rủi ro", rk.get('overallRiskLevel','—'), "#22c55e" if rk.get('overallRiskLevel')=="Low" else "#f59e0b" if rk.get('overallRiskLevel')=="Medium" else "#ef4444"),
+            ] %}
+            {% for label, val, color in metrics %}
+            <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;text-align:center">
+              <div style="font-size:.68rem;color:#64748b;margin-bottom:4px">{{ label }}</div>
+              <div style="font-size:.86rem;font-weight:700;color:{{ color }}">{{ val }}</div>
+            </div>
+            {% endfor %}
+          </div>
+          <!-- Explanations -->
+          {% if vd.get('explanations') %}
+          <div style="font-size:.68rem;color:#94a3b8;line-height:1.7">
+            {% for exp in vd.get('explanations', [])[:5] %}
+            <div style="padding:2px 0;border-bottom:1px solid #1e293b">• {{ exp }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </td>
+    </tr>
     {% endfor %}
     </tbody>
   </table></div>
+  <div style="font-size:.72rem;color:#475569;margin-top:10px;text-align:center">
+    Nhấp vào hàng để xem phân tích tài chính nâng cao
+  </div>
 </div>
 
 <!-- ═══ TAB DISTRICTS ════════════════════════════════════════════ -->
@@ -665,6 +754,27 @@ function showTab(id, el) {
   el.classList.add('active');
 }
 
+// toggle financial analysis row
+function toggleFin(idx) {
+  const row = document.getElementById('fin-' + idx);
+  if (!row) return;
+  row.style.display = (row.style.display === 'none' || row.style.display === '') ? 'table-row' : 'none';
+}
+
+// make data rows in tab-props clickable
+document.addEventListener('DOMContentLoaded', function() {
+  const tabProps = document.getElementById('tab-props');
+  if (!tabProps) return;
+  const rows = tabProps.querySelectorAll('tbody tr:not([id^="fin-"])');
+  rows.forEach(function(tr, i) {
+    tr.style.cursor = 'pointer';
+    tr.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') return;
+      toggleFin(i + 1);
+    });
+  });
+});
+
 // ── CHARTS ───────────────────────────────────────────────────────
 // Chart 1: district bar
 const dd = {{ dist_chart | tojson }};
@@ -754,6 +864,28 @@ def index():
         "Quy hoạch":      sum(1 for p in INFRA_PROJECTS if p.status == Status.PLANNING),
     }
 
+    # ── Valuation summary stats ─────────────────────────────────────────────────
+    composite_scores = [
+        r.valuation_data.get("scores", {}).get("compositeScore", 0)
+        for r in RESULTS if r.valuation_data
+    ]
+    avg_composite_score = round(sum(composite_scores) / max(len(composite_scores), 1), 1)
+
+    dscr_positive_count = sum(
+        1 for r in RESULTS
+        if (r.valuation_data.get("income", {}).get("DSCR") or 0) > 1.2
+    )
+    undervalued_count = sum(
+        1 for r in RESULTS
+        if (r.valuation_data.get("valuation", {}).get("valuationGapPct") or 0) > 10
+    )
+    roi_values = [
+        r.valuation_data.get("valuation", {}).get("projected5YROI")
+        for r in RESULTS
+        if r.valuation_data.get("valuation", {}).get("projected5YROI") is not None
+    ]
+    avg_5y_roi = round(sum(roi_values) / max(len(roi_values), 1), 1)
+
     return render_template_string(
         TEMPLATE,
         results=RESULTS,
@@ -783,6 +915,10 @@ def index():
         credit_growth=CREDIT_GROWTH_YOY,
         mortgage_rate=MORTGAGE_RATE_CURRENT,
         mortgage_trend_label="Giảm" if MORTGAGE_RATE_TREND == "decreasing" else "Ổn định",
+        avg_composite_score=avg_composite_score,
+        dscr_positive_count=dscr_positive_count,
+        undervalued_count=undervalued_count,
+        avg_5y_roi=avg_5y_roi,
     )
 
 

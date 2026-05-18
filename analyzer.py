@@ -3,10 +3,11 @@ Real Estate Analyzer - áp dụng framework từ real-estate-analyzer skill
 Phân tích & recommend BĐS 3-5 tỷ tại TP.HCM (kết hợp phân tích hạ tầng)
 """
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 from collections import defaultdict
 from infrastructure import get_infra_score, get_infra_momentum, INFRA_PROJECTS, Status
+from valuation_engine import compute_valuation
 
 
 # ──────────────────────────────────────────────
@@ -219,6 +220,8 @@ class AnalysisResult:
     invest_color: str = "#374151"
     invest_bg: str = "#f3f4f6"
     invest_detail: str = ""
+    # Phân tích tài chính nâng cao (từ valuation_engine)
+    valuation_data: dict = field(default_factory=dict)
 
 
 def get_market_ref(prop_type: str, district: str) -> Optional[dict]:
@@ -556,6 +559,15 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
         # Infrastructure momentum
         momentum = get_infra_momentum(district)
 
+        # Phân tích tài chính nâng cao
+        vdata = compute_valuation(
+            prop=prop,
+            market=market,
+            district=district,
+            infra_momentum=momentum,
+            macro=macro,
+        )
+
         results.append(AnalysisResult(
             property=prop,
             score=round(score, 1),
@@ -575,6 +587,7 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             invest_color=ic,
             invest_bg=ib,
             invest_detail=invest_detail_full,
+            valuation_data=vdata,
         ))
 
     return sorted(results, key=lambda x: x.score, reverse=True)
