@@ -30,6 +30,38 @@ TIER1_DEVS = [
     "Phú Mỹ Hưng", "Novaland", "Gamuda", "Hưng Thịnh",
 ]
 
+import math as _math
+
+# ─── Transaction & Exit Cost Constants ──────────────────────────────────────
+HOLDING_YEARS      = 5
+BROKER_EXIT_FEE    = 0.020   # 2% of exit price
+TRANSFER_TAX       = 0.020   # 2% personal income tax on transfer
+MAINTENANCE_RATIO  = 0.010   # 1% of property value/year maintenance reserve
+ENTRY_COST_RATIO   = 0.010   # 1% entry costs (stamp duty + legal)
+LEASING_FRICTION   = 0.50    # months lost per vacancy event
+
+LIQUIDITY_HAIRCUT = {
+    "can-ho-chung-cu": 0.020,
+    "nha-rieng":       0.030,
+    "dat-nen":         0.050,
+}
+
+# ─── Macro Regime — update each quarter ─────────────────────────────────────
+# Q1-Q2 2026: rates 9.5%, buyers cautious, developers stressed
+MACRO_REGIME = {
+    "mode":              "tightening",   # "bullish" | "neutral" | "tightening"
+    "mortgage_rate":     0.095,
+    "credit_tightness":  0.65,           # 0=loose → 1=tight
+    "sentiment":         0.45,           # 0=fear → 1=greed
+    "developer_stress":  0.55,           # 0=none → 1=systemic
+    "bull_app_mult":     1.40,
+    "base_app_mult":     1.00,
+    "bear_app_mult":     0.30,
+    "bull_vacancy_mult": 0.75,
+    "base_vacancy_mult": 1.00,
+    "bear_vacancy_mult": 1.50,
+}
+
 
 # ─── Safe helpers ─────────────────────────────────────────────────────────────
 
@@ -130,6 +162,325 @@ def _transaction_velocity(absorption: Optional[float]) -> str:
     return "Low"
 
 
+# ─── IRR: Newton-Raphson ─────────────────────────────────────────────────────
+
+def _compute_irr(cash_flows: list, guess: float = 0.10) -> Optional[float]:
+    """Newton-Raphson IRR. Returns None if no convergence or nonsensical result."""
+    rate = guess
+    for _ in range(120):
+        try:
+            npv  = sum(cf / (1 + rate) ** t for t, cf in enumerate(cash_flows))
+            dnpv = sum(-t * cf / (1 + rate) ** (t + 1) for t, cf in enumerate(cash_flows))
+            if abs(dnpv) < 1e-12:
+                break
+            rate -= npv / dnpv
+            if abs(npv) < 1.0:
+                break
+        except (ZeroDivisionError, OverflowError):
+            break
+    return rate if -0.50 < rate < 5.0 else None
+
+
+# ─── Net Rental Yield ────────────────────────────────────────────────────────
+
+def _net_rental_yield(
+    gross_yield_pct: float,
+    vacancy: float,
+    mgmt_fee: float,
+    maint_ratio: float,
+    price_vnd: float,
+) -> float:
+    """Net yield after vacancy, management fee, maintenance reserve, leasing friction."""
+    if not gross_yield_pct or not price_vnd or price_vnd <= 0:
+        return 0.0
+    gross_annual  = price_vnd * gross_yield_pct / 100
+    eff_rent      = gross_annual * (1 - vacancy)
+    after_mgmt    = eff_rent * (1 - mgmt_fee)
+    maint         = price_vnd * maint_ratio
+    lease_loss    = (gross_annual / 12) * LEASING_FRICTION * vacancy
+    net           = after_mgmt - maint - lease_loss
+    return round(max(net / price_vnd * 100, 0.0), 2)
+
+
+# ─── Scenario Engine ─────────────────────────────────────────────────────────
+
+def _scenario_roi(
+    price_vnd: float,
+    gross_yield_pct: float,
+    growth_base_pct: float,
+    prop_type: str,
+    macro_regime: dict,
+) -> dict:
+    """
+    Bear / Base / Bull scenario engine.
+    Returns IRR, equity ROI, net yield, exit price, payback per scenario.
+    All costs: entry, maintenance, vacancy, mgmt fee, broker exit, transfer tax, haircut.
+    """
+    if not price_vnd or price_vnd <= 0:
+        return {}
+    equity       = price_vnd * (1 - LTV_RATIO)
+    entry_cost   = price_vnd * ENTRY_COST_RATIO
+    deployed     = equity + entry_cost
+    haircut      = LIQUIDITY_HAIRCUT.get(prop_type, 0.03)
+    base_app     = growth_base_pct / 100
+
+    defs = {
+        "bear": (macro_regime.get("bear_app_mult", 0.30),
+                 macro_regime.get("bear_vacancy_mult", 1.50), 1.50, "Xấu"),
+        "base": (macro_regime.get("base_app_mult", 1.00),
+                 macro_regime.get("base_vacancy_mult", 1.00), 1.00, "Cơ sở"),
+        "bull": (macro_regime.get("bull_app_mult", 1.40),
+                 macro_regime.get("bull_vacancy_mult", 0.75), 0.80, "Tốt"),
+    }
+    out = {}
+    for sc, (app_m, vac_m, maint_m, label) in defs.items():
+        app_rate  = base_app * app_m
+        vacancy   = min(VACANCY_RATE * vac_m, 0.30)
+        maint     = MAINTENANCE_RATIO * maint_m
+        net_yld   = _net_rental_yield(gross_yield_pct, vacancy, MANAGEMENT_FEE, maint, price_vnd)
+        net_ann   = price_vnd * net_yld / 100 if net_yld > 0 else 0.0
+
+        exit_raw  = price_vnd * (1 + app_rate) ** HOLDING_YEARS
+        exit_proc = exit_raw * (1 - BROKER_EXIT_FEE - TRANSFER_TAX - haircut)
+
+        cap_gain   = exit_proc - price_vnd
+        total_inc  = net_ann * HOLDING_YEARS
+        roi        = (cap_gain + total_inc) / deployed * 100
+
+        loan_rem = price_vnd * LTV_RATIO
+        cfs = [-deployed] + [net_ann] * (HOLDING_YEARS - 1) + [net_ann + exit_proc - loan_rem]
+        irr = _compute_irr(cfs)
+
+        payback = round(equity / net_ann, 1) if net_ann > 0 and equity / net_ann < 50 else None
+
+        out[sc] = {
+            "label":          label,
+            "roi":            round(roi, 1),
+            "irr":            round(irr * 100, 1) if irr else None,
+            "net_yield_pct":  net_yld,
+            "net_annual_m":   round(net_ann / 1e6, 1),
+            "exit_price_b":   round(exit_raw / 1e9, 2),
+            "app_rate_pct":   round(app_rate * 100, 1),
+            "payback_years":  payback,
+        }
+    out["meta"] = {
+        "holding_years":    HOLDING_YEARS,
+        "entry_cost_pct":   ENTRY_COST_RATIO * 100,
+        "broker_exit_pct":  BROKER_EXIT_FEE * 100,
+        "transfer_tax_pct": TRANSFER_TAX * 100,
+        "haircut_pct":      haircut * 100,
+        "base_growth_pct":  round(growth_base_pct, 1),
+        "macro_mode":       macro_regime.get("mode", "neutral"),
+    }
+    return out
+
+
+# ─── Liquidity Score v2 ──────────────────────────────────────────────────────
+
+def _liquidity_score_v2(
+    prop_type: str,
+    area_m2: Optional[float],
+    price_per_sqm_m: Optional[float],
+    avg_price_per_sqm_m: Optional[float],
+    absorption: Optional[float],
+    supply_tightness: Optional[float],
+    developer_rating: int = 3,
+) -> float:
+    """
+    Multi-factor liquidity 0-100.
+    Weights: absorption 35% · tightness 15% · price premium 20%
+             area sweet-spot 15% · property type 10% · dev rating 5%
+    """
+    a = absorption or 0.0
+    if a >= 0.85:   abs_sc = 90.0
+    elif a >= 0.70: abs_sc = 60 + (a - 0.70) / 0.15 * 30
+    elif a >= 0.55: abs_sc = 35 + (a - 0.55) / 0.15 * 25
+    elif a >= 0.40: abs_sc = 15 + (a - 0.40) / 0.15 * 20
+    else:           abs_sc = max(0, a / 0.40 * 15)
+
+    tight_sc = clamp_score((supply_tightness or 5) / 10 * 100)
+
+    if price_per_sqm_m and avg_price_per_sqm_m and avg_price_per_sqm_m > 0:
+        r = price_per_sqm_m / avg_price_per_sqm_m
+        if r <= 0.90:   prem_sc = 100
+        elif r <= 1.05: prem_sc = 80
+        elif r <= 1.15: prem_sc = 55
+        elif r <= 1.30: prem_sc = 30
+        else:           prem_sc = 10
+    else:
+        prem_sc = 50
+
+    if prop_type == "can-ho-chung-cu" and area_m2:
+        if 50 <= area_m2 <= 80:                          area_sc = 100
+        elif 40 <= area_m2 < 50 or 80 < area_m2 <= 100: area_sc = 70
+        else:                                             area_sc = 40
+    else:
+        area_sc = 60
+
+    type_sc = {"can-ho-chung-cu": 85, "nha-rieng": 65, "dat-nen": 40}.get(prop_type, 55)
+    dev_sc  = clamp_score((developer_rating - 1) / 4 * 100)
+
+    return clamp_score(
+        abs_sc  * 0.35 + tight_sc * 0.15 + prem_sc * 0.20 +
+        area_sc * 0.15 + type_sc  * 0.10 + dev_sc  * 0.05
+    )
+
+
+# ─── Property Quality Score ──────────────────────────────────────────────────
+
+def _property_quality_score(prop: dict, dev_info: Optional[dict]) -> dict:
+    """
+    Micro property quality 0-100.
+    Components: developer (25%) · building status (20%) · size efficiency (20%)
+                bed/bath utility (15%) · project tier (20%)
+    """
+    if dev_info:
+        rating = dev_info.get("rating", 3)
+        legal  = dev_info.get("legal_status", "clean")
+        a_sc   = rating / 5 * 80
+        if legal in ("warning", "red"):   a_sc *= 0.55
+        elif legal == "caution":          a_sc *= 0.80
+    else:
+        a_sc = 38.0
+
+    status = (prop.get("building_status") or "").lower()
+    if any(k in status for k in ("đã bàn giao", "hoàn thành", "sổ hồng", "bàn giao")):
+        b_sc = 85
+    elif any(k in status for k in ("đang xây", "xây dựng", "thi công")):
+        b_sc = 50
+    elif any(k in status for k in ("mở bán", "off-plan", "sắp mở")):
+        b_sc = 30
+    else:
+        b_sc = 60
+
+    area = safe_number(prop.get("area_m2"))
+    beds = safe_number(prop.get("bedrooms")) or 1
+    if area:
+        mpb = area / max(beds, 1)
+        if 20 <= mpb <= 35:             c_sc = 90
+        elif 15 <= mpb < 20 or 35 < mpb <= 45: c_sc = 70
+        elif mpb < 15:                  c_sc = 40
+        else:                           c_sc = 58
+    else:
+        c_sc = 50
+
+    baths = safe_number(prop.get("bathrooms")) or 1
+    bbr = beds / max(baths, 1)
+    if 1.0 <= bbr <= 2.0: d_sc = 85
+    elif bbr < 1.0:       d_sc = 70
+    else:                 d_sc = 48
+
+    district = prop.get("district", "")
+    premium  = {"Quận 1", "Quận 3", "Quận 7", "Bình Thạnh", "Thủ Đức"}
+    dr       = dev_info.get("rating", 0) if dev_info else 0
+    ops      = dev_info.get("operations", 0) if dev_info else 0
+    if district in premium and dr >= 4:  e_sc = 90
+    elif district in premium or dr >= 4: e_sc = 70
+    elif ops >= 4:                       e_sc = 60
+    else:                                e_sc = 40
+
+    composite = clamp_score(a_sc*0.25 + b_sc*0.20 + c_sc*0.20 + d_sc*0.15 + e_sc*0.20)
+    label = "Cao" if composite >= 72 else ("Trung bình" if composite >= 50 else "Thấp")
+    return {
+        "score": round(composite, 1), "label": label,
+        "breakdown": {
+            "developer":        round(a_sc, 1),
+            "building_status":  round(b_sc, 1),
+            "size_efficiency":  round(c_sc, 1),
+            "bed_bath_utility": round(d_sc, 1),
+            "project_tier":     round(e_sc, 1),
+        },
+    }
+
+
+# ─── Model Confidence ────────────────────────────────────────────────────────
+
+def _model_confidence(
+    prop: dict,
+    market: dict,
+    macro: dict,
+    liquidity_sc: float,
+) -> dict:
+    """Confidence score 0-100 reflecting data richness and consistency."""
+    score = 50.0
+    fields = [prop.get("price_per_m2_million"), prop.get("area_m2"),
+              prop.get("developer"), prop.get("bedrooms"), market.get("avg_price_per_m2")]
+    score += (sum(1 for f in fields if f is not None) - 2) * 5
+    if macro.get("absorption_rate") is not None:
+        score += 5
+    score += (liquidity_sc - 50) * 0.20
+    p   = safe_number(prop.get("price_per_m2_million"))
+    avg = safe_number(market.get("avg_price_per_m2"))
+    if p and avg and avg > 0:
+        r = p / avg
+        if 0.70 <= r <= 1.30:    score += 8
+        elif r < 0.50 or r > 2.0: score -= 15
+        else:                     score -= 5
+    ls = _get_legal_status(prop)
+    lr = float(LEGAL_RISK.get(ls, LEGAL_RISK[None]))
+    if lr <= 5:    score += 5
+    elif lr >= 35: score -= 10
+    score = clamp_score(score)
+    label = ("Cao" if score >= 72 else "Trung bình" if score >= 52
+             else "Thấp" if score >= 38 else "Rất thấp")
+    return {"score": round(score, 1), "label": label}
+
+
+# ─── Macro Regime Modifier ───────────────────────────────────────────────────
+
+def _macro_modifier(macro_regime: dict) -> dict:
+    mode = macro_regime.get("mode", "neutral")
+    if mode == "bullish":    return {"rec_bias": +6,  "liq_mult": 1.08}
+    if mode == "tightening": return {"rec_bias": -8,  "liq_mult": 0.90}
+    return                          {"rec_bias":  0,  "liq_mult": 1.00}
+
+
+# ─── Recommendation Engine v2 ────────────────────────────────────────────────
+
+def _recommendation_v2(
+    composite: float,
+    liquidity_sc: float,
+    confidence: float,
+    dev_legal_status: str,
+    quality_score: float,
+    scenarios: dict,
+    macro_regime: dict,
+) -> dict:
+    """BUY / HOLD / SPECULATIVE / SKIP with explanation."""
+    mod      = _macro_modifier(macro_regime)
+    adj      = composite + mod["rec_bias"]
+    base_irr = (scenarios.get("base") or {}).get("irr") or 0
+    bear_roi = (scenarios.get("bear") or {}).get("roi") or -999
+
+    if dev_legal_status == "red":
+        return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
+                "reason": "Pháp lý nguy hiểm — bỏ qua"}
+    if dev_legal_status == "warning" and quality_score < 48:
+        return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
+                "reason": "Cảnh báo pháp lý + chất lượng thấp"}
+    if adj >= 67 and liquidity_sc >= 55 and base_irr >= 11 and bear_roi >= 0:
+        return {"verdict": "BUY", "color": "#14532d", "bg": "#dcfce7",
+                "reason": f"Điểm {adj:.0f} · IRR {base_irr:.1f}% · Bear ROI dương"}
+    if adj >= 57 and liquidity_sc >= 44 and base_irr >= 7:
+        return {"verdict": "BUY", "color": "#166534", "bg": "#bbf7d0",
+                "reason": f"Điểm {adj:.0f} · IRR {base_irr:.1f}%"}
+    risky = (liquidity_sc < 44 or confidence < 48 or dev_legal_status == "warning"
+             or quality_score < 48 or bear_roi < -15)
+    if adj >= 49 and risky:
+        flags = []
+        if liquidity_sc < 44:              flags.append(f"thanh khoản {liquidity_sc:.0f}/100")
+        if confidence < 48:                flags.append("dữ liệu mỏng")
+        if dev_legal_status == "warning":  flags.append("pháp lý CĐT ⚠️")
+        if bear_roi < -15:                 flags.append(f"bear ROI {bear_roi:.0f}%")
+        return {"verdict": "SPECULATIVE", "color": "#5b21b6", "bg": "#ede9fe",
+                "reason": "Tiềm năng nhưng: " + " · ".join(flags)}
+    if adj >= 43:
+        return {"verdict": "HOLD", "color": "#92400e", "bg": "#fef3c7",
+                "reason": f"Điểm {adj:.0f}/100 · Chờ tín hiệu"}
+    return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
+            "reason": f"Điểm {adj:.0f}/100 · Không đủ hấp dẫn"}
+
+
 # ─── Main valuation function ──────────────────────────────────────────────────
 
 def compute_valuation(
@@ -138,7 +489,11 @@ def compute_valuation(
     district: str,
     infra_momentum: dict,
     macro: dict,
+    dev_info: Optional[dict] = None,
+    macro_regime: Optional[dict] = None,
 ) -> dict:
+    if macro_regime is None:
+        macro_regime = MACRO_REGIME
     """
     Tính toán định giá tài chính nâng cao.
 
@@ -301,17 +656,17 @@ def compute_valuation(
     momentum_score = safe_number(infra_momentum.get("momentum_score"), 0.0)
 
     # Liquidity score based on absorption
-    if absorption is not None:
-        if absorption >= 0.85:
-            liquidity_sc = clamp_score(85 + (absorption - 0.85) * 100)
-        elif absorption >= 0.70:
-            liquidity_sc = clamp_score(60 + (absorption - 0.70) / 0.15 * 24)
-        elif absorption >= 0.55:
-            liquidity_sc = clamp_score(35 + (absorption - 0.55) / 0.15 * 24)
-        else:
-            liquidity_sc = clamp_score(absorption / 0.55 * 34)
-    else:
-        liquidity_sc = 50.0  # default
+    dev_rating   = dev_info.get("rating", 3) if dev_info else 3
+    liquidity_sc = _liquidity_score_v2(
+        prop_type         = prop_type,
+        area_m2           = area_m2,
+        price_per_sqm_m   = price_per_m2_input,
+        avg_price_per_sqm_m = avg_price_per_m2,
+        absorption        = absorption,
+        supply_tightness  = supply_tightness,
+        developer_rating  = dev_rating,
+    )
+    liquidity_sc = clamp_score(liquidity_sc * _macro_modifier(macro_regime).get("liq_mult", 1.0))
 
     # Supply pipeline risk: high new supply + low absorption = high risk
     supply_risk_raw = 0.0
@@ -448,6 +803,42 @@ def compute_valuation(
         growth_potential_score         * 0.25 +
         liquidity_exit_score           * 0.15 +
         risk_adj_score                 * 0.15
+    )
+
+    # ── Net Rental Yield ──────────────────────────────────────────────────────
+    net_yield_pct = _net_rental_yield(
+        gross_yield_pct = gross_rental_yield or 0,
+        vacancy         = VACANCY_RATE,
+        mgmt_fee        = MANAGEMENT_FEE,
+        maint_ratio     = MAINTENANCE_RATIO,
+        price_vnd       = price_vnd or 0,
+    ) if not is_dat_nen and price_vnd else 0.0
+
+    # ── Scenario Engine ───────────────────────────────────────────────────────
+    scenarios = _scenario_roi(
+        price_vnd       = price_vnd or 0,
+        gross_yield_pct = gross_rental_yield or 0,
+        growth_base_pct = growth_yoy or 8.0,
+        prop_type       = prop_type,
+        macro_regime    = macro_regime,
+    ) if price_vnd else {}
+
+    # ── Property Quality Score ────────────────────────────────────────────────
+    quality = _property_quality_score(prop, dev_info)
+
+    # ── Model Confidence ──────────────────────────────────────────────────────
+    confidence_obj = _model_confidence(prop, market, macro, liquidity_sc)
+
+    # ── Recommendation v2 ─────────────────────────────────────────────────────
+    dev_legal_status = (dev_info or {}).get("legal_status", "clean")
+    recommendation = _recommendation_v2(
+        composite        = composite_score,
+        liquidity_sc     = liquidity_sc,
+        confidence       = confidence_obj["score"],
+        dev_legal_status = dev_legal_status,
+        quality_score    = quality["score"],
+        scenarios        = scenarios,
+        macro_regime     = macro_regime,
     )
 
     # ── Vietnamese Explanations ───────────────────────────────────────────────
@@ -664,5 +1055,10 @@ def compute_valuation(
             "riskAdjustedScore":            round(risk_adj_score, 1),
             "compositeScore":               round(composite_score, 1),
         },
-        "explanations": explanations,
+        "explanations":   explanations,
+        "scenarios":      scenarios,
+        "netYield":       net_yield_pct,
+        "quality":        quality,
+        "confidence":     confidence_obj,
+        "recommendation": recommendation,
     }

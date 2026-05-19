@@ -8,6 +8,7 @@ from typing import Optional
 from collections import defaultdict
 from infrastructure import get_infra_score, get_infra_momentum, INFRA_PROJECTS, Status
 from valuation_engine import compute_valuation
+from developer_db import get_developer_info as _get_dev_info
 
 
 # ──────────────────────────────────────────────
@@ -563,13 +564,23 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
         momentum = get_infra_momentum(district)
 
         # Phân tích tài chính nâng cao
+        dev_info = _get_dev_info(prop.get("developer", ""))
         vdata = compute_valuation(
             prop=prop,
             market=market,
             district=district,
             infra_momentum=momentum,
             macro=macro,
+            dev_info=dev_info,
         )
+
+        # Override invest verdict with recommendation engine v2
+        rec = vdata.get("recommendation", {})
+        if rec.get("verdict"):
+            iv = rec["verdict"]
+            ic = rec["color"]
+            ib = rec["bg"]
+            id_ = rec.get("reason", id_)
 
         results.append(AnalysisResult(
             property=prop,

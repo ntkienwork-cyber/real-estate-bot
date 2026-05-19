@@ -437,6 +437,16 @@ TEMPLATE = """
               ("Điều chỉnh rủi ro",  sc.get('riskAdjustedScore', 0),            "#f87171"),
               ("Tổng hợp",           sc.get('compositeScore', 0),               "#e2e8f0"),
             ] %}
+            {% set conf_d = vd.get('confidence', {}) %}
+            {% set qual_d = vd.get('quality', {}) %}
+            {% set rec_d  = vd.get('recommendation', {}) %}
+            {% if conf_d or qual_d %}
+            <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+              {% if conf_d %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;border:1px solid #334155;color:#64748b">🎯 Tin cậy: <strong style="color:#e2e8f0">{{conf_d.get('score','—')}}/100 — {{conf_d.get('label','')}}</strong></span>{% endif %}
+              {% if qual_d %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;border:1px solid #334155;color:#64748b">🏢 Chất lượng: <strong style="color:#e2e8f0">{{qual_d.get('score','—')}}/100 — {{qual_d.get('label','')}}</strong></span>{% endif %}
+              {% if rec_d and rec_d.get('reason') %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;background:#0f172a;color:#94a3b8">{{rec_d.get('reason','')}}</span>{% endif %}
+            </div>
+            {% endif %}
             {% for label, val, color in score_items %}
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
               <div style="width:140px;font-size:.68rem;color:#94a3b8">{{ label }}</div>
@@ -450,10 +460,10 @@ TEMPLATE = """
           <!-- Financial metrics mini-table -->
           <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px">
             {% set metrics = [
-              ("Yield", (ic.get('grossRentalYield')|string + "%" if ic.get('grossRentalYield') else "—"), "#34d399"),
+              ("Net Yield", (vd.get('netYield')|round(2)|string + "%" if vd.get('netYield') else "—"), "#34d399"),
               ("Cap Rate", (ic.get('capRate')|round(2)|string + "%" if ic.get('capRate') else "—"), "#60a5fa"),
               ("DSCR", (ic.get('DSCR')|round(2)|string if ic.get('DSCR') else "—"), "#fbbf24"),
-              ("5Y ROI", (vv.get('projected5YROI')|string + "%" if vv.get('projected5YROI') else "—"), "#a78bfa"),
+              ("Base ROI", (vd.get('scenarios',{}).get('base',{}).get('roi')|string + "%" if vd.get('scenarios') and vd.get('scenarios',{}).get('base') else "—"), "#a78bfa"),
               ("Val Gap", (vv.get('valuationGapPct')|round(1)|string + "%" if vv.get('valuationGapPct') is not none else "—"), "#f87171" if (vv.get('valuationGapPct') or 0) < 0 else "#34d399"),
               ("Rủi ro", rk.get('overallRiskLevel','—'), "#22c55e" if rk.get('overallRiskLevel')=="Low" else "#f59e0b" if rk.get('overallRiskLevel')=="Medium" else "#ef4444"),
             ] %}
@@ -464,6 +474,33 @@ TEMPLATE = """
             </div>
             {% endfor %}
           </div>
+          {% set sc_data = vd.get('scenarios', {}) %}
+          {% if sc_data.get('bear') %}
+          <div style="margin-bottom:12px">
+            <div style="font-size:.7rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Kịch bản 5 năm (Bear / Cơ sở / Bull)</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+              {% for sc_key, sc_lbl, sc_col, sc_bg in [
+                ('bear','⬇ Xấu','#ef4444','#1a0a0a'),
+                ('base','➡ Cơ sở','#f59e0b','#1a1400'),
+                ('bull','⬆ Tốt','#22c55e','#0a1a0e')
+              ] %}
+              {% set s = sc_data.get(sc_key, {}) %}
+              <div style="background:{{sc_bg}};border:1px solid {{sc_col}}44;border-radius:8px;padding:9px">
+                <div style="font-size:.67rem;font-weight:700;color:{{sc_col}};margin-bottom:5px">{{sc_lbl}} ({{s.get('app_rate_pct','—')}}%/năm)</div>
+                <div style="font-size:.78rem;color:#e2e8f0;font-weight:700;margin-bottom:2px">ROI: {{s.get('roi','—')}}%</div>
+                <div style="font-size:.65rem;color:#94a3b8">IRR: {{s.get('irr','—')}}%/năm</div>
+                <div style="font-size:.65rem;color:#94a3b8">Yield ròng: {{s.get('net_yield_pct','—')}}%</div>
+                <div style="font-size:.65rem;color:#94a3b8">Giá thoát: {{s.get('exit_price_b','—')}} tỷ</div>
+                {% if s.get('payback_years') %}<div style="font-size:.65rem;color:#64748b">Hoàn vốn: {{s.get('payback_years')}} năm</div>{% endif %}
+              </div>
+              {% endfor %}
+            </div>
+            {% set meta = sc_data.get('meta', {}) %}
+            <div style="font-size:.6rem;color:#475569;margin-top:4px">
+              Giả định: BG {{meta.get('entry_cost_pct',1)|int}}% · Phí thoát {{meta.get('broker_exit_pct',2)|int}}%+{{meta.get('transfer_tax_pct',2)|int}}%+{{meta.get('haircut_pct',2)|int}}% haircut · {{meta.get('holding_years',5)}} năm nắm giữ · Chế độ macro: {{meta.get('macro_mode','—')}}
+            </div>
+          </div>
+          {% endif %}
           <!-- Explanations -->
           {% if vd.get('explanations') %}
           <div style="font-size:.68rem;color:#94a3b8;line-height:1.7;margin-bottom:12px">

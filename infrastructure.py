@@ -671,6 +671,49 @@ INFRA_PROJECTS: list[InfraProject] = [
 # SCORING ENGINE — cập nhật với dữ liệu thực
 # ═══════════════════════════════════════════════════════════════════
 
+def _catalyst_impact(proj: "InfraProject", is_primary: bool) -> dict:
+    """
+    Defensible catalyst impact per project.
+    net = gross × completion_prob × time_decay × (1−priced_in) × sensitivity × zone_weight
+    """
+    import math
+    prob = {Status.COMPLETED: 1.00, Status.UNDER_CONST: 0.85,
+            Status.APPROVED: 0.60,  Status.PLANNING: 0.25}[proj.status]
+    try:
+        years_rem = max(int(proj.expected_completion[:4]) - 2026, 0)
+    except (ValueError, IndexError):
+        years_rem = 3
+    td = math.exp(-0.20 * years_rem)
+    pi = {Status.COMPLETED: 0.75, Status.UNDER_CONST: 0.40,
+          Status.APPROVED: 0.15,  Status.PLANNING: 0.05}[proj.status]
+    sens = {
+        InfraType.METRO: 1.00, InfraType.EXPRESSWAY: 0.85,
+        InfraType.ROAD: 0.70,  InfraType.BRIDGE: 0.72,
+        InfraType.AIRPORT: 0.55, InfraType.ANTI_FLOOD: 0.50,
+        InfraType.URBAN_DEV: 0.80, InfraType.FINANCIAL: 0.75,
+        InfraType.INDUSTRIAL: 0.60,
+    }.get(proj.infra_type, 0.65)
+    zone_w = 1.0 if is_primary else 0.45
+    net = proj.price_impact_pct * prob * td * (1 - pi) * sens * zone_w
+    if proj.status == Status.COMPLETED:
+        why = f"Đã hoàn thành — ~{round(pi*100)}% đã phản ánh vào giá"
+    elif proj.status == Status.UNDER_CONST:
+        why = f"Đang thi công — ~{round((1-pi)*100)}% chưa vào giá, hoàn thành {proj.expected_completion}"
+    elif proj.status == Status.APPROVED:
+        why = f"Đã duyệt — phần lớn chưa vào giá, dự kiến {proj.expected_completion}"
+    else:
+        why = "Quy hoạch — rủi ro chưa hoàn thành, upside thực tế thấp"
+    return {
+        "gross_pct":     proj.price_impact_pct,
+        "net_pct":       round(net, 1),
+        "prob":          prob,
+        "time_decay":    round(td, 2),
+        "priced_in_pct": round(pi * 100),
+        "sensitivity":   sens,
+        "why":           why,
+    }
+
+
 def get_infra_score(district: str) -> tuple[float, list[str]]:
     """Tính điểm hạ tầng cho 1 quận. Trả về (score 0–100, danh sách dự án)."""
     score = 0.0
@@ -840,8 +883,9 @@ def get_infra_momentum(district: str) -> dict:
                 "completion": p.expected_completion,
                 "impact_pct": p.price_impact_pct,
                 "type":       p.infra_type.value,
+                "catalyst":   _catalyst_impact(p, w == 1.0),
             }
-            for p, _ in top_projs
+            for p, w in top_projs
         ],
     }
 
