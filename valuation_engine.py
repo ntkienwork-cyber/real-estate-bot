@@ -195,7 +195,7 @@ def compute_valuation(
 
     # ── Valuation Gap ─────────────────────────────────────────────────────────
     valuation_gap_pct = None
-    valuation_label   = "Unknown"
+    valuation_label   = "UNKNOWN"
     if fair_market_value is not None and price_vnd is not None and price_vnd > 0:
         valuation_gap_pct = (fair_market_value - price_vnd) / price_vnd * 100
         if valuation_gap_pct > 10:

@@ -367,10 +367,13 @@ TEMPLATE = """
           <div class="bar-outer"><div class="bar-inner" style="width:{{ r.score }}%;background:{% if r.score>=75 %}#22c55e{% elif r.score>=55 %}#f59e0b{% else %}#ef4444{% endif %}"></div></div>
           <div class="bar-num" style="color:{% if r.score>=75 %}#22c55e{% elif r.score>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ r.score }}</div>
         </div>
+        {% if sc.get('compositeScore') %}<div class="sub" style="font-size:.61rem;color:#64748b;margin-top:2px">composite: {{ sc.get('compositeScore') }}</div>{% endif %}
       </td>
-      <td><span class="badge" style="color:{{ vfg }};background:{{ vbg }}">{{ r.value_vs_market }}</span></td>
-      <td style="font-weight:700;color:{% if r.roi_5yr and r.roi_5yr>=80 %}#4ade80{% elif r.roi_5yr %}#fbbf24{% else %}#64748b{% endif %}">
-        {% if r.roi_5yr %}{{ r.roi_5yr }}%{% else %}—{% endif %}</td>
+      {% set _vl = vv.get('valuationLabel', 'UNKNOWN') %}{% set _vlfg,_vlbg = value_badge(_vl) %}
+      <td><span class="badge" style="color:{{ _vlfg }};background:{{ _vlbg }}">{{ _vl }}</span></td>
+      {% set _roi = vv.get('projected5YROI') %}
+      <td style="font-weight:700;color:{% if _roi and _roi>=80 %}#4ade80{% elif _roi %}#fbbf24{% else %}#64748b{% endif %}">
+        {% if _roi %}{{ _roi }}%{% else %}—{% endif %}</td>
       <td style="color:#94a3b8">{% if r.rental_yield_est %}{{ r.rental_yield_est }}%{% else %}—{% endif %}</td>
       <td><span class="badge" style="color:{{ ifc }};background:{{ ibc }}">{{ il }}</span>
         <div class="sub">{{ r.infra_score }}/100</div></td>
