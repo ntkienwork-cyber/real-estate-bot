@@ -455,23 +455,29 @@ def _recommendation_v2(
     if dev_legal_status == "red":
         return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
                 "reason": "Pháp lý nguy hiểm — bỏ qua"}
-    if dev_legal_status == "warning" and quality_score < 48:
-        return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
-                "reason": "Cảnh báo pháp lý + chất lượng thấp"}
+    # Warning developer → capped at SPECULATIVE regardless of score
+    if dev_legal_status == "warning":
+        if quality_score < 48 or adj < 48:
+            return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
+                    "reason": "Cảnh báo pháp lý CĐT — rủi ro cao"}
+        flags = [f"pháp lý CĐT ⚠️ (đang điều tra)"]
+        if liquidity_sc < 44:  flags.append(f"thanh khoản {liquidity_sc:.0f}/100")
+        if bear_roi < -10:     flags.append(f"bear ROI {bear_roi:.0f}%")
+        return {"verdict": "SPECULATIVE", "color": "#5b21b6", "bg": "#ede9fe",
+                "reason": "Tiềm năng nhưng: " + " · ".join(flags)}
     if adj >= 67 and liquidity_sc >= 55 and base_irr >= 11 and bear_roi >= 0:
         return {"verdict": "BUY", "color": "#14532d", "bg": "#dcfce7",
-                "reason": f"Điểm {adj:.0f} · IRR {base_irr:.1f}% · Bear ROI dương"}
+                "reason": f"Điểm {adj:.0f} · IRR {base_irr:.1f}% · Kịch bản xấu vẫn dương"}
     if adj >= 57 and liquidity_sc >= 44 and base_irr >= 7:
         return {"verdict": "BUY", "color": "#166534", "bg": "#bbf7d0",
                 "reason": f"Điểm {adj:.0f} · IRR {base_irr:.1f}%"}
-    risky = (liquidity_sc < 44 or confidence < 48 or dev_legal_status == "warning"
-             or quality_score < 48 or bear_roi < -15)
+    risky = (liquidity_sc < 44 or confidence < 48 or quality_score < 48 or bear_roi < -15)
     if adj >= 49 and risky:
         flags = []
-        if liquidity_sc < 44:              flags.append(f"thanh khoản {liquidity_sc:.0f}/100")
-        if confidence < 48:                flags.append("dữ liệu mỏng")
-        if dev_legal_status == "warning":  flags.append("pháp lý CĐT ⚠️")
-        if bear_roi < -15:                 flags.append(f"bear ROI {bear_roi:.0f}%")
+        if liquidity_sc < 44:   flags.append(f"thanh khoản {liquidity_sc:.0f}/100")
+        if confidence < 48:     flags.append("dữ liệu mỏng")
+        if quality_score < 48:  flags.append(f"chất lượng thấp {quality_score:.0f}/100")
+        if bear_roi < -15:      flags.append(f"bear ROI {bear_roi:.0f}%")
         return {"verdict": "SPECULATIVE", "color": "#5b21b6", "bg": "#ede9fe",
                 "reason": "Tiềm năng nhưng: " + " · ".join(flags)}
     if adj >= 43:
