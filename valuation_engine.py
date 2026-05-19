@@ -431,7 +431,7 @@ def _model_confidence(
 def _macro_modifier(macro_regime: dict) -> dict:
     mode = macro_regime.get("mode", "neutral")
     if mode == "bullish":    return {"rec_bias": +6,  "liq_mult": 1.08}
-    if mode == "tightening": return {"rec_bias": -8,  "liq_mult": 0.90}
+    if mode == "tightening": return {"rec_bias": -6,  "liq_mult": 0.90}
     return                          {"rec_bias":  0,  "liq_mult": 1.00}
 
 
@@ -480,7 +480,7 @@ def _recommendation_v2(
         if bear_roi < -15:      flags.append(f"bear ROI {bear_roi:.0f}%")
         return {"verdict": "SPECULATIVE", "color": "#5b21b6", "bg": "#ede9fe",
                 "reason": "Tiềm năng nhưng: " + " · ".join(flags)}
-    if adj >= 43:
+    if adj >= 41:
         return {"verdict": "HOLD", "color": "#92400e", "bg": "#fef3c7",
                 "reason": f"Điểm {adj:.0f}/100 · Chờ tín hiệu"}
     return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
