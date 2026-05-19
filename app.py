@@ -363,7 +363,21 @@ TEMPLATE = """
     <tr>
       <td style="color:#64748b;font-size:.72rem">{{ loop.index }}</td>
       <td style="max-width:200px"><a class="link" href="{{ r.property.get('url','#') }}" target="_blank">{{ r.property.title[:48] }}</a>
-        <div class="sub">{{ r.property.get('developer','') }} · {{ r.property.get('building_status','') }}</div></td>
+        <div class="sub" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap">
+          {% set _dn = r.property.get('developer','') %}
+          {% set _di = get_developer_info(_dn) %}
+          <span>{{ _dn }}</span>
+          {% if _di %}
+            {% if _di.legal_status == 'red' %}
+              <span title="{{ _di.legal_note }}" style="cursor:help;display:inline-block;background:#dc2626;color:#fff;font-size:.6rem;font-weight:700;border-radius:4px;padding:0 5px;line-height:1.6">🔴 ĐỎ</span>
+            {% elif _di.legal_status == 'warning' %}
+              <span title="{{ _di.legal_note }}" style="cursor:help;display:inline-block;background:#fee2e2;color:#991b1b;font-size:.6rem;font-weight:700;border-radius:4px;padding:0 5px;line-height:1.6">⚠️ Cảnh báo</span>
+            {% elif _di.legal_status == 'caution' %}
+              <span title="{{ _di.legal_note }}" style="cursor:help;display:inline-block;background:#fef3c7;color:#92400e;font-size:.6rem;font-weight:700;border-radius:4px;padding:0 5px;line-height:1.6">⚡ Thẩm định</span>
+            {% endif %}
+          {% endif %}
+          <span style="color:#475569">· {{ r.property.get('building_status','') }}</span>
+        </div></td>
       <td style="font-weight:700;white-space:nowrap">{{ r.property.price_billion }}tỷ</td>
       <td>{{ r.property.area_m2 or '—' }}{% if r.property.area_m2 %}m²{% endif %}</td>
       <td>{{ r.property.price_per_m2_million or '—' }}{% if r.property.price_per_m2_million %}tr{% endif %}</td>
