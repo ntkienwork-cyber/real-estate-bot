@@ -9,7 +9,7 @@ from typing import Optional
 # ─── Module-level Assumptions ─────────────────────────────────────────────────
 LTV_RATIO       = 0.70   # 70% loan-to-value (ngân hàng VN tiêu chuẩn)
 LOAN_TERM_YEARS = 20
-INTEREST_RATE   = 0.085  # 8.5% — từ analyzer.MORTGAGE_RATE_CURRENT
+INTEREST_RATE   = 0.095  # 9.5% — lãi suất ưu đãi thực tế T5/2026 (tăng từ 8.5%)
 VACANCY_RATE    = 0.10   # 10% tỷ lệ trống
 OPEX_RATIO      = 0.15   # 15% chi phí vận hành / effective gross income
 MANAGEMENT_FEE  = 0.08   # 8% phí quản lý / gross rent

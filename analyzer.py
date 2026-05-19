@@ -11,115 +11,118 @@ from valuation_engine import compute_valuation
 
 
 # ──────────────────────────────────────────────
-# Dữ liệu thị trường tham chiếu TP.HCM (2024-2025)
-# Nguồn: CBRE, Savills, VARS reports
+# Dữ liệu thị trường tham chiếu TP.HCM — Cập nhật T5/2026
+# Nguồn: Savills Q1/2026, CBRE Vietnam, CafeLand, VnExpress, batdongsan.com.vn
+# Giá sơ cấp toàn TP tăng ~12.5% YoY; yield nén do giá tăng nhanh hơn thuê
 # ──────────────────────────────────────────────
 MARKET_DATA = {
     "can-ho-chung-cu": {
-        # Nội thành
-        "Quận 1":    {"avg_price_per_m2": 120, "rental_yield": 3.5, "growth_yoy": 8},
-        "Quận 3":    {"avg_price_per_m2": 90,  "rental_yield": 3.8, "growth_yoy": 7},
-        "Quận 4":    {"avg_price_per_m2": 72,  "rental_yield": 4.2, "growth_yoy": 9},
-        "Quận 5":    {"avg_price_per_m2": 65,  "rental_yield": 4.0, "growth_yoy": 7},
-        "Quận 6":    {"avg_price_per_m2": 46,  "rental_yield": 5.0, "growth_yoy": 10},
-        "Quận 8":    {"avg_price_per_m2": 52,  "rental_yield": 4.8, "growth_yoy": 12},
-        "Quận 10":   {"avg_price_per_m2": 62,  "rental_yield": 4.3, "growth_yoy": 8},
-        "Quận 11":   {"avg_price_per_m2": 52,  "rental_yield": 4.8, "growth_yoy": 9},
-        "Quận 12":   {"avg_price_per_m2": 38,  "rental_yield": 5.8, "growth_yoy": 13},
+        # Nội thành — giá tiếp tục leo thang, yield bị nén mạnh
+        "Quận 1":    {"avg_price_per_m2": 138, "rental_yield": 3.2, "growth_yoy": 8},
+        "Quận 3":    {"avg_price_per_m2": 102, "rental_yield": 3.5, "growth_yoy": 7},
+        "Quận 4":    {"avg_price_per_m2": 83,  "rental_yield": 3.8, "growth_yoy": 10},
+        "Quận 5":    {"avg_price_per_m2": 74,  "rental_yield": 3.6, "growth_yoy": 7},
+        "Quận 6":    {"avg_price_per_m2": 53,  "rental_yield": 4.3, "growth_yoy": 10},
+        "Quận 8":    {"avg_price_per_m2": 60,  "rental_yield": 4.2, "growth_yoy": 12},
+        "Quận 10":   {"avg_price_per_m2": 71,  "rental_yield": 3.9, "growth_yoy": 8},
+        "Quận 11":   {"avg_price_per_m2": 60,  "rental_yield": 4.2, "growth_yoy": 9},
+        "Quận 12":   {"avg_price_per_m2": 44,  "rental_yield": 4.8, "growth_yoy": 13},
         # Mở rộng
-        "Quận 7":    {"avg_price_per_m2": 65,  "rental_yield": 4.5, "growth_yoy": 9},
-        "Bình Thạnh":{"avg_price_per_m2": 62,  "rental_yield": 4.8, "growth_yoy": 10},
-        "Gò Vấp":    {"avg_price_per_m2": 48,  "rental_yield": 5.2, "growth_yoy": 11},
-        "Tân Bình":  {"avg_price_per_m2": 56,  "rental_yield": 5.0, "growth_yoy": 9},
-        "Tân Phú":   {"avg_price_per_m2": 48,  "rental_yield": 5.2, "growth_yoy": 10},
-        "Bình Tân":  {"avg_price_per_m2": 42,  "rental_yield": 5.5, "growth_yoy": 11},
-        "Thủ Đức":   {"avg_price_per_m2": 55,  "rental_yield": 5.2, "growth_yoy": 13},
+        "Quận 7":    {"avg_price_per_m2": 75,  "rental_yield": 3.8, "growth_yoy": 10},
+        "Bình Thạnh":{"avg_price_per_m2": 72,  "rental_yield": 4.1, "growth_yoy": 11},
+        "Gò Vấp":    {"avg_price_per_m2": 56,  "rental_yield": 4.5, "growth_yoy": 11},
+        "Tân Bình":  {"avg_price_per_m2": 64,  "rental_yield": 4.3, "growth_yoy": 9},
+        "Tân Phú":   {"avg_price_per_m2": 55,  "rental_yield": 4.5, "growth_yoy": 10},
+        "Bình Tân":  {"avg_price_per_m2": 49,  "rental_yield": 4.6, "growth_yoy": 11},
+        "Thủ Đức":   {"avg_price_per_m2": 67,  "rental_yield": 4.4, "growth_yoy": 14},
         # Ngoại thành
-        "Nhà Bè":    {"avg_price_per_m2": 38,  "rental_yield": 5.0, "growth_yoy": 11},
-        "Bình Chánh":{"avg_price_per_m2": 34,  "rental_yield": 5.2, "growth_yoy": 12},
-        "Hóc Môn":   {"avg_price_per_m2": 28,  "rental_yield": 5.0, "growth_yoy": 10},
+        "Nhà Bè":    {"avg_price_per_m2": 44,  "rental_yield": 4.3, "growth_yoy": 12},
+        "Bình Chánh":{"avg_price_per_m2": 39,  "rental_yield": 4.5, "growth_yoy": 12},
+        "Hóc Môn":   {"avg_price_per_m2": 32,  "rental_yield": 4.3, "growth_yoy": 10},
     },
     "nha-rieng": {
-        # Nhà riêng — giá/m² đất, yield thuê tốt hơn căn hộ, tăng trưởng ổn định
-        "Quận 1":    {"avg_price_per_m2": 200, "rental_yield": 3.0, "growth_yoy": 7},
-        "Quận 3":    {"avg_price_per_m2": 150, "rental_yield": 3.2, "growth_yoy": 7},
-        "Quận 4":    {"avg_price_per_m2": 110, "rental_yield": 3.8, "growth_yoy": 8},
-        "Quận 5":    {"avg_price_per_m2": 130, "rental_yield": 3.5, "growth_yoy": 7},
-        "Quận 6":    {"avg_price_per_m2": 75,  "rental_yield": 4.5, "growth_yoy": 9},
-        "Quận 7":    {"avg_price_per_m2": 95,  "rental_yield": 4.0, "growth_yoy": 9},
-        "Quận 8":    {"avg_price_per_m2": 72,  "rental_yield": 4.5, "growth_yoy": 10},
-        "Quận 10":   {"avg_price_per_m2": 100, "rental_yield": 3.8, "growth_yoy": 8},
-        "Quận 11":   {"avg_price_per_m2": 85,  "rental_yield": 4.0, "growth_yoy": 8},
-        "Quận 12":   {"avg_price_per_m2": 55,  "rental_yield": 5.0, "growth_yoy": 11},
-        "Bình Thạnh":{"avg_price_per_m2": 90,  "rental_yield": 4.2, "growth_yoy": 9},
-        "Gò Vấp":    {"avg_price_per_m2": 68,  "rental_yield": 4.8, "growth_yoy": 10},
-        "Phú Nhuận": {"avg_price_per_m2": 120, "rental_yield": 3.5, "growth_yoy": 8},
-        "Tân Bình":  {"avg_price_per_m2": 80,  "rental_yield": 4.3, "growth_yoy": 9},
-        "Tân Phú":   {"avg_price_per_m2": 65,  "rental_yield": 4.8, "growth_yoy": 9},
-        "Bình Tân":  {"avg_price_per_m2": 55,  "rental_yield": 5.0, "growth_yoy": 10},
-        "Thủ Đức":   {"avg_price_per_m2": 70,  "rental_yield": 4.8, "growth_yoy": 12},
-        "Nhà Bè":    {"avg_price_per_m2": 52,  "rental_yield": 4.5, "growth_yoy": 10},
-        "Bình Chánh":{"avg_price_per_m2": 42,  "rental_yield": 4.8, "growth_yoy": 11},
-        "Hóc Môn":   {"avg_price_per_m2": 35,  "rental_yield": 4.5, "growth_yoy": 9},
-        "Khác":      {"avg_price_per_m2": 45,  "rental_yield": 4.5, "growth_yoy": 9},
+        # Nhà riêng — tăng ~12% YoY, yield giảm theo áp lực giá
+        "Quận 1":    {"avg_price_per_m2": 226, "rental_yield": 2.8, "growth_yoy": 7},
+        "Quận 3":    {"avg_price_per_m2": 169, "rental_yield": 3.0, "growth_yoy": 7},
+        "Quận 4":    {"avg_price_per_m2": 125, "rental_yield": 3.5, "growth_yoy": 9},
+        "Quận 5":    {"avg_price_per_m2": 147, "rental_yield": 3.2, "growth_yoy": 7},
+        "Quận 6":    {"avg_price_per_m2": 85,  "rental_yield": 4.0, "growth_yoy": 9},
+        "Quận 7":    {"avg_price_per_m2": 108, "rental_yield": 3.6, "growth_yoy": 10},
+        "Quận 8":    {"avg_price_per_m2": 82,  "rental_yield": 4.0, "growth_yoy": 11},
+        "Quận 10":   {"avg_price_per_m2": 113, "rental_yield": 3.5, "growth_yoy": 8},
+        "Quận 11":   {"avg_price_per_m2": 96,  "rental_yield": 3.7, "growth_yoy": 8},
+        "Quận 12":   {"avg_price_per_m2": 63,  "rental_yield": 4.4, "growth_yoy": 12},
+        "Bình Thạnh":{"avg_price_per_m2": 102, "rental_yield": 3.8, "growth_yoy": 10},
+        "Gò Vấp":    {"avg_price_per_m2": 77,  "rental_yield": 4.3, "growth_yoy": 11},
+        "Phú Nhuận": {"avg_price_per_m2": 136, "rental_yield": 3.2, "growth_yoy": 8},
+        "Tân Bình":  {"avg_price_per_m2": 91,  "rental_yield": 3.9, "growth_yoy": 9},
+        "Tân Phú":   {"avg_price_per_m2": 74,  "rental_yield": 4.3, "growth_yoy": 9},
+        "Bình Tân":  {"avg_price_per_m2": 63,  "rental_yield": 4.4, "growth_yoy": 10},
+        "Thủ Đức":   {"avg_price_per_m2": 80,  "rental_yield": 4.3, "growth_yoy": 13},
+        "Nhà Bè":    {"avg_price_per_m2": 59,  "rental_yield": 4.0, "growth_yoy": 11},
+        "Bình Chánh":{"avg_price_per_m2": 48,  "rental_yield": 4.3, "growth_yoy": 12},
+        "Hóc Môn":   {"avg_price_per_m2": 40,  "rental_yield": 4.0, "growth_yoy": 9},
+        "Khác":      {"avg_price_per_m2": 51,  "rental_yield": 4.0, "growth_yoy": 9},
     },
     "dat-nen": {
-        # Đất nền — giá/m², không có yield thuê, tăng trưởng vốn cao hơn
-        "Quận 7":    {"avg_price_per_m2": 80,  "rental_yield": 0.0, "growth_yoy": 10},
-        "Quận 9":    {"avg_price_per_m2": 45,  "rental_yield": 0.0, "growth_yoy": 13},
-        "Quận 12":   {"avg_price_per_m2": 40,  "rental_yield": 0.0, "growth_yoy": 12},
-        "Bình Tân":  {"avg_price_per_m2": 38,  "rental_yield": 0.0, "growth_yoy": 11},
-        "Thủ Đức":   {"avg_price_per_m2": 55,  "rental_yield": 0.0, "growth_yoy": 14},
-        "Nhà Bè":    {"avg_price_per_m2": 40,  "rental_yield": 0.0, "growth_yoy": 12},
-        "Bình Chánh":{"avg_price_per_m2": 28,  "rental_yield": 0.0, "growth_yoy": 12},
-        "Hóc Môn":   {"avg_price_per_m2": 22,  "rental_yield": 0.0, "growth_yoy": 11},
-        "Củ Chi":    {"avg_price_per_m2": 14,  "rental_yield": 0.0, "growth_yoy": 10},
-        "Khác":      {"avg_price_per_m2": 25,  "rental_yield": 0.0, "growth_yoy": 10},
+        # Đất nền — tăng mạnh theo hạ tầng Vành đai 3 và TP Thủ Đức
+        "Quận 7":    {"avg_price_per_m2": 91,  "rental_yield": 0.0, "growth_yoy": 11},
+        "Quận 9":    {"avg_price_per_m2": 52,  "rental_yield": 0.0, "growth_yoy": 14},
+        "Quận 12":   {"avg_price_per_m2": 46,  "rental_yield": 0.0, "growth_yoy": 13},
+        "Bình Tân":  {"avg_price_per_m2": 43,  "rental_yield": 0.0, "growth_yoy": 11},
+        "Thủ Đức":   {"avg_price_per_m2": 65,  "rental_yield": 0.0, "growth_yoy": 15},
+        "Nhà Bè":    {"avg_price_per_m2": 46,  "rental_yield": 0.0, "growth_yoy": 13},
+        "Bình Chánh":{"avg_price_per_m2": 33,  "rental_yield": 0.0, "growth_yoy": 13},
+        "Hóc Môn":   {"avg_price_per_m2": 26,  "rental_yield": 0.0, "growth_yoy": 12},
+        "Củ Chi":    {"avg_price_per_m2": 17,  "rental_yield": 0.0, "growth_yoy": 11},
+        "Khác":      {"avg_price_per_m2": 29,  "rental_yield": 0.0, "growth_yoy": 11},
     },
 }
 
 # ──────────────────────────────────────────────────────────────────────
 # MACRO DATA — Supply Tightness · Credit Growth · Mortgage Growth
-# Nguồn: CBRE Q1/2026, SBV banking report 2025, HoREA, VARS
+# Cập nhật T5/2026 — Nguồn: Savills Q1/2026, CBRE, HoREA
 # ──────────────────────────────────────────────────────────────────────
+# Điểm nổi bật Q1/2026:
+#   • Nguồn cung mới toàn TP chỉ ~1,900 căn (thấp nhất 5 năm)
+#   • Tỷ lệ hấp thụ cả TP: 40% (lãi suất tăng → người mua thận trọng)
+#   • Lãi suất tăng → mortgage_growth_yoy giảm so với 2025
 # supply_tightness: 1–10 (10 = cực khan hiếm nguồn cung mới)
-#   → Phản ánh tỷ lệ hàng tồn kho / số giao dịch trung bình 12 tháng
-# credit_growth_yoy: % tăng trưởng tín dụng toàn nền kinh tế (city-wide)
-# mortgage_growth_yoy: % tăng trưởng dư nợ vay mua BĐS (theo quận/khu vực)
 # new_supply_units_qtr: số căn mới mở bán Q1/2026 trong khu vực
-# absorption_rate: % căn bán được / tổng mở bán (cao = hấp thụ tốt)
+# absorption_rate: % căn bán được / tổng mở bán
 MACRO_DATA = {
-    # ── Nội thành cũ ─────────────────────────────────────────────────
-    "Quận 1":    {"supply_tightness": 9.5, "new_supply_units_qtr": 0,   "absorption_rate": 0.95, "mortgage_growth_yoy": 14},
-    "Quận 3":    {"supply_tightness": 9.0, "new_supply_units_qtr": 120, "absorption_rate": 0.92, "mortgage_growth_yoy": 13},
-    "Quận 4":    {"supply_tightness": 8.8, "new_supply_units_qtr": 80,  "absorption_rate": 0.90, "mortgage_growth_yoy": 15},
-    "Quận 5":    {"supply_tightness": 8.5, "new_supply_units_qtr": 60,  "absorption_rate": 0.88, "mortgage_growth_yoy": 12},
-    "Quận 6":    {"supply_tightness": 7.0, "new_supply_units_qtr": 300, "absorption_rate": 0.75, "mortgage_growth_yoy": 11},
-    "Quận 8":    {"supply_tightness": 7.2, "new_supply_units_qtr": 450, "absorption_rate": 0.78, "mortgage_growth_yoy": 13},
-    "Quận 10":   {"supply_tightness": 8.2, "new_supply_units_qtr": 100, "absorption_rate": 0.85, "mortgage_growth_yoy": 12},
-    "Quận 11":   {"supply_tightness": 8.0, "new_supply_units_qtr": 90,  "absorption_rate": 0.83, "mortgage_growth_yoy": 11},
-    "Quận 12":   {"supply_tightness": 6.0, "new_supply_units_qtr": 800, "absorption_rate": 0.70, "mortgage_growth_yoy": 14},
-    # ── Mở rộng ──────────────────────────────────────────────────────
-    "Quận 7":    {"supply_tightness": 7.5, "new_supply_units_qtr": 600, "absorption_rate": 0.80, "mortgage_growth_yoy": 16},
-    "Bình Thạnh":{"supply_tightness": 7.8, "new_supply_units_qtr": 350, "absorption_rate": 0.82, "mortgage_growth_yoy": 14},
-    "Gò Vấp":    {"supply_tightness": 6.8, "new_supply_units_qtr": 500, "absorption_rate": 0.73, "mortgage_growth_yoy": 12},
-    "Tân Bình":  {"supply_tightness": 7.5, "new_supply_units_qtr": 280, "absorption_rate": 0.80, "mortgage_growth_yoy": 13},
-    "Tân Phú":   {"supply_tightness": 6.5, "new_supply_units_qtr": 420, "absorption_rate": 0.72, "mortgage_growth_yoy": 12},
-    "Bình Tân":  {"supply_tightness": 5.8, "new_supply_units_qtr": 900, "absorption_rate": 0.65, "mortgage_growth_yoy": 11},
-    "Thủ Đức":   {"supply_tightness": 6.2, "new_supply_units_qtr":2800, "absorption_rate": 0.68, "mortgage_growth_yoy": 18},
-    # ── Ngoại thành ──────────────────────────────────────────────────
-    "Nhà Bè":    {"supply_tightness": 7.0, "new_supply_units_qtr": 400, "absorption_rate": 0.72, "mortgage_growth_yoy": 15},
-    "Bình Chánh":{"supply_tightness": 5.5, "new_supply_units_qtr":1200, "absorption_rate": 0.60, "mortgage_growth_yoy": 12},
-    "Hóc Môn":   {"supply_tightness": 5.0, "new_supply_units_qtr": 600, "absorption_rate": 0.58, "mortgage_growth_yoy": 10},
-    "Củ Chi":    {"supply_tightness": 4.0, "new_supply_units_qtr": 300, "absorption_rate": 0.50, "mortgage_growth_yoy":  9},
-    # ── City-wide macro (áp dụng nếu không tìm thấy quận) ────────────
-    "_citywide": {"supply_tightness": 6.5, "new_supply_units_qtr": 500, "absorption_rate": 0.72, "mortgage_growth_yoy": 13},
+    # ── Nội thành cũ — gần như không còn quỹ đất, cung cực thấp ────────
+    "Quận 1":    {"supply_tightness": 9.8, "new_supply_units_qtr":  0,  "absorption_rate": 0.90, "mortgage_growth_yoy": 11},
+    "Quận 3":    {"supply_tightness": 9.5, "new_supply_units_qtr":  60, "absorption_rate": 0.85, "mortgage_growth_yoy": 10},
+    "Quận 4":    {"supply_tightness": 9.2, "new_supply_units_qtr":  50, "absorption_rate": 0.82, "mortgage_growth_yoy": 12},
+    "Quận 5":    {"supply_tightness": 9.0, "new_supply_units_qtr":  40, "absorption_rate": 0.80, "mortgage_growth_yoy": 10},
+    "Quận 6":    {"supply_tightness": 7.5, "new_supply_units_qtr": 180, "absorption_rate": 0.62, "mortgage_growth_yoy":  9},
+    "Quận 8":    {"supply_tightness": 7.8, "new_supply_units_qtr": 200, "absorption_rate": 0.65, "mortgage_growth_yoy": 10},
+    "Quận 10":   {"supply_tightness": 8.8, "new_supply_units_qtr":  70, "absorption_rate": 0.78, "mortgage_growth_yoy": 10},
+    "Quận 11":   {"supply_tightness": 8.5, "new_supply_units_qtr":  60, "absorption_rate": 0.75, "mortgage_growth_yoy":  9},
+    "Quận 12":   {"supply_tightness": 6.5, "new_supply_units_qtr": 320, "absorption_rate": 0.55, "mortgage_growth_yoy": 11},
+    # ── Mở rộng ──────────────────────────────────────────────────────────
+    "Quận 7":    {"supply_tightness": 7.8, "new_supply_units_qtr": 200, "absorption_rate": 0.68, "mortgage_growth_yoy": 13},
+    "Bình Thạnh":{"supply_tightness": 8.0, "new_supply_units_qtr": 150, "absorption_rate": 0.70, "mortgage_growth_yoy": 11},
+    "Gò Vấp":    {"supply_tightness": 7.0, "new_supply_units_qtr": 180, "absorption_rate": 0.58, "mortgage_growth_yoy":  9},
+    "Tân Bình":  {"supply_tightness": 7.8, "new_supply_units_qtr": 120, "absorption_rate": 0.67, "mortgage_growth_yoy": 10},
+    "Tân Phú":   {"supply_tightness": 6.8, "new_supply_units_qtr": 160, "absorption_rate": 0.55, "mortgage_growth_yoy":  9},
+    "Bình Tân":  {"supply_tightness": 6.0, "new_supply_units_qtr": 300, "absorption_rate": 0.48, "mortgage_growth_yoy":  8},
+    "Thủ Đức":   {"supply_tightness": 6.5, "new_supply_units_qtr": 800, "absorption_rate": 0.52, "mortgage_growth_yoy": 14},
+    # ── Ngoại thành ──────────────────────────────────────────────────────
+    "Nhà Bè":    {"supply_tightness": 7.2, "new_supply_units_qtr": 150, "absorption_rate": 0.58, "mortgage_growth_yoy": 12},
+    "Bình Chánh":{"supply_tightness": 5.8, "new_supply_units_qtr": 400, "absorption_rate": 0.45, "mortgage_growth_yoy":  9},
+    "Hóc Môn":   {"supply_tightness": 5.2, "new_supply_units_qtr": 200, "absorption_rate": 0.42, "mortgage_growth_yoy":  8},
+    "Củ Chi":    {"supply_tightness": 4.2, "new_supply_units_qtr": 100, "absorption_rate": 0.38, "mortgage_growth_yoy":  7},
+    # ── City-wide (fallback nếu không tìm thấy quận) ─────────────────────
+    "_citywide": {"supply_tightness": 7.0, "new_supply_units_qtr": 190, "absorption_rate": 0.55, "mortgage_growth_yoy": 10},
 }
 
 # Credit growth toàn TP.HCM (SBV, áp dụng chung — không phân theo quận)
-CREDIT_GROWTH_YOY = 14.5   # % — Q4/2025, target 2026: 16%
-MORTGAGE_RATE_CURRENT = 8.5  # % — lãi suất vay mua nhà hiện tại (giảm từ 12% năm 2023)
-MORTGAGE_RATE_TREND = "decreasing"  # "decreasing" | "stable" | "increasing"
+# Cập nhật T5/2026: GDP Q1/2026 đạt 7.8%, FDI đạt 5.4 tỷ USD — nền kinh tế vẫn mạnh
+CREDIT_GROWTH_YOY = 15.5   # % — Q1/2026, target cả năm 2026: 16%
+MORTGAGE_RATE_CURRENT = 9.5  # % — lãi suất ưu đãi thực tế T5/2026 (ngân hàng quốc doanh)
+MORTGAGE_RATE_TREND = "increasing"  # "decreasing" | "stable" | "increasing"
 
 def get_macro(district: str) -> dict:
     return MACRO_DATA.get(district, MACRO_DATA["_citywide"])

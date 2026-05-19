@@ -548,12 +548,12 @@ TEMPLATE = """
     <div class="stat">
       <div class="val" style="color:#60a5fa">{{ mortgage_rate }}%</div>
       <div class="lbl">Lãi suất vay mua nhà</div>
-      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#93c5fd">{{ mortgage_trend_label }} từ 12% (2023)</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#93c5fd">{{ mortgage_trend_label }} — ưu đãi T5/2026</div>
     </div>
     <div class="stat">
-      <div class="val" style="color:#f59e0b">~72%</div>
+      <div class="val" style="color:#f59e0b">~40%</div>
       <div class="lbl">Absorption Rate TB</div>
-      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#fcd34d">Tỷ lệ hấp thụ toàn TP</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#fcd34d">Q1/2026 — 1,900 căn mở mới</div>
     </div>
     <div class="stat">
       <div class="val" style="color:#a78bfa">Phục hồi</div>
@@ -917,7 +917,7 @@ def index():
         Status=Status,
         credit_growth=CREDIT_GROWTH_YOY,
         mortgage_rate=MORTGAGE_RATE_CURRENT,
-        mortgage_trend_label="Giảm" if MORTGAGE_RATE_TREND == "decreasing" else "Ổn định",
+        mortgage_trend_label="Tăng" if MORTGAGE_RATE_TREND == "increasing" else ("Giảm" if MORTGAGE_RATE_TREND == "decreasing" else "Ổn định"),
         avg_composite_score=avg_composite_score,
         dscr_positive_count=dscr_positive_count,
         undervalued_count=undervalued_count,
