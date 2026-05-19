@@ -12,6 +12,11 @@ from infrastructure import (
     get_infra_score, get_infra_momentum, infra_label as _infra_label,
     INFRA_PROJECTS, Status, InfraType,
 )
+from developer_db import (
+    DEVELOPERS, get_developer_info,
+    dev_rating_color, legal_color, delivery_color,
+    legal_label, delivery_label,
+)
 
 app = Flask(__name__)
 
@@ -196,6 +201,7 @@ TEMPLATE = """
   <a onclick="showTab('tab-districts',this)">Phân tích Quận</a>
   <a onclick="showTab('tab-momentum',this)">Macro & Momentum</a>
   <a onclick="showTab('tab-infra',this)">Hạ tầng ({{ n_projects }})</a>
+  <a onclick="showTab('tab-developers',this)">Chủ Đầu Tư ({{ n_developers }})</a>
 </div>
 
 <div class="page">
@@ -446,10 +452,49 @@ TEMPLATE = """
           </div>
           <!-- Explanations -->
           {% if vd.get('explanations') %}
-          <div style="font-size:.68rem;color:#94a3b8;line-height:1.7">
+          <div style="font-size:.68rem;color:#94a3b8;line-height:1.7;margin-bottom:12px">
             {% for exp in vd.get('explanations', [])[:5] %}
             <div style="padding:2px 0;border-bottom:1px solid #1e293b">• {{ exp }}</div>
             {% endfor %}
+          </div>
+          {% endif %}
+          <!-- Developer analysis section -->
+          {% set dev_name = r.property.get('developer','') %}
+          {% set dinfo = get_developer_info(dev_name) %}
+          {% if dinfo %}
+          {% set dfg, dbg = dev_rating_color(dinfo.rating) %}
+          {% set lfg, lbg = legal_color(dinfo.legal_status) %}
+          {% set rfg, rbg = delivery_color(dinfo.delivery_risk) %}
+          <div style="border-top:1px solid #1e293b;padding-top:10px">
+            <div style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Phân tích chủ đầu tư — {{ dev_name }}</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
+              <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;text-align:center">
+                <div style="font-size:.62rem;color:#64748b;margin-bottom:4px">Uy tín</div>
+                <div style="font-size:.8rem;font-weight:700;color:{{ dfg }}">{{ '★' * dinfo.rating }}{{ '☆' * (5 - dinfo.rating) }}</div>
+                <div style="font-size:.62rem;color:{{ dfg }};margin-top:2px">{{ dinfo.rating }}/5</div>
+              </div>
+              <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;text-align:center">
+                <div style="font-size:.62rem;color:#64748b;margin-bottom:4px">Chất lượng vận hành</div>
+                <div style="font-size:.8rem;font-weight:700;color:#60a5fa">{{ '★' * dinfo.operations }}{{ '☆' * (5 - dinfo.operations) }}</div>
+                <div style="font-size:.62rem;color:#60a5fa;margin-top:2px">{{ dinfo.operations }}/5</div>
+              </div>
+              <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;text-align:center">
+                <div style="font-size:.62rem;color:#64748b;margin-bottom:4px">Pháp lý</div>
+                <span class="badge" style="color:{{ lfg }};background:{{ lbg }};font-size:.68rem">{{ legal_label(dinfo.legal_status) }}</span>
+              </div>
+              <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;text-align:center">
+                <div style="font-size:.62rem;color:#64748b;margin-bottom:4px">Rủi ro chậm BG</div>
+                <span class="badge" style="color:{{ rfg }};background:{{ rbg }};font-size:.68rem">{{ delivery_label(dinfo.delivery_risk) }}</span>
+              </div>
+            </div>
+            {% if dinfo.legal_status in ('caution','warning','red') %}
+            <div style="background:#2d1515;border:1px solid #7f1d1d;border-radius:6px;padding:8px;margin-bottom:6px">
+              <div style="font-size:.68rem;color:#fca5a5;line-height:1.6">⚠️ {{ dinfo.legal_note }}</div>
+            </div>
+            {% endif %}
+            {% if dinfo.notable %}
+            <div style="font-size:.68rem;color:#94a3b8;line-height:1.6;font-style:italic">💡 {{ dinfo.notable }}</div>
+            {% endif %}
           </div>
           {% endif %}
         </div>
@@ -746,6 +791,127 @@ TEMPLATE = """
 
 
 
+<!-- ═══ TAB DEVELOPERS ════════════════════════════════════════════ -->
+<div id="tab-developers" class="tab">
+  <div class="sec">Phân tích {{ n_developers }} Chủ Đầu Tư — Uy tín · Vận hành · Pháp lý</div>
+
+  <!-- Summary stat cards -->
+  <div class="grid4" style="margin-bottom:20px">
+    <div class="stat">
+      <div class="val" style="color:#22c55e">{{ dev_stats.five_star }}</div>
+      <div class="lbl">Chủ đầu tư ★★★★★</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#6ee7b7">Uy tín tối cao</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#60a5fa">{{ dev_stats.four_star }}</div>
+      <div class="lbl">Chủ đầu tư ★★★★</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#93c5fd">Uy tín tốt</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#ef4444">{{ dev_stats.legal_issues }}</div>
+      <div class="lbl">Cần thẩm định / Cảnh báo</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#fca5a5">Có vấn đề pháp lý</div>
+    </div>
+    <div class="stat">
+      <div class="val" style="color:#f59e0b">{{ dev_stats.med_high_risk }}</div>
+      <div class="lbl">Rủi ro bàn giao trung-cao</div>
+      <div class="sub" style="margin-top:4px;font-size:.7rem;color:#fcd34d">Nên mua thứ cấp đã BG</div>
+    </div>
+  </div>
+
+  <!-- Developer cards grid -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:16px;margin-bottom:28px">
+  {% for name, d in all_developers %}
+  {% set dfg, dbg = dev_rating_color(d.rating) %}
+  {% set lfg, lbg = legal_color(d.legal_status) %}
+  {% set rfg, rbg = delivery_color(d.delivery_risk) %}
+  {% set border_color = "#ef4444" if d.legal_status in ("warning","red") else "#f59e0b" if d.legal_status == "caution" else "#1e40af" if d.rating >= 4 else "#334155" %}
+  <div style="background:#1e293b;border:1px solid {{ border_color }};border-radius:12px;padding:16px">
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+      <div>
+        <div style="font-size:.9rem;font-weight:700;color:#f1f5f9">{{ name }}</div>
+        <div style="font-size:.7rem;color:#64748b;margin-top:2px">
+          {% for p in d.get('projects_hcm', [])[:3] %}{{ p }}{% if not loop.last %} · {% endif %}{% endfor %}
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:1.1rem;color:{{ dfg }}">{{ '★' * d.rating }}{{ '☆' * (5 - d.rating) }}</div>
+        <div style="font-size:.65rem;color:{{ dfg }}">{{ d.rating }}/5 uy tín</div>
+      </div>
+    </div>
+    <!-- Badges row -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+      <span class="badge" style="color:{{ lfg }};background:{{ lbg }}">⚖️ {{ legal_label(d.legal_status) }}</span>
+      <span class="badge" style="color:{{ rfg }};background:{{ rbg }}">📦 BG: {{ delivery_label(d.delivery_risk) }}</span>
+      <span class="badge" style="color:#60a5fa;background:#172554">🏢 Vận hành: {{ d.operations }}/5</span>
+    </div>
+    <!-- Credibility -->
+    <div style="font-size:.7rem;color:#94a3b8;line-height:1.55;margin-bottom:6px">{{ d.credibility }}</div>
+    <!-- Legal warning if needed -->
+    {% if d.legal_status in ('caution','warning','red') %}
+    <div style="background:#2d1515;border:1px solid #7f1d1d;border-radius:5px;padding:7px;margin-bottom:6px">
+      <div style="font-size:.67rem;color:#fca5a5;line-height:1.5">⚠️ {{ d.legal_note }}</div>
+    </div>
+    {% else %}
+    <div style="font-size:.67rem;color:#64748b;line-height:1.5;margin-bottom:4px">✅ {{ d.legal_note }}</div>
+    {% endif %}
+    <!-- Delivery note -->
+    <div style="font-size:.67rem;color:#94a3b8;line-height:1.5;font-style:italic">📦 {{ d.delivery_note }}</div>
+    <!-- Notable -->
+    {% if d.notable %}
+    <div style="font-size:.67rem;color:#a78bfa;line-height:1.5;margin-top:6px;padding-top:6px;border-top:1px solid #334155">💡 {{ d.notable }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+  </div>
+
+  <!-- Full comparison table -->
+  <div class="sec">So sánh chi tiết — Bảng xếp hạng chủ đầu tư</div>
+  <div class="scrollable"><table>
+    <thead><tr>
+      <th>#</th><th>Chủ đầu tư</th><th>Dự án trong danh sách</th>
+      <th>Uy tín ★</th><th>Vận hành ★</th>
+      <th>Pháp lý</th><th>Rủi ro BG</th><th>Nhận xét nổi bật</th>
+    </tr></thead>
+    <tbody>
+    {% for name, d in all_developers_sorted %}
+    {% set dfg, dbg = dev_rating_color(d.rating) %}
+    {% set lfg, lbg = legal_color(d.legal_status) %}
+    {% set rfg, rbg = delivery_color(d.delivery_risk) %}
+    <tr>
+      <td style="color:#64748b;font-size:.72rem">{{ loop.index }}</td>
+      <td style="font-weight:700;font-size:.82rem;max-width:160px">{{ name }}</td>
+      <td style="font-size:.7rem;color:#64748b;max-width:200px">
+        {% for p in d.get('projects_hcm', [])[:3] %}<div>{{ p }}</div>{% endfor %}
+      </td>
+      <td>
+        <div style="font-size:.85rem;color:{{ dfg }}">{{ '★' * d.rating }}{{ '☆' * (5 - d.rating) }}</div>
+        <div style="font-size:.65rem;color:{{ dfg }}">{{ d.rating }}/5</div>
+      </td>
+      <td>
+        <div class="bar-wrap">
+          <div class="bar-outer"><div class="bar-inner" style="width:{{ d.operations * 20 }}%;background:#60a5fa"></div></div>
+          <div class="bar-num" style="color:#60a5fa">{{ d.operations }}</div>
+        </div>
+      </td>
+      <td><span class="badge" style="color:{{ lfg }};background:{{ lbg }}">{{ legal_label(d.legal_status) }}</span></td>
+      <td><span class="badge" style="color:{{ rfg }};background:{{ rbg }}">{{ delivery_label(d.delivery_risk) }}</span></td>
+      <td style="font-size:.7rem;color:#94a3b8;max-width:260px;line-height:1.5">{{ d.notable[:120] if d.notable else '—' }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+
+  <!-- Disclaimer -->
+  <div style="margin-top:16px;padding:12px 16px;background:#0f172a;border:1px solid #334155;border-radius:8px">
+    <p style="font-size:.7rem;color:#475569;line-height:1.6">
+      ⚠️ <strong style="color:#64748b">Lưu ý:</strong> Đánh giá dựa trên thông tin công khai tính đến T5/2026. Tình trạng pháp lý có thể thay đổi. Luôn thẩm định pháp lý độc lập trước khi đặt cọc. Thông tin "Cảnh báo" và "Cần thẩm định" chủ yếu áp dụng cho dự án chưa bàn giao — dự án đã BG có sổ hồng an toàn hơn đáng kể.
+    </p>
+  </div>
+</div>
+
+
 </div><!-- /page -->
 
 <script>
@@ -889,6 +1055,38 @@ def index():
     ]
     avg_5y_roi = round(sum(roi_values) / max(len(roi_values), 1), 1)
 
+    # ── Developer stats ────────────────────────────────────────────────────────
+    # Build list of unique developers appearing in RESULTS
+    seen_devs = {}
+    for r in RESULTS:
+        dev = r.property.get("developer", "")
+        if dev and dev not in seen_devs:
+            info = get_developer_info(dev)
+            if info:
+                seen_devs[dev] = info
+
+    # Fill in any remaining DEVELOPERS entries not yet in seen_devs
+    for dname, dinfo in DEVELOPERS.items():
+        if dname not in seen_devs:
+            seen_devs[dname] = dinfo
+
+    all_devs_sorted_uy_tin = sorted(seen_devs.items(), key=lambda x: x[1]["rating"], reverse=True)
+    # For card grid: sort by legal risk first (warning/caution top), then by rating desc
+    all_devs_card = sorted(
+        seen_devs.items(),
+        key=lambda x: (
+            {"red": 0, "warning": 1, "caution": 2, "clean": 3}.get(x[1]["legal_status"], 4),
+            -x[1]["rating"]
+        )
+    )
+
+    dev_stats = {
+        "five_star":    sum(1 for _, d in seen_devs.items() if d["rating"] == 5),
+        "four_star":    sum(1 for _, d in seen_devs.items() if d["rating"] == 4),
+        "legal_issues": sum(1 for _, d in seen_devs.items() if d["legal_status"] in ("caution","warning","red")),
+        "med_high_risk": sum(1 for _, d in seen_devs.items() if d["delivery_risk"] in ("medium","high")),
+    }
+
     return render_template_string(
         TEMPLATE,
         results=RESULTS,
@@ -922,6 +1120,17 @@ def index():
         dscr_positive_count=dscr_positive_count,
         undervalued_count=undervalued_count,
         avg_5y_roi=avg_5y_roi,
+        # Developer data
+        n_developers=len(seen_devs),
+        all_developers=all_devs_card,
+        all_developers_sorted=all_devs_sorted_uy_tin,
+        dev_stats=dev_stats,
+        get_developer_info=get_developer_info,
+        dev_rating_color=dev_rating_color,
+        legal_color=legal_color,
+        delivery_color=delivery_color,
+        legal_label=legal_label,
+        delivery_label=delivery_label,
     )
 
 
