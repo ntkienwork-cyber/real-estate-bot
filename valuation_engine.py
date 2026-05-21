@@ -574,7 +574,26 @@ def compute_valuation(
     price_billion      = safe_number(prop.get("price_billion"))
     area_m2            = safe_number(prop.get("area_m2"))
     price_per_m2_input = safe_number(prop.get("price_per_m2_million"))  # triệu VND/m²
-    avg_price_per_m2   = safe_number(market.get("avg_price_per_m2"))    # triệu VND/m²
+    # ── Comparable Sales Override ─────────────────────────────────────────────
+    _raw_comps = prop.get("comparable_sales", [])
+    _valid_comps = [
+        c for c in _raw_comps
+        if safe_number(c.get("price_per_m2_million")) is not None
+    ]
+    has_comps = False
+    if len(_valid_comps) >= 2:
+        _weights = [1 / max(c.get("sold_months_ago", 1), 1) for c in _valid_comps]
+        _total_w = sum(_weights)
+        _comp_avg = sum(
+            safe_number(c["price_per_m2_million"]) * w / _total_w
+            for c, w in zip(_valid_comps, _weights)
+        )
+        avg_price_per_m2 = _comp_avg
+        dq_fmv   = f"Comp-based ({len(_valid_comps)} giao dịch thực)"
+        has_comps = True
+    else:
+        avg_price_per_m2 = safe_number(market.get("avg_price_per_m2"))
+        has_comps = False
     rental_yield_pct   = safe_number(market.get("rental_yield"), 0.0)
     growth_yoy         = safe_number(market.get("growth_yoy"), 8.0)
 
@@ -591,7 +610,8 @@ def compute_valuation(
     dq_price_per_sqm = "User provided" if price_per_m2_input is not None else (
         "Estimated" if (price_vnd and area_m2) else "Missing"
     )
-    dq_fmv = "Benchmark based" if avg_price_vnd_per_m2 is not None else "Missing"
+    if not has_comps:
+        dq_fmv = "Benchmark based" if avg_price_vnd_per_m2 is not None else "Missing"
 
     # ── Derived price_per_m2 (VND/m²) ─────────────────────────────────────────
     if price_per_m2_input is not None:
@@ -1077,6 +1097,8 @@ def compute_valuation(
             "valuationLabel":      valuation_label,
             "projected5YROI":      projected_5y_roi,
             "rentalYieldSource":   yield_source,
+            "hasComps":            has_comps,
+            "compCount":           len(_valid_comps),
             "dataQuality": {
                 "pricePerSqm":     dq_price_per_sqm,
                 "fairMarketValue": dq_fmv,
