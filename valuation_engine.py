@@ -65,6 +65,8 @@ MACRO_REGIME = {
     "bull_vacancy_mult": 0.75,
     "base_vacancy_mult": 1.00,
     "bear_vacancy_mult": 1.50,
+    "bear_growth_floor_pct": -5.0,
+    "bull_growth_cap_pct":   25.0,
 }
 
 
@@ -259,6 +261,9 @@ def _scenario_roi(
     out = {}
     for sc, (app_m, vac_m, maint_m, label) in defs.items():
         app_rate  = base_app * app_m
+        _floor = macro_regime.get("bear_growth_floor_pct", -5.0) / 100
+        _cap   = macro_regime.get("bull_growth_cap_pct", 25.0) / 100
+        app_rate = max(_floor, min(_cap, app_rate))
         vacancy   = min(VACANCY_RATE * vac_m, 0.30)
         maint     = MAINTENANCE_RATIO * maint_m
         net_yld   = _net_rental_yield(gross_yield_pct, vacancy, MANAGEMENT_FEE, maint, price_vnd)
