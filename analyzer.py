@@ -3,6 +3,7 @@ Real Estate Analyzer - áp dụng framework từ real-estate-analyzer skill
 Phân tích & recommend BĐS 3-5 tỷ tại TP.HCM (kết hợp phân tích hạ tầng)
 """
 import json
+import datetime as _dt
 from dataclasses import dataclass, field
 from typing import Optional
 from collections import defaultdict
@@ -672,11 +673,13 @@ def print_report(results: list[AnalysisResult], top_n: int = 10):
     top_district = district_summary[0][0] if district_summary else "Thủ Đức"
     top_infra_districts = [d for d, _, ht, _, _ in district_summary if ht >= 30]
 
+    _now = _dt.date.today().strftime('%m/%Y')
+    _rate_trend = {"increasing": "đang tăng", "stable": "ổn định", "decreasing": "đang giảm"}.get(MORTGAGE_RATE_TREND, MORTGAGE_RATE_TREND)
     print(f"""
-  TIMING (Q2/2025):
-  • Lãi suất cho vay đang giảm về ~8-9% → cửa sổ mua tốt
-  • Thị trường phục hồi sau điều chỉnh 2022-2023
-  • Vành đai 3 sắp hoàn thành (2026) → mua trước khi thị trường phản ánh đủ
+  TIMING ({_now}):
+  • Lãi suất cho vay {MORTGAGE_RATE_CURRENT}%/năm ({_rate_trend}) — cân nhắc tỷ lệ đòn bẩy
+  • Vành đai 3 đang thi công — mua trước khi hạ tầng hoàn thiện và thị trường phản ánh đủ
+  • Người mua thận trọng do lãi suất cao — cơ hội thương lượng giá tốt hơn
 
   TOP QUẬN NÊN MUA (kết hợp giá + hạ tầng):
   {chr(10).join(f"  {i+1}. {d} — HT score {ht:.0f}/100" for i, (d, _, ht, _, _) in enumerate(district_summary[:4]))}
