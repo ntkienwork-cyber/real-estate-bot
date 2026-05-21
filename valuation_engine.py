@@ -311,6 +311,20 @@ def _scenario_roi(
 
 # ─── Liquidity Score v2 ──────────────────────────────────────────────────────
 
+def _metro_proximity_score(distance_m: Optional[float]) -> float:
+    """
+    Liquidity score component based on distance to nearest Metro station.
+    None/unknown = 50 (neutral). Metro Line 1 operational since late 2024.
+    """
+    if distance_m is None:
+        return 50.0
+    if distance_m <= 300:   return 100.0
+    if distance_m <= 600:   return 85.0
+    if distance_m <= 1000:  return 65.0
+    if distance_m <= 2000:  return 40.0
+    return 20.0
+
+
 def _liquidity_score_v2(
     prop_type: str,
     area_m2: Optional[float],
@@ -319,6 +333,7 @@ def _liquidity_score_v2(
     absorption: Optional[float],
     supply_tightness: Optional[float],
     developer_rating: int = 3,
+    distance_to_metro_m: Optional[float] = None,
 ) -> float:
     """
     Multi-factor liquidity 0-100.
@@ -354,9 +369,11 @@ def _liquidity_score_v2(
     type_sc = {"can-ho-chung-cu": 85, "nha-rieng": 65, "dat-nen": 40}.get(prop_type, 55)
     dev_sc  = clamp_score((developer_rating - 1) / 4 * 100)
 
+    metro_sc = _metro_proximity_score(distance_to_metro_m)
     return clamp_score(
-        abs_sc  * 0.35 + tight_sc * 0.15 + prem_sc * 0.20 +
-        area_sc * 0.15 + type_sc  * 0.10 + dev_sc  * 0.05
+        abs_sc  * 0.30 + tight_sc * 0.15 + prem_sc * 0.20 +
+        area_sc * 0.15 + type_sc  * 0.10 + dev_sc  * 0.05 +
+        metro_sc * 0.05
     )
 
 
@@ -697,15 +714,17 @@ def compute_valuation(
     momentum_score = safe_number(infra_momentum.get("momentum_score"), 0.0)
 
     # Liquidity score based on absorption
-    dev_rating   = dev_info.get("rating", 3) if dev_info else 3
+    dev_rating          = dev_info.get("rating", 3) if dev_info else 3
+    distance_to_metro_m = safe_number(prop.get("distance_to_metro_m"))
     liquidity_sc = _liquidity_score_v2(
-        prop_type         = prop_type,
-        area_m2           = area_m2,
-        price_per_sqm_m   = price_per_m2_input,
+        prop_type           = prop_type,
+        area_m2             = area_m2,
+        price_per_sqm_m     = price_per_m2_input,
         avg_price_per_sqm_m = avg_price_per_m2,
-        absorption        = absorption,
-        supply_tightness  = supply_tightness,
-        developer_rating  = dev_rating,
+        absorption          = absorption,
+        supply_tightness    = supply_tightness,
+        developer_rating    = dev_rating,
+        distance_to_metro_m = distance_to_metro_m,
     )
     liquidity_sc = clamp_score(liquidity_sc * _macro_modifier(macro_regime).get("liq_mult", 1.0))
 
