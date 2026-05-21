@@ -542,7 +542,8 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
         # Ước tính rental yield
         price_b = prop.get("price_billion", 4)
         area    = prop.get("area_m2")
-        yield_pct = market.get("rental_yield", 0)
+        yield_pct = prop.get("rental_yield_actual") or market.get("rental_yield", 0)
+        yield_source = prop.get("rental_yield_source") or f"District avg ({district})"
         rental_monthly = (price_b * 1e9 * yield_pct / 100) / 12 if yield_pct else None
 
         # ROI 5 năm (tăng giá + cho thuê + hạ tầng bonus)
@@ -587,6 +588,7 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             infra_momentum=momentum,
             macro=macro,
             dev_info=dev_info,
+            yield_source=yield_source,
         )
 
         rec = vdata.get("recommendation", {})

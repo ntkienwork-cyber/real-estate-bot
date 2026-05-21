@@ -462,8 +462,17 @@ TEMPLATE = """
           </div>
           <!-- Financial metrics mini-table -->
           <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px">
+            <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;text-align:center">
+              <div style="font-size:.68rem;color:#64748b;margin-bottom:4px">Net Yield</div>
+              <div style="font-size:.86rem;font-weight:700;color:#34d399">{{ vd.get('netYield')|round(2)|string + "%" if vd.get('netYield') else "—" }}</div>
+              {% set ys = vd.get('valuation', {}).get('rentalYieldSource', '') %}
+              {% if ys and 'District' not in ys %}
+              <div style="font-size:.55rem;color:#4ade80;margin-top:2px">📌 Yield thực tế</div>
+              {% elif ys %}
+              <div style="font-size:.55rem;color:#475569;margin-top:2px">{{ ys[:30] }}</div>
+              {% endif %}
+            </div>
             {% set metrics = [
-              ("Net Yield", (vd.get('netYield')|round(2)|string + "%" if vd.get('netYield') else "—"), "#34d399"),
               ("Cap Rate", (ic.get('capRate')|round(2)|string + "%" if ic.get('capRate') else "—"), "#60a5fa"),
               ("DSCR", (ic.get('DSCR')|round(2)|string if ic.get('DSCR') else "—"), "#fbbf24"),
               ("Base ROI", (vd.get('scenarios',{}).get('base',{}).get('roi')|string + "%" if vd.get('scenarios') and vd.get('scenarios',{}).get('base') else "—"), "#a78bfa"),

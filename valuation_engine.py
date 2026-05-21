@@ -531,6 +531,7 @@ def compute_valuation(
     macro: dict,
     dev_info: Optional[dict] = None,
     macro_regime: Optional[dict] = None,
+    yield_source: str = "District avg",
 ) -> dict:
     if macro_regime is None:
         macro_regime = MACRO_REGIME
@@ -1056,6 +1057,7 @@ def compute_valuation(
             "valuationGapPct":     round(valuation_gap_pct, 2) if valuation_gap_pct is not None else None,
             "valuationLabel":      valuation_label,
             "projected5YROI":      projected_5y_roi,
+            "rentalYieldSource":   yield_source,
             "dataQuality": {
                 "pricePerSqm":     dq_price_per_sqm,
                 "fairMarketValue": dq_fmv,
