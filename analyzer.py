@@ -543,9 +543,6 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             )
             roi_5yr = round(capital_gain + rental_total + active_impact * 0.3, 1)
 
-        # Gợi ý đầu tư: yield + hạ tầng
-        iv, ic, ib, id_ = invest_recommendation(yield_pct or 0, infra_sc, infra_projs)
-
         # Lấy tên các dự án đang thi công / đã duyệt gần quận
         nearby_active = [
             p for p in INFRA_PROJECTS
@@ -553,7 +550,7 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             and p.status in (Status.UNDER_CONST, Status.APPROVED)
         ]
         nearby_names = [p.name for p in sorted(nearby_active, key=lambda x: x.price_impact_pct, reverse=True)[:3]]
-        invest_detail_full = id_
+        invest_detail_full = ""
         if nearby_names:
             invest_detail_full += "\n" + " · ".join(nearby_names)
 
@@ -574,18 +571,16 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             dev_info=dev_info,
         )
 
-        # Override invest verdict with recommendation engine v2
         rec = vdata.get("recommendation", {})
-        if rec.get("verdict"):
-            iv = rec["verdict"]
-            ic = rec["color"]
-            ib = rec["bg"]
-            id_ = rec.get("reason", id_)
+        final_verdict = rec.get("verdict") or verdict
+        final_color   = rec.get("color", "#374151")
+        final_bg      = rec.get("bg", "#f3f4f6")
+        final_reason  = rec.get("reason", "")
 
         results.append(AnalysisResult(
             property=prop,
             score=round(score, 1),
-            verdict=verdict,
+            verdict=final_verdict,
             value_vs_market=value_assessment(prop.get("price_per_m2_million"), market["avg_price_per_m2"]),
             rental_yield_est=yield_pct,
             roi_5yr=roi_5yr,
@@ -597,10 +592,10 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             supply_tightness=macro.get("supply_tightness", 0),
             absorption_rate=macro.get("absorption_rate", 0),
             mortgage_growth=macro.get("mortgage_growth_yoy", 0),
-            invest_verdict=iv,
-            invest_color=ic,
-            invest_bg=ib,
-            invest_detail=invest_detail_full,
+            invest_verdict=final_verdict,
+            invest_color=final_color,
+            invest_bg=final_bg,
+            invest_detail=final_reason + ("\n" + invest_detail_full if invest_detail_full else ""),
             valuation_data=vdata,
         ))
 
