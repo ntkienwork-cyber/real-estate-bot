@@ -1087,6 +1087,16 @@ def compute_valuation(
         f"Rủi ro {risk_adj_score:.0f})"
     )
 
+    # ── Data Source Annotations ──────────────────────────────────────────────
+    _ys = locals().get("yield_source", "District avg")
+    data_sources = {
+        "rental_yield":        _ys,
+        "avg_price":           dq_fmv,
+        "growth_yoy":          "Savills / CBRE — district estimate Q1 2026",
+        "absorption":          "CBRE HCMC Q1 2026 — district estimate" if absorption is not None else "Không có dữ liệu",
+        "last_market_update":  "2026-05-21",
+    }
+
     # ── Assemble result ────────────────────────────────────────────────────────
     return {
         "valuation": {
@@ -1149,6 +1159,7 @@ def compute_valuation(
         "quality":        quality,
         "confidence":     confidence_obj,
         "recommendation": recommendation,
+        "data_sources":   data_sources,
     }
 
 

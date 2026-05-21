@@ -363,6 +363,7 @@ TEMPLATE = """
     {% set ic = vd.get('income', {}) %}
     {% set vv = vd.get('valuation', {}) %}
     {% set rk = vd.get('risks', {}) %}
+    {% set ds = vd.get('data_sources', {}) %}
     <tr>
       <td style="color:#64748b;font-size:.72rem">{{ loop.index }}</td>
       <td style="max-width:200px"><a class="link" href="{{ r.property.get('url','#') }}" target="_blank">{{ r.property.title[:48] }}</a>
@@ -427,7 +428,7 @@ TEMPLATE = """
       <td colspan="15" style="padding:0">
         <div style="padding:14px 20px">
           <div style="font-size:.78rem;font-weight:700;color:#93c5fd;margin-bottom:10px">
-            Phân tích tài chính nâng cao — {{ r.property.title[:45] }}
+            Phân tích tài chính nâng cao — {{ r.property.title[:45] }} {% if ds.get('last_market_update') %} <span style="font-size:.58rem;color:#334155;margin-left:8px" title="Yield: {{ ds.get('rental_yield','') }} · Giá: {{ ds.get('avg_price','') }} · Absorption: {{ ds.get('absorption','') }}">ℹ️ nguồn dữ liệu: {{ ds.get('last_market_update','') }}</span> {% endif %}
           </div>
           <!-- Score breakdown bar -->
           <div style="margin-bottom:12px">
@@ -465,6 +466,11 @@ TEMPLATE = """
             <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;text-align:center">
               <div style="font-size:.68rem;color:#64748b;margin-bottom:4px">Net Yield</div>
               <div style="font-size:.86rem;font-weight:700;color:#34d399">{{ vd.get('netYield')|round(2)|string + "%" if vd.get('netYield') else "—" }}</div>
+              {% if ds.get('rental_yield') and 'District' not in ds.rental_yield %}
+              <div style="font-size:.55rem;color:#4ade80;margin-top:2px">📌 Yield thực tế</div>
+              {% elif ds.get('avg_price') and 'Comp' in ds.avg_price %}
+              <div style="font-size:.55rem;color:#60a5fa;margin-top:2px">📌 {{ ds.avg_price }}</div>
+              {% endif %}
               {% set ys = vd.get('valuation', {}).get('rentalYieldSource', '') %}
               {% if ys and 'District' not in ys %}
               <div style="font-size:.55rem;color:#4ade80;margin-top:2px">📌 Yield thực tế</div>
