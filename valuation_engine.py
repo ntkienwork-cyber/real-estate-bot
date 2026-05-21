@@ -25,9 +25,14 @@ LEGAL_RISK = {
 }
 
 # ─── Developer tiers ─────────────────────────────────────────────────────────
+# TIER1: Clean, actively trustworthy developers
 TIER1_DEVS = [
     "Vingroup", "Masterise", "CapitaLand", "KeppelLand", "Nam Long",
-    "Phú Mỹ Hưng", "Novaland", "Gamuda", "Hưng Thịnh",
+    "Phú Mỹ Hưng", "Gamuda",
+]
+# TIER2: Known brands but require extra scrutiny (legal/financial issues)
+TIER2_DEVS = [
+    "Novaland", "Hưng Thịnh", "Khang Điền", "An Gia", "Đất Xanh",
 ]
 
 import math as _math
@@ -149,12 +154,15 @@ def _get_legal_status(prop: dict) -> Optional[str]:
 def _developer_risk(developer: Optional[str]) -> float:
     """Trả về mức rủi ro chủ đầu tư (thấp = tốt)."""
     if not developer or str(developer).strip() == "":
-        return 40.0   # không rõ chủ đầu tư
+        return 40.0
     dev = str(developer)
     for t1 in TIER1_DEVS:
         if t1.lower() in dev.lower():
             return 8.0
-    return 20.0   # biết tên nhưng không phải tier-1
+    for t2 in TIER2_DEVS:
+        if t2.lower() in dev.lower():
+            return 22.0
+    return 32.0
 
 
 def _overall_risk_level(legal_risk: float, dev_risk: float, supply_risk: float) -> str:
@@ -1002,9 +1010,14 @@ def compute_valuation(
             f"Chủ đầu tư: Tier-1 uy tín ({dev_name}). "
             f"Rủi ro thấp về tiến độ, pháp lý và chất lượng xây dựng."
         )
-    elif dev_risk_score <= 20:
+    elif dev_risk_score <= 22:
         explanations.append(
-            f"Chủ đầu tư: Có thông tin ({dev_name}) nhưng không phải tier-1. "
+            f"Chủ đầu tư: Tier-2 — thương hiệu biết đến nhưng cần thẩm định kỹ ({dev_name}). "
+            f"Kiểm tra tình trạng pháp lý dự án và tiến độ bàn giao trước khi quyết định."
+        )
+    elif dev_risk_score <= 32:
+        explanations.append(
+            f"Chủ đầu tư: Có thông tin ({dev_name}) nhưng không thuộc nhóm uy tín. "
             f"Nên kiểm tra lịch sử dự án trước."
         )
     else:
