@@ -1150,3 +1150,48 @@ def compute_valuation(
         "confidence":     confidence_obj,
         "recommendation": recommendation,
     }
+
+
+def compute_sensitivity(
+    prop: dict,
+    market: dict,
+    district: str,
+    infra_momentum: dict,
+    macro: dict,
+    dev_info: Optional[dict] = None,
+) -> dict:
+    """
+    Re-runs valuation under 4 stress scenarios.
+    Returns verdict change flags so UI can warn when a BUY is fragile.
+    """
+    base = compute_valuation(prop, market, district, infra_momentum, macro, dev_info)
+    base_verdict = base.get("recommendation", {}).get("verdict", "SKIP")
+
+    def _run(shocked_regime=None, shocked_market=None):
+        m = shocked_market if shocked_market is not None else market
+        r = compute_valuation(prop, m, district, infra_momentum, macro, dev_info,
+                              macro_regime=shocked_regime)
+        verdict = r.get("recommendation", {}).get("verdict", "SKIP")
+        irr     = (r.get("scenarios", {}).get("base") or {}).get("irr")
+        return {"verdict": verdict, "irr": irr, "changed": verdict != base_verdict}
+
+    shocks = {
+        "rate_+1pct":   {**MACRO_REGIME, "mortgage_rate": MACRO_REGIME["mortgage_rate"] + 0.01},
+        "rate_+2pct":   {**MACRO_REGIME, "mortgage_rate": MACRO_REGIME["mortgage_rate"] + 0.02},
+    }
+    growth_base = market.get("growth_yoy", 8)
+    results = {
+        "rate_+1pct":    {**_run(shocked_regime=shocks["rate_+1pct"]),
+                          "label": "Lãi suất +1%"},
+        "rate_+2pct":    {**_run(shocked_regime=shocks["rate_+2pct"]),
+                          "label": "Lãi suất +2%"},
+        "growth_-5pct":  {**_run(shocked_market={**market, "growth_yoy": max(growth_base - 5, 0)}),
+                          "label": "Tăng trưởng -5%"},
+        "growth_-10pct": {**_run(shocked_market={**market, "growth_yoy": max(growth_base - 10, 0)}),
+                          "label": "Tăng trưởng -10%"},
+    }
+    return {
+        "base_verdict": base_verdict,
+        "is_fragile":   any(s["changed"] for s in results.values()),
+        "scenarios":    results,
+    }

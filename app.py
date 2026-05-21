@@ -513,6 +513,26 @@ TEMPLATE = """
             </div>
           </div>
           {% endif %}
+          {% set sens = vd.get('sensitivity', {}) %}
+          {% if sens.get('scenarios') %}
+          <div style="margin-bottom:12px">
+            <div style="font-size:.7rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">
+              Phân tích độ nhạy
+              {% if sens.get('is_fragile') %}<span style="color:#f87171;font-size:.65rem;margin-left:6px">⚠️ Verdict nhạy cảm</span>
+              {% else %}<span style="color:#4ade80;font-size:.65rem;margin-left:6px">✓ Verdict ổn định</span>{% endif %}
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+              {% for key, s in sens.get('scenarios',{}).items() %}
+              <div style="background:#0f172a;border:1px solid {% if s.changed %}#7f1d1d{% else %}#1e293b{% endif %};border-radius:6px;padding:8px;text-align:center">
+                <div style="font-size:.62rem;color:#64748b;margin-bottom:4px">{{ s.label }}</div>
+                <div style="font-size:.75rem;font-weight:700;color:{% if s.changed %}#f87171{% else %}#4ade80{% endif %}">{{ s.verdict }}</div>
+                {% if s.irr is not none %}<div style="font-size:.6rem;color:#475569;margin-top:2px">IRR {{ s.irr }}%</div>{% endif %}
+                {% if s.changed %}<div style="font-size:.58rem;color:#ef4444;margin-top:2px">← thay đổi</div>{% endif %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
           <!-- Explanations -->
           {% if vd.get('explanations') %}
           <div style="font-size:.68rem;color:#94a3b8;line-height:1.7;margin-bottom:12px">

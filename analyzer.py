@@ -590,6 +590,11 @@ def analyze(props: list[dict]) -> list[AnalysisResult]:
             dev_info=dev_info,
             yield_source=yield_source,
         )
+        from valuation_engine import compute_sensitivity
+        vdata["sensitivity"] = compute_sensitivity(
+            prop=prop, market=market, district=district,
+            infra_momentum=momentum, macro=macro, dev_info=dev_info,
+        )
 
         rec = vdata.get("recommendation", {})
         final_verdict = rec.get("verdict") or verdict
