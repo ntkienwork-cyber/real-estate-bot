@@ -451,6 +451,17 @@ TEMPLATE = """
               {% if rec_d and rec_d.get('reason') %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;background:#0f172a;color:#94a3b8">{{rec_d.get('reason','')}}</span>{% endif %}
             </div>
             {% endif %}
+          {% set ps = vd.get('position_sizing', {}) %}
+          {% if ps.get('range') %}
+          <div style="margin:8px 0 12px;padding:9px 12px;background:#0f172a;border:1px solid #1e293b;border-radius:7px;display:flex;align-items:center;gap:12px">
+            <div style="flex:1">
+              <div style="font-size:.6rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Khuyến nghị phân bổ vốn</div>
+              <div style="font-size:.88rem;font-weight:700;color:{{ ps.color }}">{{ ps.range }}</div>
+              <div style="font-size:.62rem;color:#475569;margin-top:3px;font-style:italic">{{ ps.rationale }}</div>
+            </div>
+            <span style="font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:99px;border:1px solid {{ ps.color }}55;color:{{ ps.color }};white-space:nowrap">{{ ps.label }}</span>
+          </div>
+          {% endif %}
             {% for label, val, color in score_items %}
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
               <div style="width:140px;font-size:.68rem;color:#94a3b8">{{ label }}</div>

@@ -538,6 +538,32 @@ def _recommendation_v2(
             "reason": f"Điểm {adj:.0f}/100 · Không đủ hấp dẫn"}
 
 
+def _position_sizing(verdict: str, confidence_score: float, quality_score: float) -> dict:
+    """
+    Max recommended portfolio allocation based on conviction.
+    Conservative — errs toward smaller positions under uncertainty.
+    """
+    if verdict == "BUY" and confidence_score >= 70 and quality_score >= 70:
+        return {"range": "20–30%", "label": "Core holding",
+                "rationale": "High conviction — fundamentals mạnh, có thể là vị thế core dài hạn",
+                "color": "#14532d"}
+    if verdict == "BUY":
+        return {"range": "15–20%", "label": "Standard",
+                "rationale": "BUY nhưng confidence/quality chưa tối ưu — không nên over-weight",
+                "color": "#166534"}
+    if verdict == "SPECULATIVE":
+        return {"range": "5–10%", "label": "Speculative",
+                "rationale": "Chỉ phù hợp cho phần rủi ro cao trong danh mục — không dùng đòn bẩy cao",
+                "color": "#5b21b6"}
+    if verdict == "HOLD":
+        return {"range": "Giữ hiện tại", "label": "Hold only",
+                "rationale": "Không mua thêm — giữ nếu đang có, chờ catalyst rõ hơn",
+                "color": "#92400e"}
+    return {"range": "0%", "label": "Không phân bổ",
+            "rationale": "Không đủ điều kiện ở mức giá/rủi ro hiện tại",
+            "color": "#7f1d1d"}
+
+
 # ─── Main valuation function ──────────────────────────────────────────────────
 
 def compute_valuation(
@@ -920,6 +946,11 @@ def compute_valuation(
         scenarios        = scenarios,
         macro_regime     = macro_regime,
     )
+    position_sizing = _position_sizing(
+        verdict          = recommendation["verdict"],
+        confidence_score = confidence_obj["score"],
+        quality_score    = quality["score"],
+    )
 
     # ── Vietnamese Explanations ───────────────────────────────────────────────
     explanations = []
@@ -1159,6 +1190,7 @@ def compute_valuation(
         "quality":        quality,
         "confidence":     confidence_obj,
         "recommendation": recommendation,
+        "position_sizing": position_sizing,
         "data_sources":   data_sources,
     }
 
