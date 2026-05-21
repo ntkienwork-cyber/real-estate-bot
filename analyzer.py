@@ -11,6 +11,23 @@ from infrastructure import get_infra_score, get_infra_momentum, INFRA_PROJECTS, 
 from valuation_engine import compute_valuation
 from developer_db import get_developer_info as _get_dev_info
 
+MARKET_DATA_UPDATED = _dt.date(2026, 5, 21)
+MACRO_DATA_UPDATED  = _dt.date(2026, 5, 21)
+DATA_STALE_DAYS     = 90
+
+def get_data_freshness() -> dict:
+    today  = _dt.date.today()
+    m_age  = (today - MARKET_DATA_UPDATED).days
+    d_age  = (today - MACRO_DATA_UPDATED).days
+    return {
+        "market_updated":  MARKET_DATA_UPDATED.isoformat(),
+        "macro_updated":   MACRO_DATA_UPDATED.isoformat(),
+        "market_stale":    m_age > DATA_STALE_DAYS,
+        "macro_stale":     d_age > DATA_STALE_DAYS,
+        "market_age_days": m_age,
+        "macro_age_days":  d_age,
+    }
+
 
 # ──────────────────────────────────────────────
 # Dữ liệu thị trường tham chiếu TP.HCM — Cập nhật T5/2026
