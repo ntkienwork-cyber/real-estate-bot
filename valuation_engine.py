@@ -110,6 +110,22 @@ def _monthly_mortgage(principal: float) -> float:
     return principal * r * (1 + r) ** n / ((1 + r) ** n - 1)
 
 
+def _remaining_mortgage_balance(
+    principal: float,
+    annual_rate: float,
+    loan_term_years: int,
+    years_elapsed: int,
+) -> float:
+    """PV of remaining annuity payments = correct remaining mortgage balance."""
+    r = annual_rate / 12
+    n_total = loan_term_years * 12
+    n_rem   = (loan_term_years - years_elapsed) * 12
+    if r == 0:
+        return principal * n_rem / n_total
+    monthly_pmt = principal * r * (1 + r)**n_total / ((1 + r)**n_total - 1)
+    return monthly_pmt * (1 - (1 + r)**(-n_rem)) / r
+
+
 # ─── Legal status extractor (mirrors app.py prop_legal logic) ────────────────
 
 def _get_legal_status(prop: dict) -> Optional[str]:
@@ -247,7 +263,12 @@ def _scenario_roi(
         total_inc  = net_ann * HOLDING_YEARS
         roi        = (cap_gain + total_inc) / deployed * 100
 
-        loan_rem = price_vnd * LTV_RATIO
+        loan_rem = _remaining_mortgage_balance(
+            principal=price_vnd * LTV_RATIO,
+            annual_rate=INTEREST_RATE,
+            loan_term_years=LOAN_TERM_YEARS,
+            years_elapsed=HOLDING_YEARS,
+        )
         cfs = [-deployed] + [net_ann] * (HOLDING_YEARS - 1) + [net_ann + exit_proc - loan_rem]
         irr = _compute_irr(cfs)
 
