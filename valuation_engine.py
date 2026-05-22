@@ -433,7 +433,7 @@ def _property_quality_score(prop: dict, dev_info: Optional[dict]) -> dict:
     composite = clamp_score(a_sc*0.25 + b_sc*0.20 + c_sc*0.20 + d_sc*0.15 + e_sc*0.20)
     label = "Cao" if composite >= 72 else ("Trung bình" if composite >= 50 else "Thấp")
     return {
-        "score": round(composite, 1), "label": label,
+        "score": round(composite), "label": label,
         "breakdown": {
             "developer":        round(a_sc, 1),
             "building_status":  round(b_sc, 1),
@@ -474,7 +474,7 @@ def _model_confidence(
     score = clamp_score(score)
     label = ("Cao" if score >= 72 else "Trung bình" if score >= 52
              else "Thấp" if score >= 38 else "Rất thấp")
-    return {"score": round(score, 1), "label": label}
+    return {"score": round(score), "label": label}
 
 
 # ─── Macro Regime Modifier ───────────────────────────────────────────────────
@@ -500,6 +500,7 @@ def _recommendation_v2(
     macro_regime: dict,
     dscr: Optional[float] = None,
     quy_hoach: Optional[str] = None,
+    has_comps: bool = False,
 ) -> dict:
     """BUY / HOLD / SPECULATIVE / SKIP with explanation."""
     mod      = _macro_modifier(macro_regime)
@@ -567,6 +568,12 @@ def _recommendation_v2(
     if dscr is not None and dscr < 1.0 and rec["verdict"] == "BUY":
         rec = {"verdict": "SPECULATIVE", "color": "#5b21b6", "bg": "#ede9fe",
                "reason": rec["reason"] + f" · DSCR {dscr:.2f} — tiền thuê không đủ trả góp"}
+
+    # Comp gate: flag BUY when no comparable sales exist (keep BUY but visually warn)
+    if not has_comps and rec["verdict"] == "BUY":
+        rec = {**rec,
+               "reason": rec["reason"] + " · ⚠️ Chưa có giao dịch thực tế xác nhận",
+               "color": "#166534"}
 
     return rec
 
@@ -990,6 +997,7 @@ def compute_valuation(
         macro_regime     = macro_regime,
         dscr             = None if is_dat_nen else dscr,
         quy_hoach        = quy_hoach,
+        has_comps        = has_comps,
     )
     position_sizing = _position_sizing(
         verdict          = recommendation["verdict"],
@@ -1188,6 +1196,7 @@ def compute_valuation(
             "dataQuality": {
                 "pricePerSqm":     dq_price_per_sqm,
                 "fairMarketValue": dq_fmv,
+                "oldestCompMonths": max([c.get("sold_months_ago", 0) for c in _valid_comps], default=None) if _valid_comps else None,
             },
         },
         "income": {

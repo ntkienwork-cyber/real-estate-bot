@@ -293,9 +293,9 @@ TEMPLATE = """
         {% set _cs = _vd_sc.get('compositeScore', r.score) %}
         <div class="bar-wrap">
           <div class="bar-outer"><div class="bar-inner" style="width:{{ _cs }}%;background:{% if _cs>=75 %}#22c55e{% elif _cs>=55 %}#f59e0b{% else %}#ef4444{% endif %}"></div></div>
-          <div class="bar-num" style="color:{% if _cs>=75 %}#22c55e{% elif _cs>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ _cs }}</div>
+          <div class="bar-num" style="color:{% if _cs>=75 %}#22c55e{% elif _cs>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ _cs | int }}</div>
         </div>
-        <div class="sub" style="font-size:.6rem;color:#64748b;margin-top:2px">screen: {{ r.score }}</div>
+        <div class="sub" style="font-size:.6rem;color:#64748b;margin-top:2px">screen: {{ r.score | int }}</div>
       </td>
       <td><span class="badge" style="color:{{ vc }};background:{{ vb }}">{{ r.verdict }}</span></td>
       <td><span class="badge" style="color:{{ vfg }};background:{{ vbg }}">{{ r.value_vs_market }}</span></td>
@@ -394,12 +394,12 @@ TEMPLATE = """
         <div style="font-size:.58rem;color:#94a3b8;margin-bottom:2px">Composite Score (Valuation Engine) <span title="Composite Score drives the BUY/HOLD/SKIP verdict" style="cursor:help">ℹ️</span></div>
         <div class="bar-wrap">
           <div class="bar-outer"><div class="bar-inner" style="width:{{ _comp }}%;background:{% if _comp>=75 %}#22c55e{% elif _comp>=55 %}#f59e0b{% else %}#ef4444{% endif %}"></div></div>
-          <div class="bar-num" style="color:{% if _comp>=75 %}#22c55e{% elif _comp>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ _comp }}</div>
+          <div class="bar-num" style="color:{% if _comp>=75 %}#22c55e{% elif _comp>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ _comp | int }}</div>
         </div>
         <div style="font-size:.56rem;color:#64748b;margin-top:5px;margin-bottom:2px">Screening Score (6-factor) <span title="Screening Score is an independent 6-factor pre-filter" style="cursor:help">ℹ️</span></div>
         <div class="bar-wrap">
           <div class="bar-outer" style="height:4px"><div class="bar-inner" style="width:{{ r.score }}%;height:4px;background:#475569"></div></div>
-          <div style="font-size:.65rem;color:#64748b;min-width:30px;text-align:right">{{ r.score }}</div>
+          <div style="font-size:.65rem;color:#64748b;min-width:30px;text-align:right">{{ r.score | int }}</div>
         </div>
       </td>
       {% set _vl = vv.get('valuationLabel', 'UNKNOWN') %}{% set _vlfg,_vlbg = value_badge(_vl) %}
@@ -455,8 +455,8 @@ TEMPLATE = """
             {% set rec_d  = vd.get('recommendation', {}) %}
             {% if conf_d or qual_d %}
             <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
-              {% if conf_d %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;border:1px solid #334155;color:#64748b">🎯 Tin cậy: <strong style="color:#e2e8f0">{{conf_d.get('score','—')}}/100 — {{conf_d.get('label','')}}</strong></span>{% endif %}
-              {% if qual_d %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;border:1px solid #334155;color:#64748b">🏢 Chất lượng: <strong style="color:#e2e8f0">{{qual_d.get('score','—')}}/100 — {{qual_d.get('label','')}}</strong></span>{% endif %}
+              {% if conf_d %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;border:1px solid #334155;color:#64748b">🎯 Tin cậy: <strong style="color:#e2e8f0">{{conf_d.get('score',0)|int}}/100 — {{conf_d.get('label','')}}</strong></span>{% endif %}
+              {% if qual_d %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;border:1px solid #334155;color:#64748b">🏢 Chất lượng: <strong style="color:#e2e8f0">{{qual_d.get('score',0)|int}}/100 — {{qual_d.get('label','')}}</strong></span>{% endif %}
               {% if rec_d and rec_d.get('reason') %}<span style="font-size:.63rem;padding:2px 7px;border-radius:4px;background:#0f172a;color:#94a3b8">{{rec_d.get('reason','')}}</span>{% endif %}
             </div>
             {% endif %}
@@ -477,9 +477,25 @@ TEMPLATE = """
               <div style="flex:1;height:6px;background:#1e293b;border-radius:3px;max-width:160px">
                 <div style="width:{{ val }}%;height:100%;border-radius:3px;background:{{ color }}"></div>
               </div>
-              <div style="font-size:.72rem;font-weight:700;color:{{ color }};min-width:44px">{{ val }}/100</div>
+              <div style="font-size:.72rem;font-weight:700;color:{{ color }};min-width:44px">{{ val | int }}/100</div>
             </div>
             {% endfor %}
+          </div>
+          <!-- Comp status banner -->
+          {% set has_comps = vv.get('hasComps', false) %}
+          {% set comp_count = vv.get('compCount', 0) %}
+          {% set oldest_comp = vv.get('dataQuality', {}).get('oldestCompMonths') %}
+          <div style="margin-bottom:8px;padding:7px 10px;border-radius:6px;
+            background:{% if has_comps %}#0a1a0e{% else %}#1a1000{% endif %};
+            border:1px solid {% if has_comps %}#166534{% else %}#92400e{% endif %};
+            font-size:.68rem;display:flex;align-items:center;gap:8px">
+            {% if has_comps %}
+              <span style="color:#4ade80;font-weight:700">✓ FMV dựa trên {{ comp_count }} giao dịch thực</span>
+              {% if oldest_comp is not none %}<span style="color:#64748b;font-size:.6rem">Giao dịch cũ nhất: {{ oldest_comp }} tháng trước</span>{% endif %}
+            {% else %}
+              <span style="color:#fbbf24;font-weight:700">⚠️ FMV dựa trên benchmark quận — chưa có giao dịch thực xác nhận</span>
+              <span style="color:#64748b;font-size:.6rem">Thêm comparable_sales vào data.json để nâng độ tin cậy</span>
+            {% endif %}
           </div>
           <!-- Financial metrics mini-table -->
           <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px">
@@ -636,6 +652,9 @@ TEMPLATE = """
             {% endif %}
           </div>
           {% endif %}
+          <div style="font-size:.58rem;color:#334155;margin-top:8px;font-style:italic">
+          Scores rounded to nearest integer. IRR/ROI based on district benchmark assumptions — verify với dữ liệu giao dịch thực trước khi quyết định.
+          </div>
         </div>
       </td>
     </tr>
