@@ -7,7 +7,7 @@ from flask import Flask, render_template_string
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(__file__))
-from analyzer import analyze, AnalysisResult, CREDIT_GROWTH_YOY, MORTGAGE_RATE_CURRENT, MORTGAGE_RATE_TREND, get_macro, get_data_freshness
+from analyzer import analyze, AnalysisResult, CREDIT_GROWTH_YOY, MORTGAGE_RATE_CURRENT, MORTGAGE_RATE_TREND, get_macro, get_data_freshness, MARKET_DATA, _META
 from infrastructure import (
     get_infra_score, get_infra_momentum, infra_label as _infra_label,
     INFRA_PROJECTS, Status, InfraType,
@@ -193,6 +193,7 @@ TEMPLATE = """
 <div class="header">
   <h1>BDS Analyzer — TP. Hồ Chí Minh</h1>
   <p>Phân tích BĐS 3–5 tỷ VND · {{ results|length }} listings · {{ n_projects }} dự án hạ tầng · 22 quận/huyện</p>
+  <p style="font-size:.72rem;color:#94a3b8;margin-top:3px">Benchmark: {{ freshness.market_updated }} · <span style="color:{% if freshness.market_age_days < 30 %}#4ade80{% elif freshness.market_age_days < 90 %}#fbbf24{% else %}#ef4444{% endif %}">{{ freshness.market_age_days }} ngày trước</span></p>
 </div>
 
 <div class="nav">
@@ -202,6 +203,7 @@ TEMPLATE = """
   <a onclick="showTab('tab-momentum',this)">Macro & Momentum</a>
   <a onclick="showTab('tab-infra',this)">Hạ tầng ({{ n_projects }})</a>
   <a onclick="showTab('tab-developers',this)">Chủ Đầu Tư ({{ n_developers }})</a>
+  <a onclick="showTab('tab-market',this)">Benchmark Thị Trường</a>
 </div>
 
 <div class="page">
@@ -387,7 +389,15 @@ TEMPLATE = """
         </div></td>
       <td style="font-weight:700;white-space:nowrap">{{ r.property.price_billion }}tỷ</td>
       <td>{{ r.property.area_m2 or '—' }}{% if r.property.area_m2 %}m²{% endif %}</td>
-      <td>{{ r.property.price_per_m2_million or '—' }}{% if r.property.price_per_m2_million %}tr{% endif %}</td>
+      <td>{{ r.property.price_per_m2_million or '—' }}{% if r.property.price_per_m2_million %}tr{% endif %}
+        {% set bench = bench_lookup.get(r.property.get('property_type',''), {}).get(r.property.get('district','')) %}
+        {% if bench and r.property.price_per_m2_million %}
+          {% set dev_pct = ((r.property.price_per_m2_million - bench) / bench * 100) | round(0) | int %}
+          <div style="font-size:.6rem;color:{% if dev_pct < -10 %}#4ade80{% elif dev_pct > 10 %}#f87171{% else %}#64748b{% endif %}">
+            {{ dev_pct | abs }}% {{ 'dưới' if dev_pct < 0 else 'trên' }} benchmark
+          </div>
+        {% endif %}
+      </td>
       <td style="font-size:.74rem;white-space:nowrap">{{ r.property.district }}</td>
       <td>
         {% set _comp = sc.get('compositeScore', r.score) %}
@@ -1070,6 +1080,86 @@ TEMPLATE = """
 </div>
 
 
+
+<!-- ═══ TAB MARKET ════════════════════════════════════════════════ -->
+<div id="tab-market" class="tab">
+  <div class="sec">Benchmark Thị Trường — Dữ liệu tham chiếu định giá BĐS</div>
+
+  <!-- Meta header -->
+  <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px 20px;margin-bottom:20px;display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+    <div>
+      <div style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Cập nhật lần cuối</div>
+      <div style="font-size:.88rem;font-weight:700;color:#e2e8f0">{{ data_meta.get('updated','—') }}</div>
+    </div>
+    <div>
+      <div style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Bởi</div>
+      <div style="font-size:.88rem;font-weight:700;color:#e2e8f0">{{ data_meta.get('updated_by','—') }}</div>
+    </div>
+    <div style="flex:1;min-width:200px">
+      <div style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Nguồn</div>
+      <div style="font-size:.78rem;color:#94a3b8">{{ data_meta.get('sources','—') }}</div>
+    </div>
+    <div>
+      <span style="display:inline-block;padding:4px 12px;border-radius:99px;font-size:.75rem;font-weight:700;
+        background:{% if freshness.market_age_days < 30 %}#14532d{% elif freshness.market_age_days < 90 %}#78350f{% else %}#7f1d1d{% endif %};
+        color:{% if freshness.market_age_days < 30 %}#4ade80{% elif freshness.market_age_days < 90 %}#fbbf24{% else %}#f87171{% endif %}">
+        {% if freshness.market_age_days < 30 %}✓ Mới ({{ freshness.market_age_days }} ngày){% elif freshness.market_age_days < 90 %}⚠ {{ freshness.market_age_days }} ngày trước{% else %}🔴 Cũ {{ freshness.market_age_days }} ngày{% endif %}
+      </span>
+    </div>
+    <div>
+      <div style="font-size:.7rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Review tiếp theo</div>
+      <div style="font-size:.82rem;font-weight:600;color:#a78bfa">{{ data_meta.get('next_review','—') }}</div>
+    </div>
+  </div>
+
+  <!-- Căn hộ chung cư -->
+  {% set prop_labels = [
+    ('can-ho-chung-cu', '🏢 Căn hộ Chung cư'),
+    ('nha-rieng', '🏠 Nhà Riêng / Nhà Phố'),
+    ('dat-nen', '🌏 Đất Nền'),
+  ] %}
+  {% for prop_key, prop_label in prop_labels %}
+  <div style="margin-bottom:24px">
+    <div class="sec" style="margin-top:0">{{ prop_label }}</div>
+    <div class="card scrollable" style="padding:0">
+      <table>
+        <thead><tr>
+          <th>Quận / Huyện</th>
+          <th>Giá TB/m² (triệu)</th>
+          <th>Rental Yield (%)</th>
+          <th>Tăng trưởng YoY (%)</th>
+        </tr></thead>
+        <tbody>
+        {% for row in market_benchmarks.get(prop_key, []) %}
+        {% set yield_color = "#f87171" if row.yield < 3.5 else "#e2e8f0" %}
+        {% set growth_bg = "background:#0a1a0e" if row.growth > 13 else "" %}
+        <tr style="{{ growth_bg }}">
+          <td style="font-weight:600">{{ row.district }}</td>
+          <td style="font-weight:700;color:#60a5fa">{{ row.avg_price }}</td>
+          <td style="color:{{ yield_color }};font-weight:600">
+            {{ row.yield }}%
+            {% if row.yield < 3.5 %}<span style="font-size:.6rem;color:#f87171;margin-left:4px">▼ thấp</span>{% endif %}
+          </td>
+          <td style="color:{% if row.growth > 13 %}#4ade80{% elif row.growth >= 10 %}#86efac{% else %}#94a3b8{% endif %};font-weight:600">
+            {{ row.growth }}%
+            {% if row.growth > 13 %}<span style="font-size:.6rem;color:#4ade80;margin-left:4px">▲ vượt trội</span>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- Legend -->
+  <div style="margin-top:4px;padding:10px 14px;background:#0f172a;border:1px solid #1e293b;border-radius:8px;font-size:.68rem;color:#475569;display:flex;gap:20px;flex-wrap:wrap">
+    <span style="color:#4ade80">▲ Tăng trưởng &gt;13%/năm — vượt trội</span>
+    <span style="color:#f87171">▼ Yield &lt;3.5% — dòng tiền thấp</span>
+    <span style="color:#64748b">Nguồn: {{ data_meta.get('sources','') }}</span>
+  </div>
+</div>
+
 </div><!-- /page -->
 
 <script>
@@ -1245,6 +1335,24 @@ def index():
         "med_high_risk": sum(1 for _, d in seen_devs.items() if d["delivery_risk"] in ("medium","high")),
     }
 
+    # ── Market benchmark data ──────────────────────────────────────────────────
+    market_benchmarks = {
+        prop_type: [
+            {"district": d, "avg_price": v["avg_price_per_m2"],
+             "yield": v["rental_yield"], "growth": v["growth_yoy"]}
+            for d, v in MARKET_DATA.get(prop_type, {}).items()
+        ]
+        for prop_type in ["can-ho-chung-cu", "nha-rieng", "dat-nen"]
+    }
+    bench_lookup = {
+        prop_type: {
+            d: v["avg_price_per_m2"]
+            for d, v in MARKET_DATA.get(prop_type, {}).items()
+        }
+        for prop_type in ["can-ho-chung-cu", "nha-rieng", "dat-nen"]
+    }
+    data_meta = _META
+
     return render_template_string(
         TEMPLATE,
         results=RESULTS,
@@ -1290,6 +1398,9 @@ def index():
         legal_label=legal_label,
         delivery_label=delivery_label,
         freshness=get_data_freshness(),
+        market_benchmarks=market_benchmarks,
+        bench_lookup=bench_lookup,
+        data_meta=data_meta,
     )
 
 
