@@ -42,5 +42,34 @@
   {"title": "Mizuki Park 2PN 68m² Bình Chánh", "price_billion": 3.7, "area_m2": 68, "price_per_m2_million": 54.4, "location": "777 Nguyễn Văn Linh, Bình Hưng, Bình Chánh, TP.HCM", "district": "Bình Chánh", "bedrooms": 2, "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-mizuki-park", "property_type": "can-ho-chung-cu", "building_status": "existing", "developer": "Nam Long + Nishi Nippon RR", "year_built": 2020, "note": "Nam Long – Nhật Bản, khu đô thị quy hoạch 26ha — giá T5/2026", "quy_hoach": null, "foreign_eligible": null},
   {"title": "CTL Tower 2PN 72m² Quận 12", "price_billion": 4.0, "area_m2": 72, "price_per_m2_million": 55.6, "location": "771C Tô Ký, Trung Mỹ Tây, Quận 12, TP.HCM", "district": "Quận 12", "bedrooms": 2, "url": "https://mogi.vn/quan-12/mua-can-ho-chung-cu/ban-can-ho-ctl-tower-dt-72m2-2pn-full-nt-gia-3-6-ty-tl-id22714372", "property_type": "can-ho-chung-cu", "building_status": "existing", "developer": "CTL Corp", "year_built": 2019, "note": "Sổ hồng, full nội thất, gần ĐH CNTP — giá T5/2026", "quy_hoach": null, "foreign_eligible": null},
   {"title": "Chung Cư Bà Chiểu 2PN 61m² Bình Thạnh", "price_billion": 4.3, "area_m2": 61, "price_per_m2_million": 70.5, "location": "1050 Đinh Tiên Hoàng, Bình Thạnh, TP.HCM", "district": "Bình Thạnh", "bedrooms": 2, "url": "https://mogi.vn/binh-thanh/mua-can-ho-chung-cu/chung-cu-1050-ba-chieu-61m2-2pn-so-hong-id22734900", "property_type": "can-ho-chung-cu", "building_status": "existing", "developer": "", "year_built": 2018, "note": "Sổ hồng, khu Bà Chiểu Bình Thạnh — giá T5/2026", "quy_hoach": null, "foreign_eligible": null},
-  {"title": "Nhà Phố Lý Thường Kiệt 56m² Gò Vấp", "price_billion": 3.5, "area_m2": 56, "price_per_m2_million": 62.5, "location": "Lý Thường Kiệt, Phường 7, Gò Vấp, TP.HCM", "district": "Gò Vấp", "bedrooms": 3, "url": "https://mogi.vn/go-vap/mua-nha-rieng/nha-dep-p7-go-vap-56m2-ly-thuong-kiet-id22736000", "property_type": "nha-rieng", "building_status": "existing", "developer": "", "year_built": 2010, "note": "Nhà đẹp, tiện ích bao vây, Gò Vấp — giá T5/2026", "quy_hoach": null, "foreign_eligible": null}
+  {"title": "Nhà Phố Lý Thường Kiệt 56m² Gò Vấp", "price_billion": 3.5, "area_m2": 56, "price_per_m2_million": 62.5, "location": "Lý Thường Kiệt, Phường 7, Gò Vấp, TP.HCM", "district": "Gò Vấp", "bedrooms": 3, "url": "https://mogi.vn/go-vap/mua-nha-rieng/nha-dep-p7-go-vap-56m2-ly-thuong-kiet-id22736000", "property_type": "nha-rieng", "building_status": "existing", "developer": "", "year_built": 2010, "note": "Nhà đẹp, tiện ích bao vây, Gò Vấp — giá T5/2026", "quy_hoach": null, "foreign_eligible": null},
+  {
+    "title": "Vinhomes Grand Park The Origami 2PN 65m² [với comps thực]",
+    "price_billion": 4.0, "area_m2": 65, "price_per_m2_million": 61.5,
+    "district": "Thủ Đức", "bedrooms": 2,
+    "property_type": "can-ho-chung-cu", "building_status": "existing",
+    "developer": "Vingroup", "year_built": 2021,
+    "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-the-origami-vinhomes-grand-park",
+    "note": "Demo: có comparable_sales thực tế — T5/2026",
+    "quy_hoach": "clear", "foreign_eligible": true,
+    "comparable_sales": [
+      {"price_per_m2_million": 60.0, "sold_months_ago": 2, "area_m2": 65, "note": "Tầng 12 cùng block"},
+      {"price_per_m2_million": 62.5, "sold_months_ago": 1, "area_m2": 68, "note": "Tầng 18 block kế"},
+      {"price_per_m2_million": 59.0, "sold_months_ago": 4, "area_m2": 63, "note": "Tầng 8 cùng block"}
+    ]
+  },
+  {
+    "title": "Celadon City 2PN 71m² Tân Phú [với comps thực]",
+    "price_billion": 3.8, "area_m2": 71, "price_per_m2_million": 53.5,
+    "district": "Tân Phú", "bedrooms": 2,
+    "property_type": "can-ho-chung-cu", "building_status": "existing",
+    "developer": "Gamuda", "year_built": 2020,
+    "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-emerald-celadon-city",
+    "note": "Demo: có comparable_sales thực tế — T5/2026",
+    "quy_hoach": "clear", "foreign_eligible": true,
+    "comparable_sales": [
+      {"price_per_m2_million": 52.0, "sold_months_ago": 3, "area_m2": 71, "note": "Tầng 10 cùng block"},
+      {"price_per_m2_million": 54.5, "sold_months_ago": 2, "area_m2": 68, "note": "Tầng 15 block kế"}
+    ]
+  }
 ]
