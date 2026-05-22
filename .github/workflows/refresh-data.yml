@@ -1,0 +1,52 @@
+name: Refresh BDS Property Data
+
+on:
+  # Chạy lúc 8:43 sáng ICT (01:43 UTC) mỗi 5 ngày
+  schedule:
+    - cron: '43 1 */5 * *'
+
+  # Cho phép chạy tay từ GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    name: Refresh listings & push to Vercel
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # cần để git push
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── 2. Python setup ────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      # ── 3. Run refresh script ──────────────────────────────────────
+      - name: Refresh property data
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/refresh_data.py
+
+      # ── 4. Commit & push (triggers Vercel auto-deploy) ────────────
+      - name: Commit and push updated data
+        run: |
+          git config user.name  "BDS Refresh Bot"
+          git config user.email "bot@noreply.github.com"
+          git add data.json analyzer.py
+          # Chỉ commit nếu có thay đổi thực sự
+          git diff --staged --quiet && echo "No changes to commit" || (
+            git commit -m "data: auto-refresh listings $(date +'%Y-%m-%d') [skip ci]"
+            git push origin main
+            echo "✓ Pushed — Vercel will auto-deploy"
+          )
