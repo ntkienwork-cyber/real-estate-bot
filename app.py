@@ -341,7 +341,7 @@ TEMPLATE = """
   </div>
 
   {% if freshness.market_stale or freshness.macro_stale %}
-  <div style="background:#1c1400;border-left:4px solid #f59e0b;border-radius:6px;padding:10px 14px;margin-bottom:16px;font-size:.75rem;display:flex;align-items:center;gap:10px"> <span style="font-size:1.1rem">⚠️</span> <div> <span style="color:#fbbf24;font-weight:700">Dữ liệu thị trường chưa cập nhật {{ freshness.market_age_days }} ngày</span> <span style="color:#64748b;margin-left:8px">(cập nhật lần cuối: {{ freshness.market_updated }})</span> <div style="color:#78716c;margin-top:2px">Kết quả mang tính tham khảo — verify benchmark giá và absorption rate trước khi quyết định.</div> </div> </div>
+  <div style="background:#1c1400;border-left:4px solid #f59e0b;border-radius:6px;padding:10px 14px;margin-bottom:16px;font-size:.75rem;display:flex;align-items:center;gap:10px"> <span style="font-size:1.1rem">⚠️</span> <div> <span style="color:#fbbf24;font-weight:700">Dữ liệu thị trường chưa cập nhật {{ freshness.market_age_days }} ngày</span> <span style="color:#64748b;margin-left:8px">(cập nhật lần cuối: {{ freshness.market_updated }})</span> <div style="color:#78716c;margin-top:2px">Kết quả mang tính tham khảo — verify benchmark giá và absorption rate trước khi quyết định.</div> <div style="color:#78716c;margin-top:2px">Cập nhật bởi: {{ freshness.updated_by }} · Nguồn: {{ freshness.sources }}</div> </div> </div>
   {% endif %}
   <div class="sec">Tất cả {{ results|length }} BĐS phân tích</div>
   <div class="scrollable"><table>
