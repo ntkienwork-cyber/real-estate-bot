@@ -481,9 +481,11 @@ def _model_confidence(
 
 def _macro_modifier(macro_regime: dict) -> dict:
     mode = macro_regime.get("mode", "neutral")
-    if mode == "bullish":    return {"rec_bias": +6,  "liq_mult": 1.08}
-    if mode == "tightening": return {"rec_bias": -6,  "liq_mult": 0.90}
-    return                          {"rec_bias":  0,  "liq_mult": 1.00}
+    if mode == "bullish":
+        return {"rec_bias": +8,  "liq_mult": 1.10, "yield_threshold_add": -0.5}
+    if mode == "tightening":
+        return {"rec_bias": -12, "liq_mult": 0.82, "yield_threshold_add":  1.5}
+    return     {"rec_bias":   0, "liq_mult": 1.00, "yield_threshold_add":  0.0}
 
 
 # ─── Recommendation Engine v2 ────────────────────────────────────────────────
@@ -542,6 +544,14 @@ def _recommendation_v2(
         else:
             rec = {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
                    "reason": f"Điểm {adj:.0f}/100 · Không đủ hấp dẫn"}
+
+    # Tightening yield gate: BUY requires higher net yield during credit tightening
+    base_net_yield = scenarios.get("base", {}).get("net_yield_pct")
+    if base_net_yield is not None and rec["verdict"] == "BUY":
+        required_yield = 3.5 + mod.get("yield_threshold_add", 0)
+        if base_net_yield < required_yield:
+            rec = {"verdict": "SPECULATIVE", "color": "#5b21b6", "bg": "#ede9fe",
+                   "reason": f"Net yield {base_net_yield:.1f}% — tightening cycle đòi hỏi ≥{required_yield:.1f}%"}
 
     # Quy hoach hard gate: flagged land forces SKIP regardless of all other scores
     if quy_hoach == "flagged":
@@ -928,6 +938,12 @@ def compute_valuation(
     supply_penalty = supply_risk_raw * 0.1   # max 10 pts deduction
 
     risk_adj_score = clamp_score(risk_start - legal_penalty - dev_penalty - supply_penalty)
+
+    macro_stress_penalty = (
+        macro_regime.get("credit_tightness", 0.5) * 4 +   # max 4 pts
+        macro_regime.get("developer_stress", 0.5) * 6      # max 6 pts
+    )
+    risk_adj_score = clamp_score(risk_adj_score - macro_stress_penalty)
 
     # Composite score (weighted)
     composite_score = clamp_score(

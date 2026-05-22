@@ -532,7 +532,11 @@ TEMPLATE = """
             </div>
             {% set meta = sc_data.get('meta', {}) %}
             <div style="font-size:.6rem;color:#475569;margin-top:4px">
-              Giả định: BG {{meta.get('entry_cost_pct',1)|int}}% · Phí thoát {{meta.get('broker_exit_pct',2)|int}}%+{{meta.get('transfer_tax_pct',2)|int}}%+{{meta.get('haircut_pct',2)|int}}% haircut · {{meta.get('holding_years',5)}} năm nắm giữ · Chế độ macro: {{meta.get('macro_mode','—')}}
+              {% set macro_mode = meta.get('macro_mode','—') %}
+              {% if macro_mode == 'tightening' %}{% set badge_color = '#7f1d1d' %}{% set badge_bg = '#fee2e2' %}
+              {% elif macro_mode == 'bullish' %}{% set badge_color = '#14532d' %}{% set badge_bg = '#dcfce7' %}
+              {% else %}{% set badge_color = '#475569' %}{% set badge_bg = '#e2e8f0' %}{% endif %}
+              Giả định: BG {{meta.get('entry_cost_pct',1)|int}}% · Phí thoát {{meta.get('broker_exit_pct',2)|int}}%+{{meta.get('transfer_tax_pct',2)|int}}%+{{meta.get('haircut_pct',2)|int}}% haircut · {{meta.get('holding_years',5)}} năm nắm giữ · Chế độ macro: <span style="display:inline-block;padding:1px 6px;border-radius:4px;font-weight:600;background:{{badge_bg}};color:{{badge_color}}">{{macro_mode}}</span>
             </div>
           </div>
           {% endif %}
