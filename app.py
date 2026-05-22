@@ -289,10 +289,13 @@ TEMPLATE = """
       <td>{{ r.property.price_per_m2_million or '—' }}{% if r.property.price_per_m2_million %}tr{% endif %}</td>
       <td style="font-size:.75rem;white-space:nowrap">{{ r.property.district }}</td>
       <td>
+        {% set _vd_sc = r.valuation_data.get('scores', {}) %}
+        {% set _cs = _vd_sc.get('compositeScore', r.score) %}
         <div class="bar-wrap">
-          <div class="bar-outer"><div class="bar-inner" style="width:{{ r.score }}%;background:{% if r.score>=75 %}#22c55e{% elif r.score>=55 %}#f59e0b{% else %}#ef4444{% endif %}"></div></div>
-          <div class="bar-num" style="color:{% if r.score>=75 %}#22c55e{% elif r.score>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ r.score }}</div>
+          <div class="bar-outer"><div class="bar-inner" style="width:{{ _cs }}%;background:{% if _cs>=75 %}#22c55e{% elif _cs>=55 %}#f59e0b{% else %}#ef4444{% endif %}"></div></div>
+          <div class="bar-num" style="color:{% if _cs>=75 %}#22c55e{% elif _cs>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ _cs }}</div>
         </div>
+        <div class="sub" style="font-size:.6rem;color:#64748b;margin-top:2px">screen: {{ r.score }}</div>
       </td>
       <td><span class="badge" style="color:{{ vc }};background:{{ vb }}">{{ r.verdict }}</span></td>
       <td><span class="badge" style="color:{{ vfg }};background:{{ vbg }}">{{ r.value_vs_market }}</span></td>
@@ -387,11 +390,17 @@ TEMPLATE = """
       <td>{{ r.property.price_per_m2_million or '—' }}{% if r.property.price_per_m2_million %}tr{% endif %}</td>
       <td style="font-size:.74rem;white-space:nowrap">{{ r.property.district }}</td>
       <td>
+        {% set _comp = sc.get('compositeScore', r.score) %}
+        <div style="font-size:.58rem;color:#94a3b8;margin-bottom:2px">Composite Score (Valuation Engine) <span title="Composite Score drives the BUY/HOLD/SKIP verdict" style="cursor:help">ℹ️</span></div>
         <div class="bar-wrap">
-          <div class="bar-outer"><div class="bar-inner" style="width:{{ r.score }}%;background:{% if r.score>=75 %}#22c55e{% elif r.score>=55 %}#f59e0b{% else %}#ef4444{% endif %}"></div></div>
-          <div class="bar-num" style="color:{% if r.score>=75 %}#22c55e{% elif r.score>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ r.score }}</div>
+          <div class="bar-outer"><div class="bar-inner" style="width:{{ _comp }}%;background:{% if _comp>=75 %}#22c55e{% elif _comp>=55 %}#f59e0b{% else %}#ef4444{% endif %}"></div></div>
+          <div class="bar-num" style="color:{% if _comp>=75 %}#22c55e{% elif _comp>=55 %}#f59e0b{% else %}#ef4444{% endif %}">{{ _comp }}</div>
         </div>
-        {% if sc.get('compositeScore') %}<div class="sub" style="font-size:.61rem;color:#64748b;margin-top:2px">composite: {{ sc.get('compositeScore') }}</div>{% endif %}
+        <div style="font-size:.56rem;color:#64748b;margin-top:5px;margin-bottom:2px">Screening Score (6-factor) <span title="Screening Score is an independent 6-factor pre-filter" style="cursor:help">ℹ️</span></div>
+        <div class="bar-wrap">
+          <div class="bar-outer" style="height:4px"><div class="bar-inner" style="width:{{ r.score }}%;height:4px;background:#475569"></div></div>
+          <div style="font-size:.65rem;color:#64748b;min-width:30px;text-align:right">{{ r.score }}</div>
+        </div>
       </td>
       {% set _vl = vv.get('valuationLabel', 'UNKNOWN') %}{% set _vlfg,_vlbg = value_badge(_vl) %}
       <td><span class="badge" style="color:{{ _vlfg }};background:{{ _vlbg }}">{{ _vl }}</span></td>
