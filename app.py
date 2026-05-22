@@ -564,6 +564,26 @@ TEMPLATE = """
             {% endfor %}
           </div>
           {% endif %}
+          <!-- Legal / ownership check -->
+          {% set fe = vd.get('foreign_eligible') %}
+          {% set qh = vd.get('quy_hoach') %}
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;padding:8px 10px;background:#0f172a;border-radius:6px;border:1px solid #1e293b">
+            <div style="font-size:.62rem;color:#64748b;width:100%;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Kiểm tra pháp lý cơ bản</div>
+            {% if qh == 'clear' %}
+              <span class="badge" style="color:#14532d;background:#dcfce7;border:1px solid #166534">✓ Quy hoạch: Sạch</span>
+            {% elif qh == 'flagged' %}
+              <span class="badge" style="color:#991b1b;background:#fee2e2;border:1px solid #7f1d1d">🚫 Quy hoạch: Có vướng mắc</span>
+            {% else %}
+              <span class="badge" style="color:#92400e;background:#fef3c7;border:1px solid #b45309">⚠️ Quy hoạch: Chưa xác minh</span>
+            {% endif %}
+            {% if fe == true %}
+              <span class="badge" style="color:#14532d;background:#dcfce7;border:1px solid #166534">✓ Người nước ngoài: Được mua</span>
+            {% elif fe == false %}
+              <span class="badge" style="color:#991b1b;background:#fee2e2;border:1px solid #7f1d1d">✗ Người nước ngoài: Không đủ điều kiện</span>
+            {% else %}
+              <span class="badge" style="color:#92400e;background:#fef3c7;border:1px solid #b45309">⚠️ Người nước ngoài: Chưa xác minh</span>
+            {% endif %}
+          </div>
           <!-- Developer analysis section -->
           {% set dev_name = r.property.get('developer','') %}
           {% set dinfo = get_developer_info(dev_name) %}

@@ -497,6 +497,7 @@ def _recommendation_v2(
     scenarios: dict,
     macro_regime: dict,
     dscr: Optional[float] = None,
+    quy_hoach: Optional[str] = None,
 ) -> dict:
     """BUY / HOLD / SPECULATIVE / SKIP with explanation."""
     mod      = _macro_modifier(macro_regime)
@@ -504,7 +505,7 @@ def _recommendation_v2(
     base_irr = (scenarios.get("base") or {}).get("irr") or 0
     bear_roi = (scenarios.get("bear") or {}).get("roi") or -999
 
-    # Early exits for legal flags — neither produces BUY so DSCR gate is irrelevant
+    # Early exits for legal flags — neither produces BUY so downstream gates are irrelevant
     if dev_legal_status == "red":
         return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
                 "reason": "Pháp lý nguy hiểm — bỏ qua"}
@@ -518,7 +519,7 @@ def _recommendation_v2(
         return {"verdict": "SPECULATIVE", "color": "#5b21b6", "bg": "#ede9fe",
                 "reason": "Tiềm năng nhưng: " + " · ".join(flags)}
 
-    # Build proposed verdict (may be BUY — gate applied below)
+    # Build proposed verdict (may be BUY — post-processing gates applied below)
     if adj >= 67 and liquidity_sc >= 55 and base_irr >= 11 and bear_roi >= 0:
         rec = {"verdict": "BUY", "color": "#14532d", "bg": "#dcfce7",
                "reason": f"Điểm {adj:.0f} · IRR {base_irr:.1f}% · Kịch bản xấu vẫn dương"}
@@ -541,6 +542,16 @@ def _recommendation_v2(
         else:
             rec = {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
                    "reason": f"Điểm {adj:.0f}/100 · Không đủ hấp dẫn"}
+
+    # Quy hoach hard gate: flagged land forces SKIP regardless of all other scores
+    if quy_hoach == "flagged":
+        return {"verdict": "SKIP", "color": "#7f1d1d", "bg": "#fee2e2",
+                "reason": "Đất nằm trong quy hoạch — rủi ro thu hồi"}
+
+    # Quy hoach soft gate: unknown status blocks BUY → downgrade to SPECULATIVE
+    if quy_hoach is None and rec["verdict"] == "BUY":
+        rec = {"verdict": "SPECULATIVE", "color": "#5b21b6", "bg": "#ede9fe",
+               "reason": rec["reason"] + " · Chưa xác minh quy hoạch — cần kiểm tra trước khi quyết định"}
 
     # DSCR hard gate: downgrade BUY → SPECULATIVE when rental income < mortgage payment
     if dscr is not None and dscr < 1.0 and rec["verdict"] == "BUY":
@@ -607,6 +618,10 @@ def compute_valuation(
     """
     prop_type = prop.get("property_type", "can-ho-chung-cu")
     is_dat_nen = (prop_type == "dat-nen")
+
+    # ── Legal / ownership fields ───────────────────────────────────────────────
+    quy_hoach        = prop.get("quy_hoach")        # None | "clear" | "flagged"
+    foreign_eligible = prop.get("foreign_eligible")  # None | True | False
 
     # ── Raw inputs ─────────────────────────────────────────────────────────────
     price_billion      = safe_number(prop.get("price_billion"))
@@ -958,6 +973,7 @@ def compute_valuation(
         scenarios        = scenarios,
         macro_regime     = macro_regime,
         dscr             = None if is_dat_nen else dscr,
+        quy_hoach        = quy_hoach,
     )
     position_sizing = _position_sizing(
         verdict          = recommendation["verdict"],
@@ -1197,14 +1213,16 @@ def compute_valuation(
             "riskAdjustedScore":            round(risk_adj_score, 1),
             "compositeScore":               round(composite_score, 1),
         },
-        "explanations":   explanations,
-        "scenarios":      scenarios,
-        "netYield":       net_yield_pct,
-        "quality":        quality,
-        "confidence":     confidence_obj,
-        "recommendation": recommendation,
-        "position_sizing": position_sizing,
-        "data_sources":   data_sources,
+        "explanations":     explanations,
+        "scenarios":        scenarios,
+        "netYield":         net_yield_pct,
+        "quality":          quality,
+        "confidence":       confidence_obj,
+        "recommendation":   recommendation,
+        "position_sizing":  position_sizing,
+        "data_sources":     data_sources,
+        "quy_hoach":        quy_hoach,
+        "foreign_eligible": foreign_eligible,
     }
 
 
