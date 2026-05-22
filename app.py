@@ -503,6 +503,12 @@ TEMPLATE = """
             </div>
             {% endfor %}
           </div>
+          {% set _dscr_val = ic.get('DSCR') %}
+          {% if _dscr_val and _dscr_val < 1.0 %}
+          <div style="background:#2d1515;border:1px solid #7f1d1d;border-radius:6px;padding:9px 12px;margin-bottom:10px">
+            <div style="font-size:.72rem;color:#fca5a5;line-height:1.5">⚠️ DSCR {{ _dscr_val|round(2) }} — Tiền thuê không đủ trả góp ở lãi suất 9.5%. Vị thế này yêu cầu nguồn thu nhập bổ sung.</div>
+          </div>
+          {% endif %}
           {% set sc_data = vd.get('scenarios', {}) %}
           {% if sc_data.get('bear') %}
           <div style="margin-bottom:12px">
